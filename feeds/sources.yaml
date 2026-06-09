@@ -1,0 +1,143 @@
+# HXZ News Reader 信源台账
+# 与飞书「内容工程-0609」对齐
+# 字段说明：
+#   id: 全局唯一短 ID
+#   name: 显示名
+#   type: rss | x_handle | wechat | podcast
+#   url: RSS / 主页 URL（podcast / wechat 没有可用 RSS 时留空字符串）
+#   category: ai_hot | business_innovation
+#   group: 飞书表格的分组（X-国外/X-国内/公众号/聚合站/优质播客/商科信源）
+#   default: 默认抓取层（true 即跑全量时拉取，false 仅展示）
+
+# ============ A. 聚合站（默认跑通的稳定层）============
+- {id: hackernews,  name: Hacker News,                type: rss, url: 'https://news.ycombinator.com/rss',          category: ai_hot, group: 聚合站, default: true}
+- {id: import-ai,   name: Import AI,                  type: rss, url: 'https://importai.substack.com/feed',         category: ai_hot, group: 聚合站, default: true}
+- {id: hf-papers,   name: HuggingFace Daily Papers,   type: rss, url: 'https://jamesg.blog/hf-papers.xml',           category: ai_hot, group: 聚合站, default: false}  # 403 时关掉，下面用 arxiv 兜底
+- {id: rundown-ai,  name: The Rundown AI,             type: rss, url: '',                                            category: ai_hot, group: 聚合站, default: false} # 官网无 RSS, 仅展示
+- {id: arxiv-cs-ai, name: arXiv cs.AI,                type: rss, url: 'http://export.arxiv.org/rss/cs.AI',            category: ai_hot, group: 聚合站, default: true}
+- {id: latent-space, name: Latent Space,              type: rss, url: 'https://www.latent.space/feed',                category: ai_hot, group: 聚合站, default: true}
+
+# ============ B. 商科创新故事（v0 稳定层：3 个 Substack）============
+- {id: lennys,      name: "Lenny's Newsletter",       type: rss, url: 'https://www.lennysnewsletter.com/feed',       category: business_innovation, group: 商科信源, default: true}
+- {id: generalist,  name: The Generalist,             type: rss, url: 'https://www.generalist.com/feed',             category: business_innovation, group: 商科信源, default: true}
+- {id: newcomer,    name: Newcomer,                   type: rss, url: 'https://www.newcomer.co/feed',                category: business_innovation, group: 商科信源, default: true}
+
+# ============ C. 公众号（wechat2rss 桥；URL 留空时只展示不抓取）============
+# wechat2rss 取 RSS 流程：访问 https://wechat2rss.xlab.app/ 搜公众号 → 复制 RSS 链接填回
+- {id: qbitai,             name: 量子位,            type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: jiqizhixin,         name: 机器之心,          type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: xinzhiyuan,         name: 新智元,            type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: latepost,           name: 晚点LatePost,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: waves,              name: 暗涌Waves,         type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: geekpark,           name: 极客公园,          type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: guicang-ai,         name: 归藏的AI资讯,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: khazix,             name: 数字生命卡兹克,    type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: aiwarts,            name: 卡尔的AI沃茨,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: agent-ju,           name: Agent橘,           type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+- {id: zang-ai,            name: 葬AI,              type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
+# 商科板块的公众号（同样 wechat2rss）
+- {id: latepost-bus,       name: 晚点LatePost-商科, type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
+- {id: waves-bus,          name: 暗涌-商科,         type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
+- {id: zhinengyongxian,    name: 智能涌现,          type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
+- {id: qianwang,           name: 潜望,              type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
+
+# ============ D. 优质播客 / 长视频（仅展示，可选抓取）============
+- {id: lex-fridman,    name: Lex Fridman Podcast,      type: podcast, url: 'https://www.youtube.com/c/lexfridman',                        category: ai_hot, group: 优质播客, default: false}
+- {id: dwarkesh,       name: Dwarkesh Podcast,         type: podcast, url: 'https://www.dwarkesh.com/feed',                              category: ai_hot, group: 优质播客, default: false}
+- {id: matt-wolfe,     name: Matt Wolfe,               type: podcast, url: 'https://www.youtube.com/@mreflow',                            category: ai_hot, group: 优质播客, default: false}
+- {id: 20vc,           name: 20VC,                     type: podcast, url: 'https://www.youtube.com/@20VC',                               category: ai_hot, group: 优质播客, default: false}
+- {id: no-priors,      name: No Priors,                type: podcast, url: 'https://www.youtube.com/@NoPriorsPodcast',                    category: ai_hot, group: 优质播客, default: false}
+- {id: bg2,            name: BG2,                      type: podcast, url: 'https://www.bg2pod.com/',                                     category: ai_hot, group: 优质播客, default: false}
+- {id: ted-ai,         name: The TED AI Show,          type: podcast, url: 'https://www.ted.com/pages/the-ted-ai-show',                   category: ai_hot, group: 优质播客, default: false}
+- {id: a16z-ai,        name: AI + a16z,                type: podcast, url: 'https://a16z.com/podcasts/ai-a16z/',                          category: ai_hot, group: 优质播客, default: false}
+- {id: li-ziran,       name: 李自然说,                  type: podcast, url: 'https://space.bilibili.com/39089748/',                        category: ai_hot, group: 优质播客, default: false}
+- {id: web3-skytown,   name: Web3天空之城,              type: podcast, url: 'https://space.bilibili.com/351754674/',                       category: ai_hot, group: 优质播客, default: false}
+- {id: zxj-business,   name: 张小珺 商业访谈录,         type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962', category: ai_hot, group: 优质播客, default: false}
+- {id: latetalk,       name: 晚点聊 LateTalk,           type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/61933ace1b4320461e91fd55', category: ai_hot, group: 优质播客, default: false}
+- {id: onboard,        name: OnBoard!,                  type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/6164e0d77a72e91fb7e5a14d', category: ai_hot, group: 优质播客, default: false}
+- {id: guigu101,       name: 硅谷101,                   type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc', category: ai_hot, group: 优质播客, default: false}
+- {id: ai-weekly-talk, name: AI每周谈,                  type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/688a34636f5a275f1cba40fd', category: ai_hot, group: 优质播客, default: false}
+
+# ============ E. X / Twitter（80 个，仅登记 handle）============
+# 国外 50
+- {id: x-OpenAI,            name: OpenAI,            type: x_handle, url: 'https://x.com/OpenAI',            category: ai_hot, group: X-国外, default: false, x_handle: OpenAI}
+- {id: x-AnthropicAI,       name: Anthropic,         type: x_handle, url: 'https://x.com/AnthropicAI',       category: ai_hot, group: X-国外, default: false, x_handle: AnthropicAI}
+- {id: x-GoogleDeepMind,    name: Google DeepMind,   type: x_handle, url: 'https://x.com/GoogleDeepMind',    category: ai_hot, group: X-国外, default: false, x_handle: GoogleDeepMind}
+- {id: x-MetaAI,            name: Meta AI,           type: x_handle, url: 'https://x.com/MetaAI',            category: ai_hot, group: X-国外, default: false, x_handle: MetaAI}
+- {id: x-huggingface,       name: Hugging Face,      type: x_handle, url: 'https://x.com/huggingface',       category: ai_hot, group: X-国外, default: false, x_handle: huggingface}
+- {id: x-midjourney,        name: Midjourney,        type: x_handle, url: 'https://x.com/midjourney',        category: ai_hot, group: X-国外, default: false, x_handle: midjourney}
+- {id: x-runwayml,          name: Runway,            type: x_handle, url: 'https://x.com/runwayml',          category: ai_hot, group: X-国外, default: false, x_handle: runwayml}
+- {id: x-StabilityAI,       name: Stability AI,      type: x_handle, url: 'https://x.com/StabilityAI',       category: ai_hot, group: X-国外, default: false, x_handle: StabilityAI}
+- {id: x-perplexity_ai,     name: Perplexity AI,     type: x_handle, url: 'https://x.com/perplexity_ai',     category: ai_hot, group: X-国外, default: false, x_handle: perplexity_ai}
+- {id: x-elevenlabsio,      name: ElevenLabs,        type: x_handle, url: 'https://x.com/elevenlabsio',      category: ai_hot, group: X-国外, default: false, x_handle: elevenlabsio}
+- {id: x-sama,              name: Sam Altman,        type: x_handle, url: 'https://x.com/sama',              category: ai_hot, group: X-国外, default: false, x_handle: sama}
+- {id: x-DarioAmodei,       name: Dario Amodei,      type: x_handle, url: 'https://x.com/DarioAmodei',       category: ai_hot, group: X-国外, default: false, x_handle: DarioAmodei}
+- {id: x-elonmusk,          name: Elon Musk,         type: x_handle, url: 'https://x.com/elonmusk',          category: ai_hot, group: X-国外, default: false, x_handle: elonmusk}
+- {id: x-satyanadella,      name: Satya Nadella,     type: x_handle, url: 'https://x.com/satyanadella',      category: ai_hot, group: X-国外, default: false, x_handle: satyanadella}
+- {id: x-nvidia,            name: NVIDIA,            type: x_handle, url: 'https://x.com/nvidia',            category: ai_hot, group: X-国外, default: false, x_handle: nvidia}
+- {id: x-kaifulee,          name: Kai-Fu Lee,        type: x_handle, url: 'https://x.com/kaifulee',          category: ai_hot, group: X-国外, default: false, x_handle: kaifulee}
+- {id: x-AravSrinivas,      name: Aravind Srinivas,  type: x_handle, url: 'https://x.com/AravSrinivas',      category: ai_hot, group: X-国外, default: false, x_handle: AravSrinivas}
+- {id: x-DavidSHolz,        name: David Holz,        type: x_handle, url: 'https://x.com/DavidSHolz',        category: ai_hot, group: X-国外, default: false, x_handle: DavidSHolz}
+- {id: x-karpathy,          name: Andrej Karpathy,   type: x_handle, url: 'https://x.com/karpathy',          category: ai_hot, group: X-国外, default: false, x_handle: karpathy}
+- {id: x-ylecun,            name: Yann LeCun,        type: x_handle, url: 'https://x.com/ylecun',            category: ai_hot, group: X-国外, default: false, x_handle: ylecun}
+- {id: x-AndrewYNg,         name: Andrew Ng,         type: x_handle, url: 'https://x.com/AndrewYNg',         category: ai_hot, group: X-国外, default: false, x_handle: AndrewYNg}
+- {id: x-drfeifei,          name: Fei-Fei Li,        type: x_handle, url: 'https://x.com/drfeifei',          category: ai_hot, group: X-国外, default: false, x_handle: drfeifei}
+- {id: x-DrJimFan,          name: Jim Fan,           type: x_handle, url: 'https://x.com/DrJimFan',          category: ai_hot, group: X-国外, default: false, x_handle: DrJimFan}
+- {id: x-lilianweng,        name: Lilian Weng,       type: x_handle, url: 'https://x.com/lilianweng',        category: ai_hot, group: X-国外, default: false, x_handle: lilianweng}
+- {id: x-jeremyphoward,     name: Jeremy Howard,     type: x_handle, url: 'https://x.com/jeremyphoward',     category: ai_hot, group: X-国外, default: false, x_handle: jeremyphoward}
+- {id: x-GaryMarcus,        name: Gary Marcus,       type: x_handle, url: 'https://x.com/GaryMarcus',        category: ai_hot, group: X-国外, default: false, x_handle: GaryMarcus}
+- {id: x-steipete,          name: Peter Steinberger, type: x_handle, url: 'https://x.com/steipete',          category: ai_hot, group: X-国外, default: false, x_handle: steipete}
+- {id: x-OfficialLoganK,    name: Logan Kilpatrick,  type: x_handle, url: 'https://x.com/OfficialLoganK',    category: ai_hot, group: X-国外, default: false, x_handle: OfficialLoganK}
+- {id: x-simonw,            name: Simon Willison,    type: x_handle, url: 'https://x.com/simonw',            category: ai_hot, group: X-国外, default: false, x_handle: simonw}
+- {id: x-swyx,              name: Swyx,              type: x_handle, url: 'https://x.com/swyx',              category: ai_hot, group: X-国外, default: false, x_handle: swyx}
+- {id: x-mattshumer_,       name: Matt Shumer,       type: x_handle, url: 'https://x.com/mattshumer_',       category: ai_hot, group: X-国外, default: false, x_handle: mattshumer_}
+- {id: x-Thom_Wolf,         name: Thomas Wolf,       type: x_handle, url: 'https://x.com/Thom_Wolf',         category: ai_hot, group: X-国外, default: false, x_handle: Thom_Wolf}
+- {id: x-hwchase17,         name: Harrison Chase,    type: x_handle, url: 'https://x.com/hwchase17',         category: ai_hot, group: X-国外, default: false, x_handle: hwchase17}
+- {id: x-soumithchintala,   name: Soumith Chintala,  type: x_handle, url: 'https://x.com/soumithchintala',   category: ai_hot, group: X-国外, default: false, x_handle: soumithchintala}
+- {id: x-addyosmani,        name: Addy Osmani,       type: x_handle, url: 'https://x.com/addyosmani',        category: ai_hot, group: X-国外, default: false, x_handle: addyosmani}
+- {id: x-lexfridman,        name: Lex Fridman,       type: x_handle, url: 'https://x.com/lexfridman',        category: ai_hot, group: X-国外, default: false, x_handle: lexfridman}
+- {id: x-rowancheung,       name: Rowan Cheung,      type: x_handle, url: 'https://x.com/rowancheung',       category: ai_hot, group: X-国外, default: false, x_handle: rowancheung}
+- {id: x-alliekmiller,      name: Allie K. Miller,   type: x_handle, url: 'https://x.com/alliekmiller',      category: ai_hot, group: X-国外, default: false, x_handle: alliekmiller}
+- {id: x-BernardMarr,       name: Bernard Marr,      type: x_handle, url: 'https://x.com/BernardMarr',       category: ai_hot, group: X-国外, default: false, x_handle: BernardMarr}
+- {id: x-emollick,          name: Ethan Mollick,     type: x_handle, url: 'https://x.com/emollick',          category: ai_hot, group: X-国外, default: false, x_handle: emollick}
+- {id: x-Scobleizer,        name: Robert Scoble,     type: x_handle, url: 'https://x.com/Scobleizer',        category: ai_hot, group: X-国外, default: false, x_handle: Scobleizer}
+- {id: x-bilawalsidhu,      name: Bilawal Sidhu,     type: x_handle, url: 'https://x.com/bilawalsidhu',      category: ai_hot, group: X-国外, default: false, x_handle: bilawalsidhu}
+- {id: x-c_valenzuela,      name: Cristobal Valenzuela, type: x_handle, url: 'https://x.com/c_valenzuela',   category: ai_hot, group: X-国外, default: false, x_handle: c_valenzuela}
+- {id: x-LinusEkenstam,     name: Linus Ekenstam,    type: x_handle, url: 'https://x.com/LinusEkenstam',     category: ai_hot, group: X-国外, default: false, x_handle: LinusEkenstam}
+- {id: x-nickfloats,        name: Nick St. Pierre,   type: x_handle, url: 'https://x.com/nickfloats',        category: ai_hot, group: X-国外, default: false, x_handle: nickfloats}
+- {id: x-heatherbcooper,    name: Heather Cooper,    type: x_handle, url: 'https://x.com/heatherbcooper',    category: ai_hot, group: X-国外, default: false, x_handle: heatherbcooper}
+- {id: x-jaredpalmer,       name: Jared Palmer,      type: x_handle, url: 'https://x.com/jaredpalmer',       category: ai_hot, group: X-国外, default: false, x_handle: jaredpalmer}
+- {id: x-divgarg9,          name: Div Garg,          type: x_handle, url: 'https://x.com/divgarg9',          category: ai_hot, group: X-国外, default: false, x_handle: divgarg9}
+- {id: x-ID_AA_Carmack,     name: John Carmack,      type: x_handle, url: 'https://x.com/ID_AA_Carmack',     category: ai_hot, group: X-国外, default: false, x_handle: ID_AA_Carmack}
+- {id: x-demishassabis,     name: Demis Hassabis,    type: x_handle, url: 'https://x.com/demishassabis',     category: ai_hot, group: X-国外, default: false, x_handle: demishassabis}
+# 国内 30
+- {id: x-dotey,             name: 宝玉,              type: x_handle, url: 'https://x.com/dotey',             category: ai_hot, group: X-国内, default: false, x_handle: dotey}
+- {id: x-op7418,            name: 歸藏,              type: x_handle, url: 'https://x.com/op7418',            category: ai_hot, group: X-国内, default: false, x_handle: op7418}
+- {id: x-Gorden_Sun,        name: Gorden Sun,        type: x_handle, url: 'https://x.com/Gorden_Sun',        category: ai_hot, group: X-国内, default: false, x_handle: Gorden_Sun}
+- {id: x-xiaohu,            name: 小互,              type: x_handle, url: 'https://x.com/xiaohu',            category: ai_hot, group: X-国内, default: false, x_handle: xiaohu}
+- {id: x-WaytoAGI,          name: WaytoAGI,          type: x_handle, url: 'https://x.com/WaytoAGI',          category: ai_hot, group: X-国内, default: false, x_handle: WaytoAGI}
+- {id: x-lijigang,          name: 李继刚,            type: x_handle, url: 'https://x.com/lijigang',          category: ai_hot, group: X-国内, default: false, x_handle: lijigang}
+- {id: x-vista8,            name: 向阳乔木,          type: x_handle, url: 'https://x.com/vista8',            category: ai_hot, group: X-国内, default: false, x_handle: vista8}
+- {id: x-thinkingjimmy,     name: thinkingjimmy,     type: x_handle, url: 'https://x.com/thinkingjimmy',     category: ai_hot, group: X-国内, default: false, x_handle: thinkingjimmy}
+- {id: x-shao__meng,        name: shao meng,         type: x_handle, url: 'https://x.com/shao__meng',        category: ai_hot, group: X-国内, default: false, x_handle: shao__meng}
+- {id: x-goocarlos,         name: goocarlos,         type: x_handle, url: 'https://x.com/goocarlos',         category: ai_hot, group: X-国内, default: false, x_handle: goocarlos}
+- {id: x-AxtonLiu,          name: Axton Liu,         type: x_handle, url: 'https://x.com/AxtonLiu',          category: ai_hot, group: X-国内, default: false, x_handle: AxtonLiu}
+- {id: x-lxfater,           name: 铁锤人,            type: x_handle, url: 'https://x.com/lxfater',           category: ai_hot, group: X-国内, default: false, x_handle: lxfater}
+- {id: x-indie_maker,       name: indigo 芦义,       type: x_handle, url: 'https://x.com/indie_maker',       category: ai_hot, group: X-国内, default: false, x_handle: indie_maker}
+- {id: x-venturetwins,      name: Justine Moore,     type: x_handle, url: 'https://x.com/venturetwins',      category: ai_hot, group: X-国内, default: false, x_handle: venturetwins}
+- {id: x-gefei55,           name: 哥飞,              type: x_handle, url: 'https://x.com/gefei55',           category: ai_hot, group: X-国内, default: false, x_handle: gefei55}
+- {id: x-Fenng,             name: Fenng 冯大辉,      type: x_handle, url: 'https://x.com/Fenng',             category: ai_hot, group: X-国内, default: false, x_handle: Fenng}
+- {id: x-nateleex,          name: 李自然,            type: x_handle, url: 'https://x.com/nateleex',          category: ai_hot, group: X-国内, default: false, x_handle: nateleex}
+- {id: x-tualatrix,         name: 图拉鼎,            type: x_handle, url: 'https://x.com/tualatrix',         category: ai_hot, group: X-国内, default: false, x_handle: tualatrix}
+- {id: x-OwenYoungZh,       name: 沉浸式翻译作者,    type: x_handle, url: 'https://x.com/OwenYoungZh',       category: ai_hot, group: X-国内, default: false, x_handle: OwenYoungZh}
+- {id: x-Francis_YAO_,      name: 符尧,              type: x_handle, url: 'https://x.com/Francis_YAO_',      category: ai_hot, group: X-国内, default: false, x_handle: Francis_YAO_}
+- {id: x-zhanghanduo,       name: 马东锡NLP,         type: x_handle, url: 'https://x.com/zhanghanduo',       category: ai_hot, group: X-国内, default: false, x_handle: zhanghanduo}
+- {id: x-Diyi_Yang,         name: Diyi Yang,         type: x_handle, url: 'https://x.com/Diyi_Yang',         category: ai_hot, group: X-国内, default: false, x_handle: Diyi_Yang}
+- {id: x-haibun,            name: 海辛,              type: x_handle, url: 'https://x.com/haibun',            category: ai_hot, group: X-国内, default: false, x_handle: haibun}
+- {id: x-nishuang,          name: 倪爽,              type: x_handle, url: 'https://x.com/nishuang',          category: ai_hot, group: X-国内, default: false, x_handle: nishuang}
+- {id: x-aigclink,          name: AIGCLINK,          type: x_handle, url: 'https://x.com/aigclink',          category: ai_hot, group: X-国内, default: false, x_handle: aigclink}
+- {id: x-Tumeng05,          name: Tumeng05,          type: x_handle, url: 'https://x.com/Tumeng05',          category: ai_hot, group: X-国内, default: false, x_handle: Tumeng05}
+- {id: x-cyberchanxin,      name: 赛博禅心,          type: x_handle, url: 'https://x.com/cyberchanxin',      category: ai_hot, group: X-国内, default: false, x_handle: cyberchanxin}
+- {id: x-ruanyf,            name: 阮一峰,            type: x_handle, url: 'https://x.com/ruanyf',            category: ai_hot, group: X-国内, default: false, x_handle: ruanyf}
+- {id: x-GitHub_Daily,      name: GitHubDaily,       type: x_handle, url: 'https://x.com/GitHub_Daily',      category: ai_hot, group: X-国内, default: false, x_handle: GitHub_Daily}
+- {id: x-easychen,          name: 方糖气球,          type: x_handle, url: 'https://x.com/easychen',          category: ai_hot, group: X-国内, default: false, x_handle: easychen}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<title>HXZ News Reader - 内容工程信源雷达</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#0f1115;color:#e4e6eb;margin:0;padding:24px;line-height:1.5}
+  h1{font-size:22px;margin:0 0 4px}
+  .meta{color:#8b949e;font-size:13px;margin-bottom:24px}
+  .group{margin:28px 0 12px;font-size:14px;color:#7ee787;text-transform:uppercase;letter-spacing:0.06em}
+  .item{padding:10px 0;border-bottom:1px solid #1f2329}
+  .item a{color:#79c0ff;text-decoration:none}
+  .item a:hover{text-decoration:underline}
+  .src{color:#8b949e;font-size:12px;margin-right:8px}
+  .ts{color:#6e7681;font-size:12px;float:right}
+  .summary{color:#a0a6ad;font-size:13px;margin-top:4px}
+  .empty{color:#8b949e;font-style:italic;padding:20px;text-align:center}
+</style>
+</head>
+<body>
+<h1>HXZ News Reader · 内容工程信源雷达</h1>
+<div class="meta" id="meta">Loading…</div>
+<div id="list"></div>
+<script>
+fetch('data/items.json?_=' + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('meta').textContent =
+      `generated_at: ${d.generated_at} · window: ${d.window_hours}h · items: ${d.items.length}`;
+    const list = document.getElementById('list');
+    if (!d.items.length) {
+      list.innerHTML = '<div class="empty">本窗口期暂无条目，可调整 --window-hours 后重新跑 scripts/update_news.py</div>';
+      return;
+    }
+    const groups = {};
+    for (const it of d.items) {
+      (groups[it.group || 'misc'] ||= []).push(it);
+    }
+    for (const g of Object.keys(groups)) {
+      const gh = document.createElement('div'); gh.className = 'group'; gh.textContent = g;
+      list.appendChild(gh);
+      for (const it of groups[g]) {
+        const row = document.createElement('div'); row.className = 'item';
+        row.innerHTML =
+          `<span class="src">${it.site_name}</span>` +
+          `<a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>` +
+          `<span class="ts">${it.published_at.slice(0,16).replace('T',' ')}</span>` +
+          (it.summary ? `<div class="summary">${it.summary}</div>` : '');
+        list.appendChild(row);
+      }
+    }
+  })
+  .catch(e => {
+    document.getElementById('meta').textContent = 'data/items.json not found. Run `python scripts/update_news.py` first.';
+  });
+</script>
+</body>
+</html>

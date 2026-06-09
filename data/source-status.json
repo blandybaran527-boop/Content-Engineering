@@ -1,0 +1,1082 @@
+{
+  "generated_at": "2026-06-09T15:20:01.610678+00:00",
+  "sources": [
+    {
+      "id": "hackernews",
+      "name": "Hacker News",
+      "type": "rss",
+      "ok": true,
+      "count": 24,
+      "error": "",
+      "fetched_at": "2026-06-09T15:19:56.105866+00:00"
+    },
+    {
+      "id": "import-ai",
+      "name": "Import AI",
+      "type": "rss",
+      "ok": true,
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-09T15:19:56.826621+00:00"
+    },
+    {
+      "id": "hf-papers",
+      "name": "HuggingFace Daily Papers",
+      "type": "rss",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:19:57.391282+00:00"
+    },
+    {
+      "id": "rundown-ai",
+      "name": "The Rundown AI",
+      "type": "rss",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:19:57.391298+00:00"
+    },
+    {
+      "id": "arxiv-cs-ai",
+      "name": "arXiv cs.AI",
+      "type": "rss",
+      "ok": true,
+      "count": 768,
+      "error": "",
+      "fetched_at": "2026-06-09T15:19:57.391306+00:00"
+    },
+    {
+      "id": "latent-space",
+      "name": "Latent Space",
+      "type": "rss",
+      "ok": true,
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-09T15:19:58.907837+00:00"
+    },
+    {
+      "id": "lennys",
+      "name": "Lenny's Newsletter",
+      "type": "rss",
+      "ok": true,
+      "count": 3,
+      "error": "",
+      "fetched_at": "2026-06-09T15:19:59.969988+00:00"
+    },
+    {
+      "id": "generalist",
+      "name": "The Generalist",
+      "type": "rss",
+      "ok": true,
+      "count": 0,
+      "error": "",
+      "fetched_at": "2026-06-09T15:20:00.537380+00:00"
+    },
+    {
+      "id": "newcomer",
+      "name": "Newcomer",
+      "type": "rss",
+      "ok": true,
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-09T15:20:01.072272+00:00"
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564223+00:00"
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "机器之心",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564239+00:00"
+    },
+    {
+      "id": "xinzhiyuan",
+      "name": "新智元",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564245+00:00"
+    },
+    {
+      "id": "latepost",
+      "name": "晚点LatePost",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564250+00:00"
+    },
+    {
+      "id": "waves",
+      "name": "暗涌Waves",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564255+00:00"
+    },
+    {
+      "id": "geekpark",
+      "name": "极客公园",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564260+00:00"
+    },
+    {
+      "id": "guicang-ai",
+      "name": "归藏的AI资讯",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564266+00:00"
+    },
+    {
+      "id": "khazix",
+      "name": "数字生命卡兹克",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564271+00:00"
+    },
+    {
+      "id": "aiwarts",
+      "name": "卡尔的AI沃茨",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564276+00:00"
+    },
+    {
+      "id": "agent-ju",
+      "name": "Agent橘",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564282+00:00"
+    },
+    {
+      "id": "zang-ai",
+      "name": "葬AI",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564287+00:00"
+    },
+    {
+      "id": "latepost-bus",
+      "name": "晚点LatePost-商科",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564292+00:00"
+    },
+    {
+      "id": "waves-bus",
+      "name": "暗涌-商科",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564297+00:00"
+    },
+    {
+      "id": "zhinengyongxian",
+      "name": "智能涌现",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564302+00:00"
+    },
+    {
+      "id": "qianwang",
+      "name": "潜望",
+      "type": "wechat",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564307+00:00"
+    },
+    {
+      "id": "lex-fridman",
+      "name": "Lex Fridman Podcast",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564313+00:00"
+    },
+    {
+      "id": "dwarkesh",
+      "name": "Dwarkesh Podcast",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564318+00:00"
+    },
+    {
+      "id": "matt-wolfe",
+      "name": "Matt Wolfe",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564323+00:00"
+    },
+    {
+      "id": "20vc",
+      "name": "20VC",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564328+00:00"
+    },
+    {
+      "id": "no-priors",
+      "name": "No Priors",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564333+00:00"
+    },
+    {
+      "id": "bg2",
+      "name": "BG2",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564338+00:00"
+    },
+    {
+      "id": "ted-ai",
+      "name": "The TED AI Show",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564343+00:00"
+    },
+    {
+      "id": "a16z-ai",
+      "name": "AI + a16z",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564348+00:00"
+    },
+    {
+      "id": "li-ziran",
+      "name": "李自然说",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564353+00:00"
+    },
+    {
+      "id": "web3-skytown",
+      "name": "Web3天空之城",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564359+00:00"
+    },
+    {
+      "id": "zxj-business",
+      "name": "张小珺 商业访谈录",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564364+00:00"
+    },
+    {
+      "id": "latetalk",
+      "name": "晚点聊 LateTalk",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564368+00:00"
+    },
+    {
+      "id": "onboard",
+      "name": "OnBoard!",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564373+00:00"
+    },
+    {
+      "id": "guigu101",
+      "name": "硅谷101",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564378+00:00"
+    },
+    {
+      "id": "ai-weekly-talk",
+      "name": "AI每周谈",
+      "type": "podcast",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564383+00:00"
+    },
+    {
+      "id": "x-OpenAI",
+      "name": "OpenAI",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564388+00:00"
+    },
+    {
+      "id": "x-AnthropicAI",
+      "name": "Anthropic",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564393+00:00"
+    },
+    {
+      "id": "x-GoogleDeepMind",
+      "name": "Google DeepMind",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564399+00:00"
+    },
+    {
+      "id": "x-MetaAI",
+      "name": "Meta AI",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564404+00:00"
+    },
+    {
+      "id": "x-huggingface",
+      "name": "Hugging Face",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564409+00:00"
+    },
+    {
+      "id": "x-midjourney",
+      "name": "Midjourney",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564413+00:00"
+    },
+    {
+      "id": "x-runwayml",
+      "name": "Runway",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564419+00:00"
+    },
+    {
+      "id": "x-StabilityAI",
+      "name": "Stability AI",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564423+00:00"
+    },
+    {
+      "id": "x-perplexity_ai",
+      "name": "Perplexity AI",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564428+00:00"
+    },
+    {
+      "id": "x-elevenlabsio",
+      "name": "ElevenLabs",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564433+00:00"
+    },
+    {
+      "id": "x-sama",
+      "name": "Sam Altman",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564438+00:00"
+    },
+    {
+      "id": "x-DarioAmodei",
+      "name": "Dario Amodei",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564443+00:00"
+    },
+    {
+      "id": "x-elonmusk",
+      "name": "Elon Musk",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564448+00:00"
+    },
+    {
+      "id": "x-satyanadella",
+      "name": "Satya Nadella",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564453+00:00"
+    },
+    {
+      "id": "x-nvidia",
+      "name": "NVIDIA",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564458+00:00"
+    },
+    {
+      "id": "x-kaifulee",
+      "name": "Kai-Fu Lee",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564463+00:00"
+    },
+    {
+      "id": "x-AravSrinivas",
+      "name": "Aravind Srinivas",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564468+00:00"
+    },
+    {
+      "id": "x-DavidSHolz",
+      "name": "David Holz",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564473+00:00"
+    },
+    {
+      "id": "x-karpathy",
+      "name": "Andrej Karpathy",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564478+00:00"
+    },
+    {
+      "id": "x-ylecun",
+      "name": "Yann LeCun",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564483+00:00"
+    },
+    {
+      "id": "x-AndrewYNg",
+      "name": "Andrew Ng",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564488+00:00"
+    },
+    {
+      "id": "x-drfeifei",
+      "name": "Fei-Fei Li",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564492+00:00"
+    },
+    {
+      "id": "x-DrJimFan",
+      "name": "Jim Fan",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564497+00:00"
+    },
+    {
+      "id": "x-lilianweng",
+      "name": "Lilian Weng",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564502+00:00"
+    },
+    {
+      "id": "x-jeremyphoward",
+      "name": "Jeremy Howard",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564507+00:00"
+    },
+    {
+      "id": "x-GaryMarcus",
+      "name": "Gary Marcus",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564512+00:00"
+    },
+    {
+      "id": "x-steipete",
+      "name": "Peter Steinberger",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564518+00:00"
+    },
+    {
+      "id": "x-OfficialLoganK",
+      "name": "Logan Kilpatrick",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564523+00:00"
+    },
+    {
+      "id": "x-simonw",
+      "name": "Simon Willison",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564528+00:00"
+    },
+    {
+      "id": "x-swyx",
+      "name": "Swyx",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564533+00:00"
+    },
+    {
+      "id": "x-mattshumer_",
+      "name": "Matt Shumer",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564538+00:00"
+    },
+    {
+      "id": "x-Thom_Wolf",
+      "name": "Thomas Wolf",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564543+00:00"
+    },
+    {
+      "id": "x-hwchase17",
+      "name": "Harrison Chase",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564548+00:00"
+    },
+    {
+      "id": "x-soumithchintala",
+      "name": "Soumith Chintala",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564553+00:00"
+    },
+    {
+      "id": "x-addyosmani",
+      "name": "Addy Osmani",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564558+00:00"
+    },
+    {
+      "id": "x-lexfridman",
+      "name": "Lex Fridman",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564563+00:00"
+    },
+    {
+      "id": "x-rowancheung",
+      "name": "Rowan Cheung",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564568+00:00"
+    },
+    {
+      "id": "x-alliekmiller",
+      "name": "Allie K. Miller",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564573+00:00"
+    },
+    {
+      "id": "x-BernardMarr",
+      "name": "Bernard Marr",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564578+00:00"
+    },
+    {
+      "id": "x-emollick",
+      "name": "Ethan Mollick",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564583+00:00"
+    },
+    {
+      "id": "x-Scobleizer",
+      "name": "Robert Scoble",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564588+00:00"
+    },
+    {
+      "id": "x-bilawalsidhu",
+      "name": "Bilawal Sidhu",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564593+00:00"
+    },
+    {
+      "id": "x-c_valenzuela",
+      "name": "Cristobal Valenzuela",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564598+00:00"
+    },
+    {
+      "id": "x-LinusEkenstam",
+      "name": "Linus Ekenstam",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564603+00:00"
+    },
+    {
+      "id": "x-nickfloats",
+      "name": "Nick St. Pierre",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564608+00:00"
+    },
+    {
+      "id": "x-heatherbcooper",
+      "name": "Heather Cooper",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564613+00:00"
+    },
+    {
+      "id": "x-jaredpalmer",
+      "name": "Jared Palmer",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564618+00:00"
+    },
+    {
+      "id": "x-divgarg9",
+      "name": "Div Garg",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564622+00:00"
+    },
+    {
+      "id": "x-ID_AA_Carmack",
+      "name": "John Carmack",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564627+00:00"
+    },
+    {
+      "id": "x-demishassabis",
+      "name": "Demis Hassabis",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564632+00:00"
+    },
+    {
+      "id": "x-dotey",
+      "name": "宝玉",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564637+00:00"
+    },
+    {
+      "id": "x-op7418",
+      "name": "歸藏",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564643+00:00"
+    },
+    {
+      "id": "x-Gorden_Sun",
+      "name": "Gorden Sun",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564648+00:00"
+    },
+    {
+      "id": "x-xiaohu",
+      "name": "小互",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564653+00:00"
+    },
+    {
+      "id": "x-WaytoAGI",
+      "name": "WaytoAGI",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564658+00:00"
+    },
+    {
+      "id": "x-lijigang",
+      "name": "李继刚",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564664+00:00"
+    },
+    {
+      "id": "x-vista8",
+      "name": "向阳乔木",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564669+00:00"
+    },
+    {
+      "id": "x-thinkingjimmy",
+      "name": "thinkingjimmy",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564674+00:00"
+    },
+    {
+      "id": "x-shao__meng",
+      "name": "shao meng",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564678+00:00"
+    },
+    {
+      "id": "x-goocarlos",
+      "name": "goocarlos",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564683+00:00"
+    },
+    {
+      "id": "x-AxtonLiu",
+      "name": "Axton Liu",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564688+00:00"
+    },
+    {
+      "id": "x-lxfater",
+      "name": "铁锤人",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564694+00:00"
+    },
+    {
+      "id": "x-indie_maker",
+      "name": "indigo 芦义",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564699+00:00"
+    },
+    {
+      "id": "x-venturetwins",
+      "name": "Justine Moore",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564704+00:00"
+    },
+    {
+      "id": "x-gefei55",
+      "name": "哥飞",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564709+00:00"
+    },
+    {
+      "id": "x-Fenng",
+      "name": "Fenng 冯大辉",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564714+00:00"
+    },
+    {
+      "id": "x-nateleex",
+      "name": "李自然",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564719+00:00"
+    },
+    {
+      "id": "x-tualatrix",
+      "name": "图拉鼎",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564724+00:00"
+    },
+    {
+      "id": "x-OwenYoungZh",
+      "name": "沉浸式翻译作者",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564730+00:00"
+    },
+    {
+      "id": "x-Francis_YAO_",
+      "name": "符尧",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564735+00:00"
+    },
+    {
+      "id": "x-zhanghanduo",
+      "name": "马东锡NLP",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564741+00:00"
+    },
+    {
+      "id": "x-Diyi_Yang",
+      "name": "Diyi Yang",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564746+00:00"
+    },
+    {
+      "id": "x-haibun",
+      "name": "海辛",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564751+00:00"
+    },
+    {
+      "id": "x-nishuang",
+      "name": "倪爽",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564756+00:00"
+    },
+    {
+      "id": "x-aigclink",
+      "name": "AIGCLINK",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564761+00:00"
+    },
+    {
+      "id": "x-Tumeng05",
+      "name": "Tumeng05",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564765+00:00"
+    },
+    {
+      "id": "x-cyberchanxin",
+      "name": "赛博禅心",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564770+00:00"
+    },
+    {
+      "id": "x-ruanyf",
+      "name": "阮一峰",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564776+00:00"
+    },
+    {
+      "id": "x-GitHub_Daily",
+      "name": "GitHubDaily",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564780+00:00"
+    },
+    {
+      "id": "x-easychen",
+      "name": "方糖气球",
+      "type": "x_handle",
+      "ok": true,
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-09T15:20:01.564785+00:00"
+    }
+  ],
+  "summary": {
+    "total_sources": 119,
+    "ok": 119,
+    "failed": 0,
+    "items": 798
+  }
+}
