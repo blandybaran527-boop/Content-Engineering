@@ -1,6 +1,7 @@
 name: update-news
 on:
-  # 自动跑已关闭，只保留手动触发（Actions 页面点 Run workflow）
+  schedule:
+    - cron: '0 22 * * *'   # 每天 UTC 22:00 = 北京时间 06:00 跑一次
   workflow_dispatch:
 permissions:
   contents: write
