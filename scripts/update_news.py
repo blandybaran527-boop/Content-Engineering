@@ -201,6 +201,92 @@ def fetch_hf_papers(src: dict[str, Any], session: requests.Session, window_hours
         return [], status
 
 
+def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: int) -> tuple[list[RawItem], SourceStatus]:
+    """YouTube 频道：RSS 拉新视频 + youtube-transcript-api 抓字幕。
+
+    依赖住宅 IP 节点（梯子）才能稳定拿到 transcript；
+    与 ai-news-radar 风格一致：单源失败不阻塞整体流程。
+    """
+    status = SourceStatus(id=src["id"], name=src["name"], type=src["type"], ok=False, fetched_at=datetime.now(timezone.utc).isoformat())
+    url = (src.get("url") or "").strip()
+    if not url:
+        status.error = "empty url"
+        return [], status
+
+    # 延迟导入：让没装 youtube-transcript-api 的环境也能跑别的源
+    try:
+        from youtube_transcript_api import YouTubeTranscriptApi
+    except Exception as e:
+        status.error = f"youtube_transcript_api not installed: {e}"
+        return [], status
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
+    max_videos = int(src.get("max_videos") or 3)  # 默认每频道最多 3 条，防止历史回灌
+    languages = src.get("languages") or ["en"]
+    items: list[RawItem] = []
+    try:
+        resp = _get_with_retry(session, url)
+        feed = feedparser.parse(resp.content)
+        api = YouTubeTranscriptApi()
+        for entry in feed.entries[:max_videos]:
+            published = parse_dt(entry.get("published_parsed") or entry.get("updated_parsed") or entry.get("published") or entry.get("updated"))
+            if published is None:
+                published = datetime.now(timezone.utc)
+            if published < cutoff:
+                continue
+            title = (entry.get("title") or "").strip()
+            link = (entry.get("link") or "").strip()
+            vid = (entry.get("yt_videoid") or "").strip()
+            if not vid:
+                # link 形如 https://www.youtube.com/watch?v=XXXX
+                m = re.search(r"[?&]v=([A-Za-z0-9_-]{11})", link)
+                vid = m.group(1) if m else ""
+            if not title or not vid:
+                continue
+            summary = re.sub(r"<[^>]+>", "", entry.get("summary") or "")[:280]
+
+            # 抓字幕（核心）
+            transcript_text = ""
+            try:
+                tr = api.fetch(vid, languages=languages)
+                snippets = list(tr)
+                # 拼成 HTML：每段一行，方便 index.html "展开全文" 渲染
+                lines = [(s.text or "").strip() for s in snippets if (s.text or "").strip()]
+                # 简单分段：每 8 句空一行
+                paragraphs: list[str] = []
+                buf: list[str] = []
+                for i, ln in enumerate(lines, 1):
+                    buf.append(ln)
+                    if i % 8 == 0:
+                        paragraphs.append(" ".join(buf))
+                        buf = []
+                if buf:
+                    paragraphs.append(" ".join(buf))
+                transcript_text = "\n\n".join(f"<p>{p}</p>" for p in paragraphs)
+            except Exception as e:
+                # 字幕抓不到不阻塞整源；仍然记录这条视频元数据
+                transcript_text = ""
+                # 在 summary 末尾标记
+                summary = (summary + f" [transcript fail: {type(e).__name__}]")[:280]
+
+            items.append(RawItem(
+                site_id=src["id"],
+                site_name=src["name"],
+                group=src.get("group", ""),
+                category=src.get("category", ""),
+                title=title,
+                url=link or f"https://youtu.be/{vid}",
+                published_at=published.astimezone(timezone.utc).isoformat(),
+                summary=summary,
+                content_html=transcript_text,
+            ))
+        status.ok = True
+        status.count = len(items)
+    except Exception as e:
+        status.error = f"{type(e).__name__}: {e}"
+    return items, status
+
+
 def fetch_x_list(
     list_id: str,
     x_sources: list[dict[str, Any]],
@@ -332,6 +418,7 @@ def main():
     ap.add_argument("--x-per-handle", type=int, default=50, help="X 平均每号最多拉多少条（用于 list_timeline 总上限）")
     ap.add_argument("--enable-wechat", action="store_true", help="Fetch wechat sources that have RSS URL")
     ap.add_argument("--enable-podcast", action="store_true", help="Fetch podcast sources that have RSS URL")
+    ap.add_argument("--enable-youtube", action="store_true", help="Fetch YouTube channel sources (RSS + transcripts)")
     ap.add_argument("--probe-only", help="Run a single source by id only")
     args = ap.parse_args()
 
@@ -370,6 +457,8 @@ def main():
             should_fetch = args.enable_wechat and bool((src.get("url") or "").strip())
         elif t == "podcast":
             should_fetch = args.enable_podcast and bool((src.get("url") or "").strip())
+        elif t == "youtube":
+            should_fetch = args.enable_youtube and bool((src.get("url") or "").strip())
 
         if not should_fetch:
             statuses.append(SourceStatus(id=src["id"], name=src["name"], type=t, ok=True, count=0, error="skipped (not in default layer)", fetched_at=datetime.now(timezone.utc).isoformat()))
@@ -379,6 +468,8 @@ def main():
             items, status = fetch_rss(src, session, args.window_hours)
         elif t == "hf_api":
             items, status = fetch_hf_papers(src, session, args.window_hours)
+        elif t == "youtube":
+            items, status = fetch_youtube(src, session, args.window_hours)
         else:
             status = SourceStatus(id=src["id"], name=src["name"], type=t or "?", ok=False, error=f"unknown type: {t}", fetched_at=datetime.now(timezone.utc).isoformat())
             items = []

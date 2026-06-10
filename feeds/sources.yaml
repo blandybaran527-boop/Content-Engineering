@@ -53,6 +53,18 @@
 - {id: guigu101,       name: 硅谷101,                   type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc', category: ai_hot, group: 优质播客, default: false}
 - {id: ai-weekly-talk, name: AI每周谈,                  type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/688a34636f5a275f1cba40fd', category: ai_hot, group: 优质播客, default: false}
 
+# ============ D2. YouTube 频道（字幕抓取，需挂住宅 IP；冒烟阶段 default 都为 false）============
+# 字段：max_videos 每次抓最新 N 条；languages 优先语言
+# 对应飞书「内容工程-0609」清单的 8 个目标，其中 The TED AI Show 在 YouTube 上无独立频道（音频播客），未收录
+- {id: yt-lex-podcast,  name: Lex Fridman Podcast,  type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-dwarkesh,     name: Dwarkesh Podcast,     type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCZa18YV7qayTh-MRIrBhDpA', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-matt-wolfe,   name: Matt Wolfe,           type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UChpleBmo18P08aKCIgti38g', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-20vc,         name: 20VC,                 type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC9jkoB5oKe1eAGZ5zOW6iZA', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-no-priors,    name: No Priors,            type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCSI7h9hydQ40K5MJHnCrQvw', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-bg2,          name: BG2,                  type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC-yRDvpR99LUc5l7i7jLzew', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+- {id: yt-a16z,         name: AI + a16z,            type: youtube, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC9cn0TuPq4dnbTY-CBsm8XA', category: ai_hot, group: 优质播客, default: false, max_videos: 1, languages: [en]}
+# TODO TED AI Show：仅有 Apple Podcasts / Spotify / TED 官网音频，无独立 YouTube 频道，若要收录需走 audio + Whisper 路线
+
 # ============ E. X / Twitter（80 个，仅登记 handle）============
 # 国外 50
 - {id: x-OpenAI,            name: OpenAI,            type: x_handle, url: 'https://x.com/OpenAI',            category: ai_hot, group: X-国外, default: false, x_handle: OpenAI}

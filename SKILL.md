@@ -47,6 +47,7 @@ X 和 podcast 默认 `default: false`，公众号在 v0.2 起默认 `default: tr
 - `--enable-x` + `X_BEARER_TOKEN` → 用 X 官方 API
 - `--enable-wechat` → 走本地 WeWe-RSS（`127.0.0.1:4000`），见下一节
 - `--enable-podcast` → 抓 podcast RSS（小宇宙 / Spotify / Apple Podcast 镜像）
+- `--enable-youtube` → 抓 YouTube 频道 RSS + youtube-transcript-api 字幕，**必须挂住宅 IP**（见下下节）
 
 ## 公众号通道（本地 WeWe-RSS）
 
@@ -65,6 +66,38 @@ X 和 podcast 默认 `default: false`，公众号在 v0.2 起默认 `default: tr
 - **加号**：浏览器粘贴 mp.weixin 文章链接 / 或调 `/trpc/platform.getMpInfo` + `/trpc/feed.add` API（详见 SOURCES.md）
 - **严禁连续手动调 refresh**：短时间反复 `feed.refreshArticles` 会触发微信读书 `WeReadError401`，账号 token 实际失效 —— SQL 改 status=1 也立刻被打回，唯一恢复办法是**用户重新扫码**。加完订阅 fire 1 次全量 refresh 就够，剩下交给 WeWe-RSS 自带 cron（默认 5:35 / 17:35）。新加的号首轮没拉到不要补，等下一轮自然进
 - **本地代理踩坑**：`127.0.0.1` 走系统代理（梯子）会 502；`update_news.py` 在 import 段自动注入 `NO_PROXY="127.0.0.1,localhost"`，命令行手动 curl 时需要带 `--noproxy '*'`
+
+## YouTube 通道（频道 RSS + youtube-transcript-api，2026-06 新增）
+
+### 决策背景
+
+YouTube 在 2024–2025 上线 SABR + PO Token 反爬：机房/常见 VPN 出口 IP 调 `timedtext` 返回 HTTP 200 + 空字节；youtube-transcript-api 直接 `RequestBlocked`。**必须挂住宅 IP** 才能稳定抓字幕原文。Whisper 本地转写方案因为吃 Mac 性能被否，最终选住宅 IP 直抓原字幕。
+
+### 一次性配置
+
+- **梯子**：Clash Verge 切到「🏠 美国家宽选这个」（静态住宅节点，实测 AS7029 Windstream，能拿到字幕原文）
+- **依赖**：`pip install youtube-transcript-api`（已在 `requirements.txt`）
+
+### 当前 7 个 YouTube 频道
+
+`feeds/sources.yaml` 的 `D2.` 节，全部 `type: youtube`，`default: false`，需要 `--enable-youtube` 才会跑。`max_videos: 1` 字段限制每个频道每次最多抓 1 条新视频。
+
+The TED AI Show 在 YouTube 上无独立频道（音频播客发在 Apple / Spotify），sources.yaml 里以 TODO 注释占位，若要收录走 audio + Whisper 路线。
+
+### 每日抓取
+
+```bash
+python scripts/update_news.py --enable-youtube --window-hours 168 --output-dir data
+```
+
+- 字幕拼成 `<p>...</p>` 段落写入 `content_html`，`index.html` 的「展开全文」组件直接渲染
+- 字幕抓不到不阻塞整源；summary 末尾加 `[transcript fail: XXX]` 标记，元数据仍记录
+
+### 不要做
+
+- 不要在调试时反复 yt-dlp / transcript-api 同一 video / channel —— 连续命中触发 YouTube 反爬，住宅 IP 链路被降级，整批视频空字节
+- 不要凭印象写 channel_id，用 `curl https://www.youtube.com/@HANDLE | grep -oE 'youtube\.com/channel/UC[A-Za-z0-9_-]{22}'` 一次性拿
+- 新加 channel 必须先 `--probe-only` 单测，再写进默认抓取
 
 ## 失败处理优先级
 
