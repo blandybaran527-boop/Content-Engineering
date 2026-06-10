@@ -4,4 +4,13 @@ __pycache__/
 .env
 .DS_Store
 data/items.json.bak
+data/x-state.json
 node_modules/
+
+# 严禁入库：twscrape cookie 池数据库
+accounts.db
+*.db
+*.sqlite
+
+# 临时日志
+/tmp/add_members*.log

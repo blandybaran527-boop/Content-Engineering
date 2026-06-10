@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T07:15:17.406502+00:00",
+  "generated_at": "2026-06-10T07:42:32.303273+00:00",
   "sources": [
     {
       "id": "hackernews",
@@ -8,7 +8,7 @@
       "ok": true,
       "count": 30,
       "error": "",
-      "fetched_at": "2026-06-10T07:14:58.677330+00:00"
+      "fetched_at": "2026-06-10T07:41:10.688941+00:00"
     },
     {
       "id": "import-ai",
@@ -17,7 +17,7 @@
       "ok": true,
       "count": 1,
       "error": "",
-      "fetched_at": "2026-06-10T07:14:59.547262+00:00"
+      "fetched_at": "2026-06-10T07:41:12.649599+00:00"
     },
     {
       "id": "hf-papers",
@@ -26,7 +26,7 @@
       "ok": true,
       "count": 75,
       "error": "",
-      "fetched_at": "2026-06-10T07:15:00.772665+00:00"
+      "fetched_at": "2026-06-10T07:41:16.084497+00:00"
     },
     {
       "id": "rundown-ai",
@@ -35,7 +35,7 @@
       "ok": true,
       "count": 3,
       "error": "",
-      "fetched_at": "2026-06-10T07:15:01.468580+00:00"
+      "fetched_at": "2026-06-10T07:41:17.081913+00:00"
     },
     {
       "id": "lennys",
@@ -44,7 +44,7 @@
       "ok": true,
       "count": 7,
       "error": "",
-      "fetched_at": "2026-06-10T07:15:02.021605+00:00"
+      "fetched_at": "2026-06-10T07:41:17.694391+00:00"
     },
     {
       "id": "generalist",
@@ -53,7 +53,7 @@
       "ok": true,
       "count": 1,
       "error": "",
-      "fetched_at": "2026-06-10T07:15:03.278950+00:00"
+      "fetched_at": "2026-06-10T07:41:19.117766+00:00"
     },
     {
       "id": "newcomer",
@@ -62,43 +62,43 @@
       "ok": true,
       "count": 3,
       "error": "",
-      "fetched_at": "2026-06-10T07:15:07.061094+00:00"
+      "fetched_at": "2026-06-10T07:41:20.565754+00:00"
     },
     {
       "id": "qbitai",
       "name": "量子位",
       "type": "wechat",
       "ok": true,
-      "count": 10,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:08.104932+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.762978+00:00"
     },
     {
       "id": "jiqizhixin",
       "name": "机器之心",
       "type": "wechat",
       "ok": true,
-      "count": 10,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:08.571404+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763014+00:00"
     },
     {
       "id": "xinzhiyuan",
       "name": "新智元",
       "type": "wechat",
       "ok": true,
-      "count": 10,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:08.656101+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763028+00:00"
     },
     {
       "id": "latepost",
       "name": "晚点LatePost",
       "type": "wechat",
       "ok": true,
-      "count": 5,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:09.216390+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763037+00:00"
     },
     {
       "id": "waves",
@@ -106,71 +106,71 @@
       "type": "wechat",
       "ok": true,
       "count": 0,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:10.800096+00:00"
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763046+00:00"
     },
     {
       "id": "geekpark",
       "name": "极客公园",
       "type": "wechat",
       "ok": true,
-      "count": 10,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:13.520429+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763055+00:00"
     },
     {
       "id": "guicang-ai",
       "name": "归藏的AI工具箱",
       "type": "wechat",
       "ok": true,
-      "count": 1,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:14.927792+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763062+00:00"
     },
     {
       "id": "khazix",
       "name": "数字生命卡兹克",
       "type": "wechat",
       "ok": true,
-      "count": 4,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:15.577610+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763070+00:00"
     },
     {
       "id": "aiwarts",
       "name": "卡尔的AI沃茨",
       "type": "wechat",
       "ok": true,
-      "count": 3,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:15.897084+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763078+00:00"
     },
     {
       "id": "agent-ju",
       "name": "AGENT橘",
       "type": "wechat",
       "ok": true,
-      "count": 6,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:16.305402+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763086+00:00"
     },
     {
       "id": "zang-ai",
       "name": "葬AI",
       "type": "wechat",
       "ok": true,
-      "count": 4,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:16.714252+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763094+00:00"
     },
     {
       "id": "zhinengyongxian",
       "name": "智能涌现",
       "type": "wechat",
       "ok": true,
-      "count": 6,
-      "error": "",
-      "fetched_at": "2026-06-10T07:15:16.963318+00:00"
+      "count": 0,
+      "error": "skipped (not in default layer)",
+      "fetched_at": "2026-06-10T07:41:21.763102+00:00"
     },
     {
       "id": "lex-fridman",
@@ -179,7 +179,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.350519+00:00"
+      "fetched_at": "2026-06-10T07:41:21.763112+00:00"
     },
     {
       "id": "dwarkesh",
@@ -188,7 +188,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.350545+00:00"
+      "fetched_at": "2026-06-10T07:41:21.763121+00:00"
     },
     {
       "id": "matt-wolfe",
@@ -197,7 +197,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.350557+00:00"
+      "fetched_at": "2026-06-10T07:41:21.763129+00:00"
     },
     {
       "id": "20vc",
@@ -206,7 +206,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.350567+00:00"
+      "fetched_at": "2026-06-10T07:41:21.763474+00:00"
     },
     {
       "id": "no-priors",
@@ -215,7 +215,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.350575+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768695+00:00"
     },
     {
       "id": "bg2",
@@ -224,7 +224,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351503+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768706+00:00"
     },
     {
       "id": "ted-ai",
@@ -233,7 +233,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351639+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768716+00:00"
     },
     {
       "id": "a16z-ai",
@@ -242,7 +242,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351648+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768724+00:00"
     },
     {
       "id": "li-ziran",
@@ -251,7 +251,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351654+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768734+00:00"
     },
     {
       "id": "web3-skytown",
@@ -260,7 +260,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351660+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768742+00:00"
     },
     {
       "id": "zxj-business",
@@ -269,7 +269,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351665+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768750+00:00"
     },
     {
       "id": "latetalk",
@@ -278,7 +278,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351671+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768758+00:00"
     },
     {
       "id": "onboard",
@@ -287,7 +287,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351676+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768766+00:00"
     },
     {
       "id": "guigu101",
@@ -296,7 +296,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351682+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768774+00:00"
     },
     {
       "id": "ai-weekly-talk",
@@ -305,34 +305,34 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351688+00:00"
+      "fetched_at": "2026-06-10T07:41:21.768784+00:00"
     },
     {
       "id": "x-OpenAI",
       "name": "OpenAI",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351693+00:00"
+      "count": 12,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-AnthropicAI",
       "name": "Anthropic",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351698+00:00"
+      "count": 6,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-GoogleDeepMind",
       "name": "Google DeepMind",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.351704+00:00"
+      "count": 3,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-MetaAI",
@@ -340,53 +340,53 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.354646+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-huggingface",
       "name": "Hugging Face",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355345+00:00"
+      "count": 3,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-midjourney",
       "name": "Midjourney",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355372+00:00"
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-runwayml",
       "name": "Runway",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355384+00:00"
+      "count": 8,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-StabilityAI",
       "name": "Stability AI",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355395+00:00"
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-perplexity_ai",
       "name": "Perplexity AI",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355406+00:00"
+      "count": 11,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-elevenlabsio",
@@ -394,17 +394,17 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355417+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-sama",
       "name": "Sam Altman",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355428+00:00"
+      "count": 5,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-DarioAmodei",
@@ -412,35 +412,35 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355441+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-elonmusk",
       "name": "Elon Musk",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355454+00:00"
+      "count": 108,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-satyanadella",
       "name": "Satya Nadella",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355467+00:00"
+      "count": 3,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-nvidia",
       "name": "NVIDIA",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355481+00:00"
+      "count": 32,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-kaifulee",
@@ -448,8 +448,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.355496+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-AravSrinivas",
@@ -457,8 +457,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356061+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-DavidSHolz",
@@ -466,8 +466,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356098+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-karpathy",
@@ -475,8 +475,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356109+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-ylecun",
@@ -484,8 +484,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356120+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-AndrewYNg",
@@ -493,8 +493,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356130+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-drfeifei",
@@ -502,8 +502,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356139+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-DrJimFan",
@@ -511,8 +511,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356148+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-lilianweng",
@@ -520,8 +520,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356158+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-jeremyphoward",
@@ -529,8 +529,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356168+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-GaryMarcus",
@@ -538,8 +538,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356177+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-steipete",
@@ -547,8 +547,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356188+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-OfficialLoganK",
@@ -556,8 +556,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356197+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-simonw",
@@ -565,8 +565,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356208+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-swyx",
@@ -574,8 +574,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356240+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-mattshumer_",
@@ -583,17 +583,17 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356608+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-Thom_Wolf",
       "name": "Thomas Wolf",
       "type": "x_handle",
       "ok": true,
-      "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356626+00:00"
+      "count": 1,
+      "error": "",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-hwchase17",
@@ -601,8 +601,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356637+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-soumithchintala",
@@ -610,8 +610,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356646+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-addyosmani",
@@ -619,8 +619,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356657+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-lexfridman",
@@ -628,8 +628,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356667+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-rowancheung",
@@ -637,8 +637,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356677+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-alliekmiller",
@@ -646,8 +646,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356741+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-BernardMarr",
@@ -655,8 +655,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356760+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-emollick",
@@ -664,8 +664,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356772+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-Scobleizer",
@@ -673,8 +673,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356782+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-bilawalsidhu",
@@ -682,8 +682,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356791+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-c_valenzuela",
@@ -691,8 +691,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356817+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-LinusEkenstam",
@@ -700,8 +700,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356830+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-nickfloats",
@@ -709,8 +709,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356839+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-heatherbcooper",
@@ -718,8 +718,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356847+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-jaredpalmer",
@@ -727,8 +727,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356857+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-divgarg9",
@@ -736,8 +736,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356866+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-ID_AA_Carmack",
@@ -745,8 +745,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356874+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-demishassabis",
@@ -754,8 +754,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356882+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-dotey",
@@ -763,8 +763,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356892+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-op7418",
@@ -772,8 +772,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356902+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-Gorden_Sun",
@@ -781,8 +781,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356912+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-xiaohu",
@@ -790,8 +790,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356921+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-WaytoAGI",
@@ -799,8 +799,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356930+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-lijigang",
@@ -808,8 +808,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356953+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-vista8",
@@ -817,8 +817,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356963+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-thinkingjimmy",
@@ -826,8 +826,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356973+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-shao__meng",
@@ -835,8 +835,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356982+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-goocarlos",
@@ -844,8 +844,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.356993+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-AxtonLiu",
@@ -853,8 +853,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357002+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-lxfater",
@@ -862,8 +862,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357012+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-indie_maker",
@@ -871,8 +871,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357022+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-venturetwins",
@@ -880,8 +880,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357032+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-gefei55",
@@ -889,8 +889,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357042+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-Fenng",
@@ -898,8 +898,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357052+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-nateleex",
@@ -907,8 +907,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357061+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-tualatrix",
@@ -916,8 +916,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357875+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-haibun",
@@ -925,8 +925,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357895+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-nishuang",
@@ -934,8 +934,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357902+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-aigclink",
@@ -943,8 +943,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357908+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-Tumeng05",
@@ -952,8 +952,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357914+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-cyberchanxin",
@@ -961,8 +961,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357919+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-ruanyf",
@@ -970,8 +970,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357925+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-GitHub_Daily",
@@ -979,8 +979,8 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357930+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     },
     {
       "id": "x-easychen",
@@ -988,14 +988,14 @@
       "type": "x_handle",
       "ok": true,
       "count": 0,
-      "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-10T07:15:17.357939+00:00"
+      "error": "no items in window",
+      "fetched_at": "2026-06-10T07:41:21.768899+00:00"
     }
   ],
   "summary": {
     "total_sources": 110,
     "ok": 110,
     "failed": 0,
-    "items": 189
+    "items": 310
   }
 }
