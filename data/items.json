@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T02:47:42.811579+00:00",
+  "generated_at": "2026-06-10T03:55:38.826005+00:00",
   "window_hours": 48,
   "items": [
     {
@@ -10,7 +10,10 @@
       "title": "Rich Sutton on AI creativity and discovery",
       "url": "https://twitter.com/RichardSSutton/status/2061216087744946656",
       "published_at": "2026-06-10T02:25:24+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48470581\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -20,7 +23,10 @@
       "title": "German ruling declares Google liable for false answers in AI Overviews",
       "url": "https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/",
       "published_at": "2026-06-10T01:44:13+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48470248\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -30,7 +36,10 @@
       "title": "macOS Container Machines",
       "url": "https://github.com/apple/container/blob/main/docs/container-machine.md",
       "published_at": "2026-06-10T00:29:01+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48469658\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -40,17 +49,10 @@
       "title": "It's death",
       "url": "https://jesseduffield.com/ITS-DEATH/",
       "published_at": "2026-06-09T23:44:16+00:00",
-      "summary": "Comments"
-    },
-    {
-      "site_id": "rundown-ai",
-      "site_name": "The Rundown AI",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "Automate financial research With The OpenClaw of Stocks (Dexter Guide)",
-      "url": "https://www.youtube.com/watch?v=AGwbk5IVLIk",
-      "published_at": "2026-06-09T23:21:10+00:00",
-      "summary": "In this guide, you will learn how to set up Dexter, an open-source financial research agent that works like OpenClaw for stock research. Dexter can read earnings reports, interpret SEC filings, pull up-to-date market data, and help you turn a messy company question into a source-"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48469347\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -60,7 +62,10 @@
       "title": "Show HN: Nucleus – A security-hardened, Nix-native container runtime",
       "url": "https://github.com/sig-id/nucleus",
       "published_at": "2026-06-09T23:03:40+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48469039\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -70,7 +75,10 @@
       "title": "RIP software hackathons. Long live the hardware hackathon",
       "url": "https://blog.oscars.dev/posts/rip-software-hackathons-long-live-the-hardware-hackathon/",
       "published_at": "2026-06-09T22:35:57+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48468766\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -80,7 +88,10 @@
       "title": "If Claude Fable stops helping you, you'll never know",
       "url": "https://jonready.com/blog/posts/claude-fable5-is-allowed-to-sabotage-your-app-if-youre-a-competitor.html",
       "published_at": "2026-06-09T21:19:11+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48467896\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -90,7 +101,10 @@
       "title": "Exif Smuggling (2025)",
       "url": "https://github.com/signalblur/exifsmugglingpoc",
       "published_at": "2026-06-09T21:06:00+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48467759\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -100,7 +114,10 @@
       "title": "Upcoming breaking changes for npm v12",
       "url": "https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/",
       "published_at": "2026-06-09T21:01:00+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48467705\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -110,7 +127,10 @@
       "title": "Grit: Rewriting Git in Rust with agents",
       "url": "https://blog.gitbutler.com/true-grit",
       "published_at": "2026-06-09T19:58:21+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48466812\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -120,7 +140,10 @@
       "title": "Ultrafast machine learning on FPGAs via Kolmogorov-Arnold Networks",
       "url": "https://aarushgupta.io/posts/kan-fpga/",
       "published_at": "2026-06-09T19:21:45+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48466277\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -130,7 +153,10 @@
       "title": "CEOs who think AI replaces their employees are just bad CEOs",
       "url": "https://www.techdirt.com/2026/06/09/ceos-who-think-ai-replaces-their-employees-are-just-bad-ceos/",
       "published_at": "2026-06-09T18:45:59+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48465675\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "lennys",
@@ -140,7 +166,23 @@
       "title": "Claude Fable 5 review: what the new Mythos model gets right (and very wrong)",
       "url": "https://www.lennysnewsletter.com/p/claude-fable-5-review-what-the-new",
       "published_at": "2026-06-09T18:32:03+00:00",
-      "summary": "Watch now | &#127897;&#65039;Early access to Claude Fable 5: what Anthropic claims, what I tested, and my honest take"
+      "summary": "Watch now | &#127897;&#65039;Early access to Claude Fable 5: what Anthropic claims, what I tested, and my honest take",
+      "content_html": "<div class=\"youtube-wrap\" id=\"youtube2-IREnr4I89Ho\"><div class=\"youtube-inner\"></div></div><p>Claude Fable 5 is the first Mythos-class intelligence model to be generally available, and I got early access to test it before launch. I walk through what Anthropic is promising, what actually stood out when I used it on real work, and where I think it fits in your AI stack.</p><div class=\"pullquote\"><p><strong>Listen or watch on <a href=\"https://youtu.be/IREnr4I89Ho\">YouTube</a>, <a href=\"https://open.spotify.com/episode/2b6KxnlVcSeVFKQzKAPjFd\">Spotify</a>, or <a href=\"https://podcasts.apple.com/us/podcast/how-i-ai/id1809663079\">Apple Podcasts</a></strong></p></div><h3>In this episode, we cover:</h3><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho\">00:00</a>) Introduction: Fable 5 is finally here</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=31s\">00:31</a>) What Anthropic says about the model</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=314s\">05:14</a>) Token-intensive by design</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=388s\">06:28</a>) Safety classifiers and the new fallback concept</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=466s\">07:46</a>) Is this or is this not Mythos?</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=510s\">08:30</a>) New product launches: Managed Agents and more</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=560s\">09:20</a>) Crushing benchmarks</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=595s\">09:55</a>) What it&#8217;s actually like to use (the good and the bad)</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=700s\">11:40</a>) Test 1: product graph spec</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=776s\">12:56</a>) Test 2: designing a skills registry</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=844s\">14:04</a>) Conservative on execution</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=883s\">14:43</a>) Test 3: multi-agent orchestration</p><p>(<a href=\"https://www.youtube.com/watch?v=IREnr4I89Ho&amp;t=939s\">15:39</a>) My takeaways</p><p></p><h3>Tools referenced:</h3><p>&#8226; Claude Fable 5: <a href=\"https://www.anthropic.com/news/claude-fable-5-mythos-5\">https://www.anthropic.com/news/claude-fable-5-mythos-5</a></p><p>&#8226; Claude Managed Agents: <a href=\"https://platform.claude.com/docs/en/managed-agents/overview\">https://platform.claude.com/docs/en/managed-agents/overview</a></p><p></p><h3>Other reference:</h3><p>&#8226; SWBench Pro benchmark: <a href=\"https://www.swebench.com/\">https://www.swebench.com/</a></p><p></p><h3>Where to find Claire Vo:</h3><p>ChatPRD: <a href=\"https://www.chatprd.ai/\">https://www.chatprd.ai/</a></p><p>Website: <a href=\"https://clairevo.com/\">https://clairevo.com/</a></p><p>LinkedIn: <a href=\"https://www.linkedin.com/in/clairevo/\">https://www.linkedin.com/in/clairevo/</a></p><p>X: <a href=\"https://x.com/clairevo\">https://x.com/clairevo</a></p><p></p><p>Production and marketing by <a href=\"https://penname.co/\">https://penname.co/</a>. For inquiries about sponsoring the podcast, email jordan@penname.co.</p>",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "EEVEE: Towards Test-time Prompt Learning in the Real World for Self-Improving Agents",
+      "url": "https://huggingface.co/papers/2606.11182",
+      "published_at": "2026-06-09T17:57:16+00:00",
+      "summary": "In this paper, we propose EEVEE, the first multi-dataset test-time prompt learning framework for LLM agents, enabling test-time prompt learning under real-world task streams. Existing methods are largely designed for single-dataset settings, while real-world applications require ",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -150,7 +192,10 @@
       "title": "The LD_DEBUG environment variable (2012)",
       "url": "https://bnikolic.co.uk/blog/linux-ld-debug.html",
       "published_at": "2026-06-09T17:29:05+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48464330\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -160,7 +205,10 @@
       "title": "What it feels like to work with Mythos",
       "url": "https://www.oneusefulthing.org/p/what-it-feels-like-to-work-with-mythos",
       "published_at": "2026-06-09T17:17:21+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48464140\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -170,7 +218,10 @@
       "title": "Claude Fable 5",
       "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
       "published_at": "2026-06-09T16:58:01+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48463808\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -180,17 +231,10 @@
       "title": "Launch HN: Transload (YC P26) – Measuring freight items with CCTV",
       "url": "https://news.ycombinator.com/item?id=48463273",
       "published_at": "2026-06-09T16:28:28+00:00",
-      "summary": "Comments"
-    },
-    {
-      "site_id": "hackernews",
-      "site_name": "Hacker News",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "Apple decided not to roll out Siri in EU after denied request for exemption",
-      "url": "https://www.reuters.com/business/apple-failed-make-its-ai-tool-comply-eu-regulations-eu-commission-says-2026-06-09/",
-      "published_at": "2026-06-09T16:13:10+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48463273\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -200,7 +244,10 @@
       "title": "FCC wants to kill burner phones by forcing telecoms to get all customers' IDs",
       "url": "https://www.404media.co/fcc-wants-to-kill-burner-phones-by-forcing-telecoms-to-get-all-customers-ids/",
       "published_at": "2026-06-09T15:21:46+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48462308\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -210,7 +257,10 @@
       "title": "WWDC 2026: Apple is Folding",
       "url": "https://cupertinolens.com/2026/06/09/wwdc-2026-apple-is-folding/",
       "published_at": "2026-06-09T13:56:38+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48461226\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -220,7 +270,10 @@
       "title": "Is Grep All You Need? How Agent Harnesses Reshape Agentic Search",
       "url": "https://arxiv.org/abs/2605.15184",
       "published_at": "2026-06-09T13:27:03+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48460863\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "lennys",
@@ -230,7 +283,10 @@
       "title": "Essential books for product builders—part 2",
       "url": "https://www.lennysnewsletter.com/p/essential-books-for-product-builderspart-611",
       "published_at": "2026-06-09T13:11:29+00:00",
-      "summary": "36 more timeless books that&#8217;ll make you a better builder, leader, and person"
+      "summary": "36 more timeless books that&#8217;ll make you a better builder, leader, and person",
+      "content_html": "<p><em>&#128075; Hey there, I&#8217;m Lenny. Each week, I answer reader questions about building product, driving growth, and accelerating your career. For more: <a href=\"https://www.lennysnewsletter.com/podcast\">Lenny&#8217;s Podcast</a> | <a href=\"https://www.lennybot.com/\">Lennybot</a> | <a href=\"https://www.youtube.com/@howiaipodcast\">How I AI</a> | My favorite <a href=\"https://maven.com/lenny\">AI/PM courses</a>, <a href=\"https://ultraspeaking.com/lennyslist?via=lenny\">public speaking course</a>, and <a href=\"https://www.benerez.com/copilot/lenny\">interview prep copilot</a></em></p><p class=\"button-wrapper\"><a class=\"button primary\" href=\"https://www.lennysnewsletter.com/subscribe?\"><span>Subscribe now</span></a></p><p><em>P.S. Get a full free year of Google AI, Cursor, Lovable, Notion, Manus, Replit, Gamma, n8n, Canva, ElevenLabs, Factory, Wispr Flow, Fin, Supabase, Bolt, Linear, PostHog, Framer, Railway, Granola, Warp, Gumloop, Magic Patterns, Mobbin, Stripe Atlas, and ChatPRD, by becoming <a href=\"https://www.lennysnewsletter.com/subscribe?plan=founding\">an Insider subscriber</a>. <a href=\"https://www.lennysproductpass.com/\">Yes, this is for real</a>.</em></p><div><hr /></div><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!rlQ0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6ffb8440-5a28-44ff-8478-afa6db3263d5_2160x2700.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"1820\" src=\"https://substackcdn.com/image/fetch/$s_!rlQ0!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6ffb8440-5a28-44ff-8478-afa6db3263d5_2160x2700.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>On the heels of <a href=\"https://www.lennysnewsletter.com/p/essential-books-for-product-builderspart\">part 1</a> of my essential books for product builders series, I&#8217;m excited to share part 2.</p><p>As with last time, the books are organized by their jobs-to-be-done in your work and life. I&#8217;m again limiting myself to only three per category that I&#8217;ve personally read (and completed), and only books that have stood the test of time (i.e., no new books). As a bonus, at the end of the post I&#8217;ve also included a dozen fan favorites that either fell just below the ones I picked or I haven&#8217;t had a chance to read yet.</p><p>I know it&#8217;s hard to find time to read a whole book, and when you do, it&#8217;s hard to retain anything. As I mentioned in part 1, what&#8217;s worked for me is to read 10 minutes before bed as part of my wind-down routine. This has the added benefit of helping me sleep better! And as I read, I try to find one nugget or tactic that I can bring into my work that week. I take a photo of it and email it to myself (<a href=\"https://apps.apple.com/us/app/note-to-self-mail/id1135553707\">using this sweet app</a>) for the next morning. My philosophy is that if I retain just one golden nugget per book over the years, I&#8217;m happy. That&#8217;s how it usually ends up working out anyway.</p><p>So, as I share the book recommendations, I&#8217;ll also highlight a nugget of wisdom that&#8217;s still with me over the many years since I first read these books.</p><p>Let&#8217;s get into it.</p><div class=\"pullquote\"><p>&#8220;Books are the closest thing you&#8217;ll ever come to finding cheat codes for real life. You can access the entire learnings of someone else&#8217;s career in a few hours.&#8221; &#8212;<a href=\"https://x.com/davidsenra/status/2063372638664450162?s=20\">Tobi L&#252;tke</a></p></div><h2>I want to get better at design</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!10vV!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F72a496de-095d-4bf9-9ee4-7fbf0d310ee1_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!10vV!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F72a496de-095d-4bf9-9ee4-7fbf0d310ee1_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>Before reading these books, I thought design was a squishy, subjective thing. It&#8217;s not. <em>Don&#8217;t Make Me Think </em>taught me how to objectively make a product UI work (and feel) better. <em>The Design of Everyday Things </em>showed me that when I struggle with a product, it&#8217;s not my fault&#8212;it&#8217;s the design&#8217;s. <em>Refactoring UI</em> gave me a ton of specific design tactics.</p><ol><li><p><em><a href=\"https://a.co/d/0eDK9os5\">Don&#8217;t Make Me Think</a></em> by Steve Krug</p></li><li><p><em><a href=\"https://a.co/d/03nPL3D3\">The Design of Everyday Things</a></em> by Don Norman</p></li><li><p><em><a href=\"https://refactoringui.com/\">Refactoring UI</a> </em>by Adam Wathan and Steve Schoger</p></li></ol><h2>I want to improve my taste/craft</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!RZWn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f89f768-3cc2-421b-8564-4196be593853_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!RZWn!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f89f768-3cc2-421b-8564-4196be593853_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>I&#8217;ve always looked up to people who have great taste, and lucky for me, guests on my podcast consistently remind me that it isn&#8217;t something you&#8217;re born with&#8212;taste is something you can learn. <em>The War of Art </em>helped me learn how to recognize and overcome the internal &#8220;resistance&#8221; that comes with creating something new and different.<em> The Work of Art </em>showed me the creative process of dozens of high-taste creators. <em>Creativity, Inc. </em>taught me to protect my (and my team&#8217;s) &#8220;ugly babies&#8221;&#8212;early half-baked ideas that otherwise get squashed.</p><ol><li><p><em><a href=\"https://a.co/d/08KFD7u1\">The War of Art</a></em> by Steven Pressfield</p></li><li><p><em><a href=\"https://www.amazon.com/Work-Art-Something-Comes-Nothing/dp/059329758X\">The Work of Art</a></em> by Adam Moss</p></li><li><p><em><a href=\"https://www.amazon.com/Creativity-Inc-Expanded-Overcoming-Inspiration/dp/0593594649/\">Creativity, Inc.</a></em> by Ed Catmull</p></li></ol><h2>I want to get better at influence</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!o-YG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2d1f5c35-d94d-4340-b01c-0e1c63b12d37_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!o-YG!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2d1f5c35-d94d-4340-b01c-0e1c63b12d37_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>Influence&#8212;maybe you&#8217;ve heard it&#8217;s important? It&#8217;s something I was very bad at early in my career, and I&#8217;ve had to learn how to do it well. <em>How to Win Friends and Influence People</em> showed me the power in being <em>interested</em> vs. interesting.<em> Influence</em> taught me the fundamentals of how people change their mind: social proof, authority, scarcity, and simply being liked<em>. Never Split the Difference</em> taught me how to shift a negotiation from &#8220;you vs. me&#8221; to &#8220;us&#8221; working together to solve the problem.</p><ol><li><p><em><a href=\"https://a.co/d/0iKQ2YhF\">How to Win Friends and Influence People</a></em> by Dale Carnegie</p></li><li><p><em><a href=\"https://www.amazon.com/Robert-Cialdini-Psychology-Persuasion-Essentials/dp/B005WM7784/ref=tmm_pap_swatch_0\">Influence</a> by Robert Cialdini</em></p></li><li><p><em><a href=\"https://www.amazon.com/Never-Split-Difference-Chris-Voss/dp/B0GX6BSY1X/ref=tmm_pap_swatch_0\">Never Split the Difference</a></em> by Chris Voss</p></li></ol><h2>I want to start a company</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!Z4OC!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F532e4986-1b9c-4aaa-bb3b-50eefc4d8462_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!Z4OC!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F532e4986-1b9c-4aaa-bb3b-50eefc4d8462_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>I&#8217;ll be honest, I didn&#8217;t read a lot of books when I was starting my company. But I should have. When I finally read <em>The Lean Startup</em>, it showed me how to be smart about where to start, and how to iterate efficiently. <em>Crossing the Chasm</em> taught me what a good early user looks like. <em>Fall in Love with the Problem, Not the Solution</em> finally gave me a very practical guide for every step of the founder journey.</p><ol><li><p><em><a href=\"https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898/ref=sr_1_1?crid=34Y7BX4RMDL8U&amp;dib=eyJ2IjoiMSJ9.FWUsaeYmkwVyAYKkatWi4eAC5FZvDXpssyX5S-Z1X1bS3yAtfn-aUnb4FIr4ouF2Ot_wDswpPvTjP3aN5GbscmiiHz7ADUrF8l5JiMTaJ7wzdbKohH2OH7jccBMyjpFF2r2IduLGRJtvo0uXg6sTmUn2em-TeO3r0Gt3JQSTx479Goic84M3FJ0ia_-4scz5G4azPr05FNhsABOGFEGsO5tuGoq1XWOiShBtmmNe7W8.xOpT_S8rVE-HbCZFl1M3fINnwTURHzGKaP8WjEhffR0&amp;dib_tag=se&amp;keywords=Lean+Startup&amp;qid=1780432858&amp;s=books&amp;sprefix=lean+startup%2Cstripbooks%2C219&amp;sr=1-1\">The Lean Startup</a></em> by Eric Ries</p></li><li><p><em><a href=\"https://www.amazon.com/Crossing-Chasm-3rd-Disruptive-Mainstream/dp/0062292986\">Crossing the Chasm</a></em> by Geoffrey Moore</p></li><li><p><em><a href=\"https://www.amazon.com/Fall-Love-Problem-Solution-Entrepreneurs/dp/1637741987/ref=sr_1_1\">Fall in Love with the Problem, Not the Solution</a></em> by Uri Levine</p></li></ol><h2>I want to advance my career</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!NTVc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcf9c1eff-5e28-4ec7-b000-617e346dc375_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!NTVc!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcf9c1eff-5e28-4ec7-b000-617e346dc375_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>There are certain books you read and you&#8217;re just like, &#8220;Wow, this really explains what&#8217;s going on around here.&#8221; These three did that for me. <em>Great at Work</em> showed me that people who rise fastest focus on fewer things but do them extremely well. <em>7 Rules of Power</em> taught me that, often, it isn&#8217;t the most talented or nice people who end up winning. <em>The Effective Executive&nbsp;</em>helped me understand that efficiency is doing things well, while effectiveness is doing the right (highest-leverage) things.</p><ol><li><p><em><a href=\"https://www.amazon.com/Great-Work-Hidden-Habits-Performers/dp/1476765820\">Great at Work</a> </em>by Morten T. Hansen</p></li><li><p><em><a href=\"https://a.co/d/0g8OiWu6\">7 Rules of Power</a></em> by Jeffrey Pfeffer</p></li><li><p><em><a href=\"https://www.amazon.com/Effective-Executive-Definitive-Harperbusiness-Essentials/dp/0060833459\">The Effective Executive</a></em> by Peter Drucker</p></li></ol><h2>I want to be happier (continued)</h2><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!Q19L!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F38f71482-c6d0-40ad-9722-6174e8e10408_2912x1404.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"702\" src=\"https://substackcdn.com/image/fetch/$s_!Q19L!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F38f71482-c6d0-40ad-9722-6174e8e10408_2912x1404.png\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>A few readers suggested that this category should have come first last time&#8212;what else matters if you can&#8217;t be happy? So I&#8217;m including another three books that made me a happier person. <em>The Subtle Art of Not Giving a F*ck</em> taught me that freedom from work isn&#8217;t the real goal. Instead, it&#8217;s your opportunity to figure out what problems you want to spend time solving, because the most lasting fulfillment comes from solving problems we care about. <em>A Guide to the Good Life</em> gave me the skill of &#8220;negative visualization,&#8221; which I use to this day. <em>Stumbling on Happiness </em>showed me that we&#8217;re often (very) wrong about what will make us happy.</p><ol><li><p><em><a href=\"https://www.amazon.com/Subtle-Art-Not-Giving-Counterintuitive/dp/0062457713/ref=sr_1_1\">The Subtle Art of Not Giving a F*ck</a></em> by Mark Manson</p></li><li><p><em><a href=\"https://www.amazon.com/Guide-Good-Life-Ancient-Stoic/dp/0195374614/ref=sr_1_1\">A Guide to the Good Life</a></em> by William B. Irvine</p></li><li><p><em><a href=\"https://www.amazon.com/Stumbling-Happiness-Daniel-Gilbert/dp/1400077427\">Stumbling on Happiness</a></em> by Daniel Gilbert </p></li></ol><h2>I want some great children&#8217;s books</h2>\n      <p>\n          <a href=\"https://www.lennysnewsletter.com/p/essential-books-for-product-builderspart-611\">\n              Read more\n          </a>\n      </p>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -240,7 +296,10 @@
       "title": "When the Chain of Thought Knows Better: Failure Modes in Multi-Turn Reasoning Models",
       "url": "https://huggingface.co/papers/2606.10740",
       "published_at": "2026-06-09T11:50:28+00:00",
-      "summary": "Failures in multi-turn reasoning models are largely invisible to terminal-score evaluation. A model can lock onto an unsafe stance early in a long dialogue, yet its final-turn refusal rate may appear indistinguishable from a robustly aligned baseline. To expose these hidden tempo"
+      "summary": "Failures in multi-turn reasoning models are largely invisible to terminal-score evaluation. A model can lock onto an unsafe stance early in a long dialogue, yet its final-turn refusal rate may appear indistinguishable from a robustly aligned baseline. To expose these hidden tempo",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -250,7 +309,10 @@
       "title": "Test-case reducers are underappreciated debugging tools",
       "url": "https://tratt.net/laurie/blog/2026/test_case_reducers_are_underappreciated_debugging_tools.html",
       "published_at": "2026-06-09T11:27:49+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48459659\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -260,7 +322,36 @@
       "title": "Making Graphics Like it's 1993",
       "url": "https://staniks.github.io/articles/catlantean-3d-blog-1/",
       "published_at": "2026-06-09T10:46:14+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48459294\">Comments</a>",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "How Does Reasoning Flow? Tracing Attention-Induced Information Flow for Targeted RL in LLMs",
+      "url": "https://huggingface.co/papers/2606.10646",
+      "published_at": "2026-06-09T09:56:51+00:00",
+      "summary": "Token-level credit assignment remains a key obstacle for reinforcement learning (RL) in large language models (LLMs), where RL recipes typically treat all tokens equally, failing to distinguish decisive reasoning steps from routine formatting or fluent filler. Recent attempts lev",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "One Token per Multimodal Evidence: Latent Memory for Resource-Constrained QA",
+      "url": "https://huggingface.co/papers/2606.10572",
+      "published_at": "2026-06-09T08:36:08+00:00",
+      "summary": "External memory effectively grounds large language models (LLMs) and vision-language models (VLMs)-based question answering (QA) in relevant multimodal evidence. However, existing memory paradigms represent each memory item in raw text and image forms, so retrieval-based systems ",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -270,7 +361,10 @@
       "title": "ARM: An AutoRegressive Large Multimodal Model with Unified Discrete Representations",
       "url": "https://huggingface.co/papers/2606.11188",
       "published_at": "2026-06-09T00:00:00+00:00",
-      "summary": "This paper introduces ARM, a discrete representation-based AutoRegressive Model that unifies image understanding, generation, and editing within a next-token prediction framework. ARM is built on three efforts: first, we train a discrete semantic visual tokenizer that maps images"
+      "summary": "This paper introduces ARM, a discrete representation-based AutoRegressive Model that unifies image understanding, generation, and editing within a next-token prediction framework. ARM is built on three efforts: first, we train a discrete semantic visual tokenizer that maps images",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -280,7 +374,10 @@
       "title": "Dynamic Linear Attention",
       "url": "https://huggingface.co/papers/2606.10650",
       "published_at": "2026-06-09T00:00:00+00:00",
-      "summary": "The scalability of Large Language Models (LLMs) to long contexts is fundamentally constrained by the quadratic complexity of standard attention, motivating the adoption of linear attention mechanisms with sub-quadratic cost. To improve representation capacity under long contexts,"
+      "summary": "The scalability of Large Language Models (LLMs) to long contexts is fundamentally constrained by the quadratic complexity of standard attention, motivating the adoption of linear attention mechanisms with sub-quadratic cost. To improve representation capacity under long contexts,",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -290,7 +387,10 @@
       "title": "SCAIL-2: Unifying Controlled Character Animation with End-to-end In-Context Conditioning",
       "url": "https://huggingface.co/papers/2606.10804",
       "published_at": "2026-06-09T00:00:00+00:00",
-      "summary": "Controlled character animation requires transferring motion from a driving sequence to a reference character. Prior works heavily rely on intermediate representations, including pose skeletons to represent motion or masked background to represent environment, which inevitably lea"
+      "summary": "Controlled character animation requires transferring motion from a driving sequence to a reference character. Prior works heavily rely on intermediate representations, including pose skeletons to represent motion or masked background to represent environment, which inevitably lea",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -300,7 +400,10 @@
       "title": "Workflow-GYM: Towards Long-Horizon Evaluation of Computer-use Agentic tasks in Real-World Professional Fields",
       "url": "https://huggingface.co/papers/2606.11042",
       "published_at": "2026-06-09T00:00:00+00:00",
-      "summary": "Recent years have witnessed the rapid evolution of AI agents toward handling increasingly complex, real-world tasks. However, existing benchmarks rarely evaluate whether agents can operate graphical user interfaces to complete long-horizon, high-value professional workflows acros"
+      "summary": "Recent years have witnessed the rapid evolution of AI agents toward handling increasingly complex, real-world tasks. However, existing benchmarks rarely evaluate whether agents can operate graphical user interfaces to complete long-horizon, high-value professional workflows acros",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -310,17 +413,10 @@
       "title": "Test-Time Gradient Guidance of Flow Policies in Reinforcement Learning",
       "url": "https://huggingface.co/papers/2606.11087",
       "published_at": "2026-06-09T00:00:00+00:00",
-      "summary": "Expressive continuous control policies, such as diffusion and flow models, form the backbone of recent advances in scaling imitation learning for simulated and real robot control. While they are known to scale stably in the supervised imitation learning setting, incorporating the"
-    },
-    {
-      "site_id": "rundown-ai",
-      "site_name": "The Rundown AI",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "Cut Recurring Meeting Times in Half With Claude + Granola",
-      "url": "https://www.youtube.com/watch?v=I_1tDkV4qg0",
-      "published_at": "2026-06-08T23:19:31+00:00",
-      "summary": "In this guide, you will learn how to use Granola and Claude to make recurring meetings shorter. You will run an audit on one recurring meeting, get a templated pre-read, and identify the parts Claude can automate before the next meeting starts.\n\nLink to step-by-step tutorial + te"
+      "summary": "Expressive continuous control policies, such as diffusion and flow models, form the backbone of recent advances in scaling imitation learning for simulated and real robot control. While they are known to scale stably in the supervised imitation learning setting, incorporating the",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -330,7 +426,10 @@
       "title": "Let's Encrypt bans certificate usage in any US sanctioned territory [pdf]",
       "url": "https://letsencrypt.org/documents/LE-SA-v1.7-June-04-2026-diff.pdf",
       "published_at": "2026-06-08T22:32:36+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48453275\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -340,7 +439,10 @@
       "title": "A giant star may have destroyed itself in one of the rarest explosions",
       "url": "https://phys.org/news/2026-05-giant-star-destroyed-universe-rarest.html",
       "published_at": "2026-06-08T21:00:13+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48451966\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "newcomer",
@@ -350,7 +452,23 @@
       "title": "VC Twitter Airs its Dirty Laundry: Our Summary of the Beefs, Bits & Quotes",
       "url": "https://www.newcomer.co/p/vc-twitter-airs-its-dirty-laundry",
       "published_at": "2026-06-08T19:57:52+00:00",
-      "summary": "From Vinod Khosla to Sequoia Capital, founders posted through their grievances"
+      "summary": "From Vinod Khosla to Sequoia Capital, founders posted through their grievances",
+      "content_html": "<div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" href=\"https://substackcdn.com/image/fetch/$s_!gNt7!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1a041f8-e6e9-472b-9617-28963bd9964b_4347x2898.jpeg\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"SAN FRANCISCO, CALIFORNIA - APRIL 08: Vinod Khosla speaks onstage during the &quot;Super Reliability vs. Super Intelligence&quot; panel at the HumanX Conference San Franciso 2026 Moscone Center South on April 08, 2026 in San Francisco, California. (Photo by Big Event Media/Getty Images for HumanX Conference)\" class=\"sizing-normal\" height=\"971\" src=\"https://substackcdn.com/image/fetch/$s_!gNt7!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1a041f8-e6e9-472b-9617-28963bd9964b_4347x2898.jpeg\" title=\"SAN FRANCISCO, CALIFORNIA - APRIL 08: Vinod Khosla speaks onstage during the &quot;Super Reliability vs. Super Intelligence&quot; panel at the HumanX Conference San Franciso 2026 Moscone Center South on April 08, 2026 in San Francisco, California. (Photo by Big Event Media/Getty Images for HumanX Conference)\" width=\"1456\" /><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button class=\"pencraft pc-reset pencraft icon-container restack-image\" tabindex=\"0\" type=\"button\"><svg fill=\"none\" height=\"20\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" viewBox=\"0 0 20 20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><g><title></title><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button class=\"pencraft pc-reset pencraft icon-container view-image\" tabindex=\"0\" type=\"button\"><svg class=\"lucide lucide-maximize2 lucide-maximize-2\" fill=\"none\" height=\"20\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>If you have a healthier relationship with social media than we do, you may be opening up your X account after a relaxing weekend offline to see a deluge of mud-slinging threads between some of Silicon Valley&#8217;s most prominent founders and venture capitalists.</p><p>The biggest conflicts have come between <strong>Matthew Prince</strong>, the CEO of Cloudflare, and <strong>Vinod Khosla</strong>, and <strong>Brendan Foody</strong>, the CEO of Mercor, criticizing Sequoia&#8217;s investment practices. But the last few days&#8217; VC hostile posting extravaganza took a long and sometimes winding path of quote tweets to get to these two conflicts.</p><p>Here&#8217;s a rundown of how the various beefs all got set off. Grab some popcorn if you like.</p><h3>June 2: Greg Isenberg Kicks Off the VC Horror Stories Thread</h3>\n      <p>\n          <a href=\"https://www.newcomer.co/p/vc-twitter-airs-its-dirty-laundry\">\n              Read more\n          </a>\n      </p>",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hackernews",
+      "site_name": "Hacker News",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "Experience using AI software to prove Euler sum results [pdf]",
+      "url": "https://www.davidhbailey.com/dhbpapers/Chatbots.pdf",
+      "published_at": "2026-06-08T18:42:01+00:00",
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48449567\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "lennys",
@@ -360,7 +478,10 @@
       "title": "🎙️ How I AI: Gemini Omni: Clone yourself with AI in under 15 minutes & Shopping with Claude",
       "url": "https://www.lennysnewsletter.com/p/how-i-ai-gemini-omni-clone-yourself",
       "published_at": "2026-06-08T15:01:21+00:00",
-      "summary": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network"
+      "summary": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
+      "content_html": "<div class=\"captioned-image-container\"><figure><a class=\"image-link image2\" href=\"https://substackcdn.com/image/fetch/$s_!gWeJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F361d81ef-7faf-4d8e-8028-5d5e03432a9a_2329x551.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"344\" src=\"https://substackcdn.com/image/fetch/$s_!gWeJ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F361d81ef-7faf-4d8e-8028-5d5e03432a9a_2329x551.png\" title=\"\" width=\"1456\" /><div></div></div></a></figure></div><h3>Gemini Omni: Clone yourself with AI in under 15 minutes</h3><div class=\"youtube-wrap\" id=\"youtube2-UNZczH0gpHc\"><div class=\"youtube-inner\"></div></div><div class=\"pullquote\"><p>Listen now on <strong><a href=\"https://youtu.be/UNZczH0gpHc\">YouTube</a> &#8226; <a href=\"https://open.spotify.com/episode/6kCCHaEAEHT2Q1iyCedszz\">Spotify</a> &#8226; <a href=\"https://podcasts.apple.com/us/podcast/gemini-omni-clone-yourself-with-ai-in-under-15-minutes/id1809663079?i=1000770958331\">Apple Podcasts</a></strong></p></div><div class=\"captioned-image-container\"><figure><a class=\"image-link image2\" href=\"https://substackcdn.com/image/fetch/$s_!Sonv!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F70af8c49-3dfa-4598-84c1-beee06865be3_1600x114.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"104\" src=\"https://substackcdn.com/image/fetch/$s_!Sonv!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F70af8c49-3dfa-4598-84c1-beee06865be3_1600x114.png\" width=\"1456\" /><div></div></div></a></figure></div><blockquote><p><strong>Brought to you by:</strong></p><ul><li><p><strong><a href=\"https://www.merge.dev/howiai\">Merge</a></strong>&#8212;Connective infrastructure for production AI</p></li><li><p><strong><a href=\"https://atlassian.com/howiai\">Jira Product Discovery</a></strong>&#8212;Prioritize with insights, build with confidence</p></li></ul></blockquote><p>In this solo episode, Claire puts Google Flow and Gemini Omni to the test by cloning herself into an AI avatar and using it to build a full hype reel in about 15 minutes. She walks through the whole workflow live: scanning her face, generating scenes, troubleshooting weird outputs, stitching the video together, and reacting to the very real uncanny-valley moments along the way. It&#8217;s part tutorial, part tech demo, and part &#8220;wait, this is already possible?&#8221; glimpse into how AI video tools are making high-quality creative production accessible to anyone with an idea and a laptop.</p><h4>Biggest takeaways:</h4><ol><li><p><strong>AI video tools are unlocking creative capabilities for non-video professionals.</strong> Claire, who describes herself as &#8220;creative, but not video-creative,&#8221; was able to produce a complete one-minute hype video without any prior video production experience. The entire process&#8212;from creating an avatar to final video&#8212;took roughly 15 minutes, demonstrating how these tools democratize creative work that previously required specialized skills and expensive equipment.</p></li><li><p><strong>AI can serve as a creative collaborator, not just a tool.</strong> Rather than just generating videos, Google Veo acted as a creative partner, helping Claire brainstorm scenes, develop a storyboard, and think through the overall narrative arc. The AI asked clarifying questions about setting, tone, and style, then proposed a seven-scene structure that Claire could refine and execute.</p></li><li><p><strong>Character consistency remains a major challenge in AI video generation. </strong>Throughout the generated videos, Claire&#8217;s avatar appeared with different hair lengths, varying backgrounds (some with books, some with plants, different wall colors), and inconsistent environmental details. While the AI pulled some accurate elements from her original photos (like posters in the background), it couldn&#8217;t maintain perfect consistency across scenes.</p></li><li><p><strong>Emotional expression is still a weak point for AI avatars. </strong>While some scenes looked remarkably realistic&#8212;particularly side profiles and serious expressions&#8212;scenes requiring emotion fell flat. Claire described one laughing scene as &#8220;100% uncanny valley,&#8221; noting she looked like she was &#8220;on some kind of medication perhaps.&#8221; The technology hasn&#8217;t quite mastered the subtle muscle movements that make human expressions feel authentic.</p></li><li><p><strong>The workflow from idea to finished video is remarkably fast.</strong> The entire process included creating the avatar (a few minutes), brainstorming with AI (a few minutes), generating seven video scenes (several minutes total), and stitching them together in the built-in editor (about five minutes). What would have traditionally required a production team, studio time, and significant budget happened in a single session at a desk.</p></li></ol><div class=\"callout-block\"><h4>Blog and detailed workflow walkthroughs from this episode:</h4><p>How I Built an AI Avatar and Hype Video in 15 Minutes with Google Flow: <a href=\"https://www.chatprd.ai/how-i-ai/ai-avatar-video-in-15-minutes-with-google-omni-flow\">https://www.chatprd.ai/how-i-ai/ai-avatar-video-in-15-minutes-with-google-omni-flow</a><br />&#8627; How to Create a Promotional Video with an AI Creative Director:  <a href=\"https://www.chatprd.ai/how-i-ai/workflows/how-to-create-a-promotional-video-with-an-ai-creative-director\">https://www.chatprd.ai/how-i-ai/workflows/how-to-create-a-promotional-video-with-an-ai-creative-director</a><br />&#8627; How to Create a Personalized AI Avatar with Google Flow:  <a href=\"https://www.chatprd.ai/how-i-ai/workflows/how-to-create-a-personalized-ai-avatar-with-google-flow\">https://www.chatprd.ai/how-i-ai/workflows/how-to-create-a-personalized-ai-avatar-with-google-flow</a></p></div><h3>Shopping with Claude: How to find quality brands, automate returns, and buy things that last 100 years | Nicole Ruiz</h3><div class=\"youtube-wrap\" id=\"youtube2-OOPganyUinE\"><div class=\"youtube-inner\"></div></div><div class=\"pullquote\"><p>Listen now on <strong><a href=\"https://youtu.be/OOPganyUinE\">YouTube</a> &#8226; <a href=\"https://open.spotify.com/episode/12z8NeMKPsPJVY9OkdiqZo\">Spotify</a> &#8226; <a href=\"https://podcasts.apple.com/us/podcast/shopping-with-claude-how-to-find-quality-brands/id1809663079?i=1000771673691\">Apple Podcasts</a></strong></p></div><div class=\"captioned-image-container\"><figure><a class=\"image-link image2\" href=\"https://substackcdn.com/image/fetch/$s_!HvRJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dd4daa4-fd13-4233-bc47-be18d6ffcd83_1600x114.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"104\" src=\"https://substackcdn.com/image/fetch/$s_!HvRJ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dd4daa4-fd13-4233-bc47-be18d6ffcd83_1600x114.png\" width=\"1456\" /><div></div></div></a></figure></div><blockquote><p><strong>Brought to you by:</strong></p><ul><li><p><strong><a href=\"https://www.orkes.io/\">Orkes</a></strong>&#8212;The enterprise platform for reliable applications and agentic workflows</p></li><li><p><strong><a href=\"https://www.metaview.ai/home/how-i-ai\">Metaview</a></strong>&#8212;The agentic recruiting platform for winning teams</p></li></ul></blockquote><p><strong>Nicole Ruiz</strong> has built a Claude-powered shopping system to help her family buy fewer, better things&#8212;and avoid the endless noise of Amazon, drop-shippers, and low-quality brands. In this episode, she shares how she uses Claude Projects to vet every household purchase against criteria like craftsmanship, materials, brand history, and return policies, plus how she uses Claude Cowork to make returns faster when something doesn&#8217;t hold up. It&#8217;s a practical look at how AI can reduce decision fatigue, surface higher-quality products, and help busy parents spend less time managing stuff.</p><h4>Biggest takeaways:</h4><ol><li><p><strong>The modern internet shopping experience is broken for people who want quality over convenience. </strong>Between paid ads, drop-shipping brands, and knockoff products on Amazon, it&#8217;s incredibly difficult to find thoughtfully made items that will last for years. Nicole&#8217;s solution: build a Claude Project that holds all her purchasing criteria and trusted brands in one place, so she never has to start from scratch.</p></li><li><p><strong>Keep a running list of brands you trust, and let AI search through them for you.</strong> Nicole maintains a list of shops with decades of history, strong return policies, and proven craftsmanship. When she needs something, she asks Claude to search through these trusted vendors first. This flips the typical shopping flow: instead of searching the entire internet and filtering out garbage, she&#8217;s searching a pre-vetted list and only expanding if needed.</p></li><li><p><strong>Your purchasing criteria should be written down and reusable.</strong> Nicole has specific requirements: natural materials, made to last and repair, decades of business history, strong return policies, and no trendy direct-to-consumer brands that over-invest in advertising. By codifying these criteria in a Claude Project, she removes the mental overhead of running through an invisible checklist every time she needs to buy something.</p></li><li><p><strong>AI can surface brand history and quality signals that would take hours to research manually. </strong>When Nicole queries a product, Claude explains why each brand is trustworthy, surfacing details like &#8220;This brand has been manufacturing the same tote bag for over 80 years&#8221; or &#8220;This company got acquired two years ago and reviews have been abysmal since then.&#8221; These insights help her make informed decisions without hours of research.</p></li><li><p><strong>The worst websites often belong to the best manufacturers.</strong> Heritage brands that have been making quality products for decades frequently have terrible websites that are hard to navigate. This puts them at a disadvantage compared with Amazon or well-funded DTC brands. AI levels the playing field by making it just as easy to shop from a 100-year-old manufacturer with a clunky website as from Amazon.</p></li><li><p><strong>Format your AI shopping results to surface the information that matters most to you. </strong>Nicole&#8217;s Claude Project presents each product with specific details: product name, photo, price, materials (especially important for avoiding plastic), care and maintenance notes, purchase link, and a brief note on the brand&#8217;s trustworthy history. This consistent format makes it easy to compare options and make quick decisions.</p></li><li><p><strong>Use AI to automate the tedious parts of returns and refunds. </strong>When a product fails&#8212;like J.Crew pants that wore through after six months&#8212;Nicole uses Claude Cowork to pull the original receipt from her email, find the order details, and draft a customer service email requesting a refund. What would normally take 10 to 15 minutes now takes 2 to 3 minutes of voice dictation from her phone.</p></li><li><p><strong>AI can identify manufacturing issues by analyzing review patterns.</strong> When Nicole requests a return, Claude often discovers that other customers had the same problem with the same product from the same time period, suggesting a manufacturing defect rather than normal wear. This strengthens her refund request and helps her avoid brands with known quality-control issues.</p></li><li><p><strong>Build your shopping system for multiple use cases.</strong> Nicole uses her Claude Project in three main ways: &#8220;Help me find a can opener&#8221; (specific item search), &#8220;I have $30 for L.L.Bean; what should I buy?&#8221; (budget-constrained search), and &#8220;What&#8217;s your analysis of this brand I found?&#8221; (vetting a new brand). This flexibility makes the system useful for different shopping scenarios.</p></li><li><p><strong>Buying quality items up front reduces household maintenance over time.</strong> Nicole&#8217;s philosophy is to move as much vetting upstream as possible. She lives in a small Brooklyn apartment with two young children, and every item needs to stand the test of time. By investing time in building a shopping system that prioritizes quality, she spends less time dealing with broken items and processing returns. The goal: buy things that will last for multiple children and can be mended rather than replaced.</p></li></ol><div class=\"callout-block\"><h4>Blog and detailed workflow walkthroughs from this episode:</h4><p>Buying High-Quality Goods With Claude: <a href=\"https://www.chatprd.ai/how-i-ai/buying-high-quality-goods-with-claude\">https://www.chatprd.ai/how-i-ai/buying-high-quality-goods-with-claude</a><br />&#8627; Automate Product Returns and Refunds Using Claude Cowork: <a href=\"https://www.chatprd.ai/how-i-ai/workflows/automate-product-returns-and-refunds-using-claude-cowork\">https://www.chatprd.ai/how-i-ai/workflows/automate-product-returns-and-refunds-using-claude-cowork</a><br />&#8627; Build a Buy-It-for-Life AI Shopping Assistant With Claude: <a href=\"https://www.chatprd.ai/how-i-ai/workflows/build-a-buy-it-for-life-ai-shopping-assistant-with-claude\">https://www.chatprd.ai/how-i-ai/workflows/build-a-buy-it-for-life-ai-shopping-assistant-with-claude</a></p></div><div><hr /></div><p>If you&#8217;re enjoying these episodes, reply and let me know what you&#8217;d love to learn more about: AI workflows, hiring, growth, product strategy&#8212;anything.</p><p>Catch you next week,<br />Lenny</p><p><em>P.S. Want every new episode delivered the moment it drops? Hit &#8220;Follow&#8221; on your favorite podcast app.</em></p>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -370,7 +491,10 @@
       "title": "Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text",
       "url": "https://huggingface.co/papers/2606.09585",
       "published_at": "2026-06-08T14:58:59+00:00",
-      "summary": "Chain-of-Thought (CoT) improves the performance of Large Language Models (LLMs) and has been extended to Multimodal Large Language Models (MLLMs). More recent work further moves from text-based multimodal reasoning toward interleaved-modal reasoning, where intermediate steps can "
+      "summary": "Chain-of-Thought (CoT) improves the performance of Large Language Models (LLMs) and has been extended to Multimodal Large Language Models (MLLMs). More recent work further moves from text-based multimodal reasoning toward interleaved-modal reasoning, where intermediate steps can ",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -380,7 +504,10 @@
       "title": "Lies we tell ourselves about email addresses",
       "url": "https://gitpush--force.com/commits/2026/06/lies-we-tell-ourselves-about-email/",
       "published_at": "2026-06-08T14:24:57+00:00",
-      "summary": "Comments"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48445834\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hackernews",
@@ -390,17 +517,10 @@
       "title": "Value Numbering",
       "url": "https://bernsteinbear.com/blog/value-numbering/",
       "published_at": "2026-06-08T12:45:01+00:00",
-      "summary": "Comments"
-    },
-    {
-      "site_id": "import-ai",
-      "site_name": "Import AI",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "Import AI 460: Reward hacking society, RSI data from Anthropic; and RL-based quadcopter racing",
-      "url": "https://importai.substack.com/p/import-ai-460-reward-hacking-society",
-      "published_at": "2026-06-08T12:31:32+00:00",
-      "summary": "When will markets price the singularity?"
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48444654\">Comments</a>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "lennys",
@@ -410,7 +530,10 @@
       "title": "Shopping with Claude: How to find quality brands, automate returns, and buy things that last 100 years | Nicole Ruiz",
       "url": "https://www.lennysnewsletter.com/p/shopping-with-claude",
       "published_at": "2026-06-08T12:03:27+00:00",
-      "summary": "Watch now | &#127897;&#65039;She uses Claude to shop for high-quality items that last, automate returns when products fail, and spend less time on administrative tasks and more time with her kids"
+      "summary": "Watch now | &#127897;&#65039;She uses Claude to shop for high-quality items that last, automate returns when products fail, and spend less time on administrative tasks and more time with her kids",
+      "content_html": "<div class=\"youtube-wrap\" id=\"youtube2-OOPganyUinE\"><div class=\"youtube-inner\"></div></div><p><strong>Nicole Ruiz</strong> is a writer and parent who has built a comprehensive AI-powered shopping system to help her family buy high-quality, long-lasting items while avoiding the noise of drop-shipping brands, paid ads, and poorly made products. She writes an interview series on Substack about how technology is changing the household.</p><div class=\"pullquote\"><p><strong>Listen or watch on <a href=\"https://youtu.be/OOPganyUinE\">YouTube</a>, <a href=\"https://open.spotify.com/show/4aRP2XSavdtrLG5FZoonOK\">Spotify</a>, or <a href=\"https://podcasts.apple.com/us/podcast/how-i-ai/id1809663079\">Apple Podcasts</a></strong></p></div><h3>What you&#8217;ll learn:</h3><ol><li><p>How to build a Claude Project with custom instructions for vetting brands based on heritage, craftsmanship, and return policies</p></li><li><p>The shopping criteria that help surface century-old manufacturers over trendy direct-to-consumer brands</p></li><li><p>How to use Claude to search through trusted vendor websites that have terrible UX</p></li><li><p>Why AI actually helps small artisans and heritage brands compete against Amazon&#8217;s infrastructure</p></li><li><p>How to use Claude Cowork to automate returns by finding receipts in your email and drafting refund requests</p></li><li><p>The technique for getting Claude to analyze whether a brand is legitimate or just a drop-shipping operation</p></li><li><p>How to shop within a specific budget or with gift cards using AI assistance</p></li></ol><div><hr /></div><h3>Brought to you by:</h3><div class=\"captioned-image-container\"><figure><a class=\"image-link image2\" href=\"https://substackcdn.com/image/fetch/$s_!Gazk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4339c360-d698-4aa2-959c-c951cedb28f0_1600x114.png\" target=\"_blank\"><div class=\"image2-inset\"><source type=\"image/webp\" /><img alt=\"\" class=\"sizing-normal\" height=\"104\" src=\"https://substackcdn.com/image/fetch/$s_!Gazk!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4339c360-d698-4aa2-959c-c951cedb28f0_1600x114.png\" width=\"1456\" /><div></div></div></a></figure></div><p><strong><a href=\"https://www.orkes.io/\">Orkes</a></strong>&#8212;The enterprise platform for reliable applications and agentic workflows</p><p><strong><a href=\"https://www.metaview.ai/home/how-i-ai\">Metaview</a></strong>&#8212;The agentic recruiting platform for winning teams</p><p></p><h3>In this episode, we cover:</h3><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE\">00:00</a>) Introduction to Nicole and AI-powered shopping</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=149s\">02:29</a>) The problem</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=295s\">04:55</a>) Building a Claude Project for household purchasing</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=464s\">07:44</a>) The &#8220;anti-to-do list&#8221; concept for reducing mental overhead</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=630s\">10:30</a>) Shopping for a can opener: the system in action</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=953s\">15:53</a>) How AI helps century-old brands with terrible websites</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=1125s\">18:45</a>) Processing returns with Claude Cowork</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=1506s\">25:06</a>) Using gift cards strategically</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=1593s\">26:33</a>) Vetting brands</p><p>(<a href=\"https://www.youtube.com/watch?v=OOPganyUinE&amp;t=1780s\">29:40</a>) Recap, lightning round, and final thoughts</p><p></p><h3>Tools referenced:</h3><p>&#8226; Claude: <a href=\"https://claude.ai/\">https://claude.ai/</a></p><p>&#8226; Claude Cowork: <a href=\"https://www.anthropic.com/product/claude-cowork\">https://www.anthropic.com/product/claude-cowork</a></p><p></p><h3>Other references:</h3><p>&#8226; Boston General Store: <a href=\"https://bostongeneralstore.com/\">https://bostongeneralstore.com/</a></p><p>&#8226; L.L.Bean: <a href=\"https://www.llbean.com/\">https://www.llbean.com/</a></p><p>&#8226; Manufactum: <a href=\"https://www.manufactum.com/\">https://www.manufactum.com/</a></p><p>&#8226; 5 OpenClaw agents run my home, finances, and code | Jesse Genet: <a href=\"https://www.lennysnewsletter.com/p/5-openclaw-agents-run-my-home-finances\">https://www.lennysnewsletter.com/p/5-openclaw-agents-run-my-home-finances</a></p><p>&#8226; From a $6.90 newsletter to $3M API: How a non-coder built Memelord | Jason Levin: <a href=\"https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how\">https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how</a></p><p></p><h3>Where to find Nicole Ruiz:</h3><p>X: <a href=\"https://x.com/nwilliams030\">https://x.com/nwilliams030</a></p><p>Substack (The Third Oikos): <a href=\"https://www.thirdoikos.com/\">https://www.thirdoikos.com/</a></p><p></p><h3>Where to find Claire Vo:</h3><p>ChatPRD: <a href=\"https://www.chatprd.ai/\">https://www.chatprd.ai/</a></p><p>Website: <a href=\"https://clairevo.com/\">https://clairevo.com/</a></p><p>LinkedIn: <a href=\"https://www.linkedin.com/in/clairevo/\">https://www.linkedin.com/in/clairevo/</a></p><p>X: <a href=\"https://x.com/clairevo\">https://x.com/clairevo</a></p><p></p><p>Production and marketing by <a href=\"https://penname.co/\">https://penname.co/</a>. For inquiries about sponsoring the podcast, email jordan@penname.co.</p>",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -420,7 +543,10 @@
       "title": "Reasoning Arena: Trace Tournaments When Verifiable Rewards Fall Short",
       "url": "https://huggingface.co/papers/2606.09380",
       "published_at": "2026-06-08T11:57:17+00:00",
-      "summary": "Reinforcement learning with verifiable rewards (RLVR) has become a leading paradigm for improving the reasoning ability of large language models through outcome-based supervision. However, verifiable rewards frequently become uninformative at the group level: when all sampled tra"
+      "summary": "Reinforcement learning with verifiable rewards (RLVR) has become a leading paradigm for improving the reasoning ability of large language models through outcome-based supervision. However, verifiable rewards frequently become uninformative at the group level: when all sampled tra",
+      "content_html": "",
+      "media": null,
+      "author": null
     },
     {
       "site_id": "hf-papers",
@@ -430,17 +556,10 @@
       "title": "Experience Makes Skillful: Enabling Generalizable Medical Agent Reasoning via Self-Evolving Skill Memory",
       "url": "https://huggingface.co/papers/2606.09365",
       "published_at": "2026-06-08T11:37:01+00:00",
-      "summary": "Medical agent systems are increasingly expected to support interactive clinical decision making rather than only static question answering. In such settings, effective agents must reuse prior experience across evolving cases, yet existing memory mechanisms often retain raw histor"
-    },
-    {
-      "site_id": "hf-papers",
-      "site_name": "HuggingFace Daily Papers",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "Hardening Agent Benchmarks with Adversarial Hacker-Fixer Loops",
-      "url": "https://huggingface.co/papers/2606.08960",
-      "published_at": "2026-06-08T03:00:56+00:00",
-      "summary": "Agent benchmarks score submissions with outcome verifiers that are typically hand-written and brittle, leaving them open to reward hacking. We audit 1,968 tasks across five terminal-agent benchmarks and find 323 (16%) hackable by frontier models given only the task description. T"
+      "summary": "Medical agent systems are increasingly expected to support interactive clinical decision making rather than only static question answering. In such settings, effective agents must reuse prior experience across evolving cases, yet existing memory mechanisms often retain raw histor",
+      "content_html": "",
+      "media": null,
+      "author": null
     }
   ]
 }
