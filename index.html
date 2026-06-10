@@ -15,6 +15,15 @@
   .src{color:#8b949e;font-size:12px;margin-right:8px}
   .ts{color:#6e7681;font-size:12px;float:right}
   .summary{color:#a0a6ad;font-size:13px;margin-top:4px}
+  .toggle{display:inline-block;margin-top:6px;color:#7ee787;font-size:12px;cursor:pointer;user-select:none}
+  .toggle:hover{text-decoration:underline}
+  .fulltext{display:none;margin-top:12px;padding:14px 16px;background:#161a22;border:1px solid #1f2329;border-radius:6px;color:#cdd0d6;font-size:14px;line-height:1.65;max-height:520px;overflow:auto}
+  .fulltext.open{display:block}
+  .fulltext img{max-width:100%;height:auto;border-radius:4px;margin:8px 0}
+  .fulltext a{color:#79c0ff}
+  .fulltext h1,.fulltext h2,.fulltext h3{color:#e4e6eb;margin:14px 0 6px}
+  .fulltext pre,.fulltext code{background:#0f1115;padding:2px 6px;border-radius:3px;font-size:13px}
+  .fulltext blockquote{border-left:3px solid #30363d;margin:8px 0;padding-left:12px;color:#a0a6ad}
   .empty{color:#8b949e;font-style:italic;padding:20px;text-align:center}
 </style>
 </head>
@@ -42,11 +51,21 @@ fetch('data/items.json?_=' + Date.now())
       list.appendChild(gh);
       for (const it of groups[g]) {
         const row = document.createElement('div'); row.className = 'item';
+        const hasFull = it.content_html && it.content_html.length > 200;
         row.innerHTML =
           `<span class="src">${it.site_name}</span>` +
           `<a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>` +
           `<span class="ts">${it.published_at.slice(0,16).replace('T',' ')}</span>` +
-          (it.summary ? `<div class="summary">${it.summary}</div>` : '');
+          (it.summary ? `<div class="summary">${it.summary}</div>` : '') +
+          (hasFull ? `<span class="toggle">展开全文 ▾</span><div class="fulltext">${it.content_html}</div>` : '');
+        if (hasFull) {
+          const tog = row.querySelector('.toggle');
+          const ft = row.querySelector('.fulltext');
+          tog.addEventListener('click', () => {
+            const open = ft.classList.toggle('open');
+            tog.textContent = open ? '收起 ▴' : '展开全文 ▾';
+          });
+        }
         list.appendChild(row);
       }
     }
