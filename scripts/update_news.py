@@ -14,7 +14,7 @@ import os
 import re
 import sys
 import time
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Optional
@@ -77,6 +77,23 @@ def parse_dt(value: Any) -> Optional[datetime]:
     return None
 
 
+def _get_with_retry(session: requests.Session, url: str, retries: int = 3, backoff: float = 1.5):
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            resp = session.get(url, timeout=20, headers={"User-Agent": "hxz-news-reader/0.1 (+https://github.com/blandybaran527-boop/Content-Engineering)"})
+            if resp.status_code in (500, 502, 503, 504):
+                last_exc = requests.HTTPError(f"{resp.status_code} {resp.reason}", response=resp)
+                time.sleep(backoff * (attempt + 1))
+                continue
+            resp.raise_for_status()
+            return resp
+        except requests.RequestException as e:
+            last_exc = e
+            time.sleep(backoff * (attempt + 1))
+    raise last_exc
+
+
 def fetch_rss(src: dict[str, Any], session: requests.Session, window_hours: int) -> tuple[list[RawItem], SourceStatus]:
     status = SourceStatus(id=src["id"], name=src["name"], type=src["type"], ok=False, fetched_at=datetime.now(timezone.utc).isoformat())
     url = (src.get("url") or "").strip()
@@ -87,8 +104,7 @@ def fetch_rss(src: dict[str, Any], session: requests.Session, window_hours: int)
     cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
     items: list[RawItem] = []
     try:
-        resp = session.get(url, timeout=20, headers={"User-Agent": "hxz-news-reader/0.1 (+https://github.com/blandybaran527-boop/Content-Engineering)"})
-        resp.raise_for_status()
+        resp = _get_with_retry(session, url)
         feed = feedparser.parse(resp.content)
         for entry in feed.entries:
             published = parse_dt(entry.get("published_parsed") or entry.get("updated_parsed") or entry.get("published") or entry.get("updated"))
