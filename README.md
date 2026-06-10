@@ -9,17 +9,19 @@
 
 ## 当前已跑通的小闭环（v0）
 
-5 个 RSS 信源，零 API Key，单次抓取近 800 条：
+7 个信源（4 聚合站 + 3 商科 Substack），零 API Key，48h 窗口约 100+ 条：
 
-| ID | 名字 | 类型 | URL |
+| ID | 名字 | 通道 | 备注 |
 |---|---|---|---|
-| `hackernews` | Hacker News | 聚合站 | `https://news.ycombinator.com/rss` |
-| `import-ai` | Import AI | 聚合站 | `https://importai.substack.com/feed` |
-| `arxiv-cs-ai` | arXiv cs.AI | 聚合站 | `http://export.arxiv.org/rss/cs.AI` |
-| `latent-space` | Latent Space | 聚合站 | `https://www.latent.space/feed` |
-| `lennys` | Lenny's Newsletter | 商科 | `https://www.lennysnewsletter.com/feed` |
-| `generalist` | The Generalist | 商科 | `https://www.generalist.com/feed` |
-| `newcomer` | Newcomer | 商科 | `https://www.newcomer.co/feed` |
+| `hackernews` | Hacker News | 官方 RSS `news.ycombinator.com/rss` | YC 新闻 |
+| `import-ai` | Import AI | 官方 RSS `importai.substack.com/feed` | Jack Clark |
+| `hf-papers` | HuggingFace Daily Papers | 官方 API `huggingface.co/api/daily_papers` | 无公开 RSS，走 API |
+| `rundown-ai` | The Rundown AI | YouTube 官方频道 RSS（channel_id `UCOoKOPoTsf6gcDKvERU9BeA`） | newsletter 本身无公开 RSS |
+| `lennys` | Lenny's Newsletter | Substack RSS | 商科 |
+| `generalist` | The Generalist | Substack RSS | 商科 |
+| `newcomer` | Newcomer | Substack RSS | 商科 |
+
+> **原则**：信源不可达时**只换通道，不换信源**。HF Papers 没有官方 RSS 就走它的 `/api/daily_papers` 接口；The Rundown AI 网站 RSS 被拦就走它的 YouTube 频道 RSS。绝不替换成"同类的别家"。
 
 X / 公众号 / 播客都已经登记在 `feeds/sources.yaml`，默认不抓（避免不稳定的桥），通过开关启用：
 

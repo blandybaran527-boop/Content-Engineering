@@ -119,6 +119,49 @@ def fetch_rss(src: dict[str, Any], session: requests.Session, window_hours: int)
     return items, status
 
 
+def fetch_hf_papers(src: dict[str, Any], session: requests.Session, window_hours: int) -> tuple[list[RawItem], SourceStatus]:
+    """HuggingFace Daily Papers 走官方 API（无 RSS）。"""
+    status = SourceStatus(id=src["id"], name=src["name"], type=src["type"], ok=False, fetched_at=datetime.now(timezone.utc).isoformat())
+    url = (src.get("url") or "").strip()
+    if not url:
+        status.error = "empty url"
+        return [], status
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
+    try:
+        resp = session.get(url, timeout=20, params={"limit": 100}, headers={"User-Agent": "hxz-news-reader/0.1"})
+        resp.raise_for_status()
+        data = resp.json()
+        items: list[RawItem] = []
+        for entry in data:
+            paper = entry.get("paper", {}) or {}
+            pid = paper.get("id")
+            if not pid:
+                continue
+            published = parse_dt(paper.get("publishedAt") or entry.get("publishedAt"))
+            if published is None:
+                published = datetime.now(timezone.utc)
+            if published < cutoff:
+                continue
+            title = (paper.get("title") or "").strip()
+            summary = (paper.get("summary") or "").strip()[:280]
+            items.append(RawItem(
+                site_id=src["id"],
+                site_name=src["name"],
+                group=src.get("group", ""),
+                category=src.get("category", ""),
+                title=title,
+                url=f"https://huggingface.co/papers/{pid}",
+                published_at=published.astimezone(timezone.utc).isoformat(),
+                summary=summary,
+            ))
+        status.ok = True
+        status.count = len(items)
+        return items, status
+    except Exception as e:
+        status.error = f"{type(e).__name__}: {e}"
+        return [], status
+
+
 def fetch_x_handle(src: dict[str, Any], session: requests.Session, window_hours: int, bearer: Optional[str]) -> tuple[list[RawItem], SourceStatus]:
     status = SourceStatus(id=src["id"], name=src["name"], type=src["type"], ok=False, fetched_at=datetime.now(timezone.utc).isoformat())
     handle = src.get("x_handle") or src["name"]
@@ -220,7 +263,7 @@ def main():
         should_fetch = False
         if args.probe_only:
             should_fetch = True
-        elif t == "rss":
+        elif t in ("rss", "hf_api"):
             should_fetch = default_on
         elif t == "x_handle":
             should_fetch = args.enable_x and bool(bearer)
@@ -235,6 +278,8 @@ def main():
 
         if t in ("rss", "wechat", "podcast"):
             items, status = fetch_rss(src, session, args.window_hours)
+        elif t == "hf_api":
+            items, status = fetch_hf_papers(src, session, args.window_hours)
         elif t == "x_handle":
             items, status = fetch_x_handle(src, session, args.window_hours, bearer)
         else:

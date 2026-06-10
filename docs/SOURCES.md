@@ -2,16 +2,19 @@
 
 ## A. 聚合站（默认抓取，最稳定）
 
-| Source | URL | 备注 |
+| Source | 通道 | 备注 |
 |---|---|---|
-| Hacker News | `https://news.ycombinator.com/rss` | 官方 |
-| Import AI | `https://importai.substack.com/feed` | Anthropic 联创 Jack Clark |
-| arXiv cs.AI | `http://export.arxiv.org/rss/cs.AI` | 学术兜底 |
-| Latent Space | `https://www.latent.space/feed` | swyx 的 AI 工程师 newsletter |
+| Hacker News | 官方 RSS `news.ycombinator.com/rss` | YC 旗下 |
+| Import AI | 官方 RSS `importai.substack.com/feed` | Jack Clark |
+| HuggingFace Daily Papers | 官方 **API** `huggingface.co/api/daily_papers` | 无公开 RSS，走 API；`fetch_hf_papers` 自定义解析器 |
+| The Rundown AI | YouTube 频道 RSS `channel_id=UCOoKOPoTsf6gcDKvERU9BeA` | newsletter 本身无公开 RSS，靠 YouTube 频道兜底 |
 
-❌ 不可用：
-- **The Rundown AI** 官网无公开 RSS，他们的 newsletter 是邮件订阅，不强行抓取
-- **HuggingFace Daily Papers** 没有官方 RSS，社区代理 `jamesg.blog/hf-papers.xml` 已 403
+### 通道选型记录
+
+- **HF Daily Papers**：社区代理 `jamesg.blog/hf-papers.xml` 已 403；改用 HuggingFace 官方 `/api/daily_papers` JSON 接口，每次返回最近 N 篇精选论文，含 publishedAt、title、summary、id
+- **The Rundown AI**：官网 `/rss` `/feed` 都 403/404；改用其 YouTube 官方频道的标准 RSS（YouTube 提供 `feeds/videos.xml?channel_id=<id>`）。Newsletter 内容稍微滞后但作者重叠
+
+⚠️ **原则**：抓不到时**只换通道，不换信源**。永远不要把 HF Papers 替换成 arXiv，也不要把 Rundown 替换成 Latent Space——这些是不同的策展口味，用户的信源清单不能被偷偷改。
 
 ## B. 商科创新故事（默认抓取）
 

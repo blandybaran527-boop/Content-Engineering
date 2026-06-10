@@ -12,10 +12,8 @@
 # ============ A. 聚合站（默认跑通的稳定层）============
 - {id: hackernews,  name: Hacker News,                type: rss, url: 'https://news.ycombinator.com/rss',          category: ai_hot, group: 聚合站, default: true}
 - {id: import-ai,   name: Import AI,                  type: rss, url: 'https://importai.substack.com/feed',         category: ai_hot, group: 聚合站, default: true}
-- {id: hf-papers,   name: HuggingFace Daily Papers,   type: rss, url: 'https://jamesg.blog/hf-papers.xml',           category: ai_hot, group: 聚合站, default: false}  # 403 时关掉，下面用 arxiv 兜底
-- {id: rundown-ai,  name: The Rundown AI,             type: rss, url: '',                                            category: ai_hot, group: 聚合站, default: false} # 官网无 RSS, 仅展示
-- {id: arxiv-cs-ai, name: arXiv cs.AI,                type: rss, url: 'http://export.arxiv.org/rss/cs.AI',            category: ai_hot, group: 聚合站, default: true}
-- {id: latent-space, name: Latent Space,              type: rss, url: 'https://www.latent.space/feed',                category: ai_hot, group: 聚合站, default: true}
+- {id: hf-papers,   name: HuggingFace Daily Papers,   type: hf_api, url: 'https://huggingface.co/api/daily_papers',  category: ai_hot, group: 聚合站, default: true}    # 官方 API，每日精选论文
+- {id: rundown-ai,  name: The Rundown AI,             type: rss, url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCOoKOPoTsf6gcDKvERU9BeA', category: ai_hot, group: 聚合站, default: true}  # YouTube 官方频道 RSS（newsletter 本身无公开 RSS）
 
 # ============ B. 商科创新故事（v0 稳定层：3 个 Substack）============
 - {id: lennys,      name: "Lenny's Newsletter",       type: rss, url: 'https://www.lennysnewsletter.com/feed',       category: business_innovation, group: 商科信源, default: true}
