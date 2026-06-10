@@ -1,7 +1,20 @@
 {
-  "generated_at": "2026-06-10T06:23:42.800601+00:00",
+  "generated_at": "2026-06-10T07:15:17.358088+00:00",
   "window_hours": 168,
   "items": [
+    {
+      "site_id": "zhinengyongxian",
+      "site_name": "智能涌现",
+      "group": "商科信源",
+      "category": "business_innovation",
+      "title": "独家｜字节 AI 制药开启拆分融资，AI4S 进入产业化阶段",
+      "url": "https://mp.weixin.qq.com/s/sYhiw2fg66hU_NGlOFphdQ",
+      "published_at": "2026-06-10T05:58:29+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
     {
       "site_id": "hackernews",
       "site_name": "Hacker News",
@@ -133,6 +146,19 @@
       "author": null
     },
     {
+      "site_id": "zang-ai",
+      "site_name": "葬AI",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "腾讯做了一堆情感陪伴Agent",
+      "url": "https://mp.weixin.qq.com/s/io9jgZ_bLWe0t8CvqUf4Jw",
+      "published_at": "2026-06-10T02:01:41+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "hackernews",
       "site_name": "Hacker News",
       "group": "聚合站",
@@ -172,19 +198,6 @@
       "author": null
     },
     {
-      "site_id": "hackernews",
-      "site_name": "Hacker News",
-      "group": "聚合站",
-      "category": "ai_hot",
-      "title": "It's death",
-      "url": "https://jesseduffield.com/ITS-DEATH/",
-      "published_at": "2026-06-09T23:44:16+00:00",
-      "summary": "Comments",
-      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48469347\">Comments</a>",
-      "media": null,
-      "author": null
-    },
-    {
       "site_id": "rundown-ai",
       "site_name": "The Rundown AI",
       "group": "聚合站",
@@ -220,6 +233,19 @@
       "published_at": "2026-06-09T22:01:15+00:00",
       "summary": "Comments",
       "content_html": "<a href=\"https://news.ycombinator.com/item?id=48468370\">Comments</a>",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "Claude Fable 5 发布，最强的模型，最贵的价格，最大的野心",
+      "url": "https://mp.weixin.qq.com/s/lV_160sgGIahflX64cXCKg",
+      "published_at": "2026-06-09T21:50:43+00:00",
+      "summary": "",
+      "content_html": "",
       "media": null,
       "author": null
     },
@@ -393,6 +419,19 @@
       "author": null
     },
     {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "Role-Agent: Bootstrapping LLM Agents via Dual-Role Evolution",
+      "url": "https://huggingface.co/papers/2606.10917",
+      "published_at": "2026-06-09T14:28:07+00:00",
+      "summary": "Although Large Language Model (LLM) agents have demonstrated strong performance on complex tasks, their learning is often limited by inefficient interaction feedback and static training environments, which hinder broader generalization. To address these limitations, this paper in",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "hackernews",
       "site_name": "Hacker News",
       "group": "聚合站",
@@ -454,6 +493,19 @@
       "published_at": "2026-06-09T11:50:28+00:00",
       "summary": "Failures in multi-turn reasoning models are largely invisible to terminal-score evaluation. A model can lock onto an unsafe stance early in a long dialogue, yet its final-turn refusal rate may appear indistinguishable from a robustly aligned baseline. To expose these hidden tempo",
       "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hackernews",
+      "site_name": "Hacker News",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "Show HN: Gravity – Interactive solar-system simulator, from Newton to Einstein",
+      "url": "https://qunabu.github.io/Gravity/",
+      "published_at": "2026-06-09T11:46:40+00:00",
+      "summary": "Comments",
+      "content_html": "<a href=\"https://news.ycombinator.com/item?id=48459837\">Comments</a>",
       "media": null,
       "author": null
     },
@@ -614,6 +666,19 @@
       "author": null
     },
     {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "橘座 Vol. 3 | 金谷园李博：饺子、虚无，悟空的元气弹",
+      "url": "https://mp.weixin.qq.com/s/iPeqItuEz9wQWFQlK57tUA",
+      "published_at": "2026-06-09T08:12:42+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "geekpark",
       "site_name": "极客公园",
       "group": "公众号",
@@ -692,6 +757,19 @@
       "author": null
     },
     {
+      "site_id": "zang-ai",
+      "site_name": "葬AI",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "AI圈神童杀死神人",
+      "url": "https://mp.weixin.qq.com/s/hZERKWS7ChBE9t3oq_R5EA",
+      "published_at": "2026-06-09T02:01:19+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "geekpark",
       "site_name": "极客公园",
       "group": "公众号",
@@ -700,6 +778,32 @@
       "url": "https://mp.weixin.qq.com/s/OuQu0ryI9exDIuNc5DWGQA",
       "published_at": "2026-06-09T00:45:26+00:00",
       "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "UniPET: a universal network for high-quality PET image denoising across varied dose reduction factors",
+      "url": "https://huggingface.co/papers/2606.11131",
+      "published_at": "2026-06-09T00:00:00+00:00",
+      "summary": "Most existing deep learning-based PET image denoising methods assume a fixed and known dose reduction factor (DRF) for low-dose PET images. However, these methods encounter significant performance degradation when the DRF varies beyond the assumed one in practical applications. T",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "U-TTT: Towards Generalizable PET Image Denoising via Test-Time Training",
+      "url": "https://huggingface.co/papers/2606.11032",
+      "published_at": "2026-06-09T00:00:00+00:00",
+      "summary": "Existing deep learning models for Positron Emission Tomography (PET) image denoising often suffer from severe performance degradation under distribution shifts, fundamentally restricting their robust clinical deployment. This lack of generalization stems from the conventional par",
       "content_html": "",
       "media": null,
       "author": null
@@ -1212,6 +1316,19 @@
       "author": null
     },
     {
+      "site_id": "zang-ai",
+      "site_name": "葬AI",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "网吧黑客松里真有黑客",
+      "url": "https://mp.weixin.qq.com/s/jtzXlddrTawEBpusBo_VwQ",
+      "published_at": "2026-06-08T02:01:34+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "geekpark",
       "site_name": "极客公园",
       "group": "公众号",
@@ -1220,6 +1337,32 @@
       "url": "https://mp.weixin.qq.com/s/5rtvB5DcaQNChCBqLnevxA",
       "published_at": "2026-06-08T01:02:19+00:00",
       "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "100天，感觉自己越来越像人了 | Cola 1.0.0",
+      "url": "https://mp.weixin.qq.com/s/fimEbG3l-Yf9vudHhtQvGg",
+      "published_at": "2026-06-08T00:01:14+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "hf-papers",
+      "site_name": "HuggingFace Daily Papers",
+      "group": "聚合站",
+      "category": "ai_hot",
+      "title": "Late-Layer Fusion is Enough: Dual-Path Vision Token Routing for Multimodal Large Language Models under Visual Saturation",
+      "url": "https://huggingface.co/papers/2606.09131",
+      "published_at": "2026-06-08T00:00:00+00:00",
+      "summary": "Multimodal large language models (MLLMs) commonly inherit the deep, symmetric Transformer backbone designed for unimodal text modeling, and apply the same computation uniformly to image and language tokens. This design overlooks a key modality asymmetry: image and text tokens dif",
       "content_html": "",
       "media": null,
       "author": null
@@ -1784,6 +1927,19 @@
       "author": null
     },
     {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "橘座 | Vol. 2：歸藏，审美、创作、快乐、恋爱",
+      "url": "https://mp.weixin.qq.com/s/zeYHAB7bh8RtGidbZUHZvg",
+      "published_at": "2026-06-05T22:31:51+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "hf-papers",
       "site_name": "HuggingFace Daily Papers",
       "group": "聚合站",
@@ -1882,6 +2038,19 @@
       "title": "Anthropic万字长文：当AI开始构建自己，人类该何去何从？",
       "url": "https://mp.weixin.qq.com/s/mJbuKJChVk7ktIHEtKzChg",
       "published_at": "2026-06-05T01:35:09+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "ListenHub AI 视频生成正式上线",
+      "url": "https://mp.weixin.qq.com/s/myCSUfI7NJ5b3kJ5r6FgjA",
+      "published_at": "2026-06-05T00:02:00+00:00",
       "summary": "",
       "content_html": "",
       "media": null,
@@ -2135,6 +2304,19 @@
       "author": null
     },
     {
+      "site_id": "zang-ai",
+      "site_name": "葬AI",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "马卡龙用AI短剧崩老头",
+      "url": "https://mp.weixin.qq.com/s/5VO7UcAHmrWKDem_TC4rRg",
+      "published_at": "2026-06-04T02:01:27+00:00",
+      "summary": "",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
       "site_id": "guicang-ai",
       "site_name": "归藏的AI工具箱",
       "group": "公众号",
@@ -2234,6 +2416,19 @@
       "url": "https://huggingface.co/papers/2606.06712",
       "published_at": "2026-06-04T00:00:00+00:00",
       "summary": "We study the transformation of autoregressive models (ARLMs) into diffusion language models (DLMs). Rather than pretraining from scratch, prior work replaces the causal attention in ARLMs with bidirectional attention and then trains the resulting model using a DLM objective. Howe",
+      "content_html": "",
+      "media": null,
+      "author": null
+    },
+    {
+      "site_id": "agent-ju",
+      "site_name": "AGENT橘",
+      "group": "公众号",
+      "category": "ai_hot",
+      "title": "ColaOS 正在招聘 Agent OS 的交互设计师和 Agent QA 岗位\n这两个岗位都会很有趣，OS 设计师几乎是把一切推翻重来，可以主导一个系统的交互定义\nAgent QA 则是要把 Agent 用到极致，才能跟上今天工程师的节奏，甚至能以评估的方式推动他们工作\n\n工作地点北京海淀，交互设计师支持远程，QA必须本地\nJD 在评论区，感兴趣的朋友欢迎来聊聊\n\n另外其实也在招聘 Agent 产品\n但是这个岗位的要求和以前的产品完全不一样\n首先需要具备定义问题的能力\n所以没有 JD，可以自行定义：\n究竟什么是 Agent 产品？\n答案就是最好的介绍信。\n\n联系邮箱 k@marswave.ai",
+      "url": "https://mp.weixin.qq.com/s/sOB98HS51qVZQo8EAgoaAg",
+      "published_at": "2026-06-03T22:53:41+00:00",
+      "summary": "",
       "content_html": "",
       "media": null,
       "author": null
