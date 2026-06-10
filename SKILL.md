@@ -20,7 +20,8 @@ description: HXZ News Reader 仓库内的开发指引。维护 feeds/sources.yam
 
 - **GitHub Pages**：https://blandybaran527-boop.github.io/Content-Engineering/（main 分支根目录直发，已开 HTTPS）
 - **自动跑**：`.github/workflows/update.yml` 每天 UTC 22:00 = 北京 06:00 抓一次，自动 commit `data/` 并触发 Pages 重建
-- **抓取窗口**：默认 168h（一周）；Substack/Newsletter 更新频次低，48h 经常空
+- **公众号通道已上线**：12 个公众号通过本地 WeWe-RSS 桥接入（见下节），189 条总文章中 69 条来自公众号
+- **抓取窗口**：默认 168h（一周）；Substack/Newsletter 更新频次低，48h 经常空；个别公众号（暗涌Waves）168h 也可能为空（号本身更新慢），**不要**因此扩窗口或换号
 - **手动触发**：Actions 页面 → update-news → Run workflow
 
 ## 全文抓取（Substack / Newsletter）
@@ -41,11 +42,29 @@ description: HXZ News Reader 仓库内的开发指引。维护 feeds/sources.yam
 
 ## X / 公众号 / 播客
 
-默认 `default: false`，靠开关启用：
+X 和 podcast 默认 `default: false`，公众号在 v0.2 起默认 `default: true`（因为接的是本地 WeWe-RSS）：
 
 - `--enable-x` + `X_BEARER_TOKEN` → 用 X 官方 API
-- `--enable-wechat` → 走每条信源里填的 `wechat2rss.xlab.app` 链接
+- `--enable-wechat` → 走本地 WeWe-RSS（`127.0.0.1:4000`），见下一节
 - `--enable-podcast` → 抓 podcast RSS（小宇宙 / Spotify / Apple Podcast 镜像）
+
+## 公众号通道（本地 WeWe-RSS）
+
+完整命令清单 + mpId 对照表见 `docs/SOURCES.md` D 节，要点：
+
+- **为什么不用 wechat2rss.xlab.app**：公共版只收录 12 个目标号中的 4 个，缺 8 个 AI 自媒体号无法等收录
+- **本地服务位置**：`/Users/admin/Downloads/wewe-rss-work/wewe-rss`
+- **启动**（每天第一次抓之前确认它跑着）：
+  ```bash
+  cd /Users/admin/Downloads/wewe-rss-work/wewe-rss
+  DATABASE_URL="file:../data/wewe-rss.db" DATABASE_TYPE="sqlite" \
+    AUTH_CODE="wewe2026" SERVER_ORIGIN_URL="http://127.0.0.1:4000" \
+    pnpm run start:server
+  ```
+- **管理界面**：`http://127.0.0.1:4000/dash`（AuthCode: `wewe2026`）
+- **加号**：浏览器粘贴 mp.weixin 文章链接 / 或调 `/trpc/platform.getMpInfo` + `/trpc/feed.add` API（详见 SOURCES.md）
+- **严禁连续手动调 refresh**：短时间反复 `feed.refreshArticles` 会触发微信读书 `WeReadError401`，账号 token 实际失效 —— SQL 改 status=1 也立刻被打回，唯一恢复办法是**用户重新扫码**。加完订阅 fire 1 次全量 refresh 就够，剩下交给 WeWe-RSS 自带 cron（默认 5:35 / 17:35）。新加的号首轮没拉到不要补，等下一轮自然进
+- **本地代理踩坑**：`127.0.0.1` 走系统代理（梯子）会 502；`update_news.py` 在 import 段自动注入 `NO_PROXY="127.0.0.1,localhost"`，命令行手动 curl 时需要带 `--noproxy '*'`
 
 ## 失败处理优先级
 
@@ -56,6 +75,8 @@ description: HXZ News Reader 仓库内的开发指引。维护 feeds/sources.yam
 
 ## 不要做
 
-- 不要把私有 OPML / Cookies / Token / 邮箱地址写进任何仓库文件
+- 不要把私有 OPML / Cookies / Token / 邮箱地址 / SQLite 库（含 WeWe-RSS 读书账号 token）写进任何仓库文件
 - 不要在 `default: true` 集合里加任何需要爬虫绕过 Cloudflare 的源
 - 不要在 GitHub Action 里默认开启 `--enable-x`（除非 Secret 真的存在）
+- 不要短时间内反复调 WeWe-RSS 的 `feed.refreshArticles`（参见上一节）
+- 不要因为某个公众号 168h 没文章就扩窗口或换号 —— 信源不可达只换通道不换源（详见 `docs/SOURCES.md` 通道选型记录）
