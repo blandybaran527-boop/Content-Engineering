@@ -5,29 +5,31 @@
 
 ## 它解决什么
 
-把飞书表格里登记的 **80 个 X 账号 + 11 个公众号 + 15 个播客 + 4 个聚合站 + 7 个商科信源** 自动汇总成一个 24/48 小时的内容雷达 JSON，前端用一个零依赖的 `index.html` 渲染，也可以塞进 GitHub Actions 每 6 小时跑一次推到 Pages。
+把飞书表格里登记的 **80 个 X 账号 + 12 个公众号 + 15 个播客 + 4 个聚合站 + 7 个商科信源** 自动汇总成一个 24/48 小时的内容雷达 JSON，前端用一个零依赖的 `index.html` 渲染，也可以塞进 GitHub Actions 每 6 小时跑一次推到 Pages。
 
-## 当前已跑通的小闭环（v0）
+## 当前已跑通的链路（v0.2）
 
-7 个信源（4 聚合站 + 3 商科 Substack），零 API Key，48h 窗口约 100+ 条：
+19 个信源（4 聚合站 + 3 商科 Substack + 12 公众号），零 API Key，168h 窗口约 170+ 条：
 
-| ID | 名字 | 通道 | 备注 |
-|---|---|---|---|
-| `hackernews` | Hacker News | 官方 RSS `news.ycombinator.com/rss` | YC 新闻 |
-| `import-ai` | Import AI | 官方 RSS `importai.substack.com/feed` | Jack Clark |
-| `hf-papers` | HuggingFace Daily Papers | 官方 API `huggingface.co/api/daily_papers` | 无公开 RSS，走 API |
-| `rundown-ai` | The Rundown AI | YouTube 官方频道 RSS（channel_id `UCOoKOPoTsf6gcDKvERU9BeA`） | newsletter 本身无公开 RSS |
-| `lennys` | Lenny's Newsletter | Substack RSS | 商科 |
-| `generalist` | The Generalist | Substack RSS | 商科 |
-| `newcomer` | Newcomer | Substack RSS | 商科 |
+| 类型 | 通道 | 信源 |
+|---|---|---|
+| 聚合站 | 官方 RSS / API | Hacker News、Import AI、HuggingFace Daily Papers、The Rundown AI（走 YouTube 频道 RSS） |
+| 商科 Substack | 官方 `/feed` | Lenny's Newsletter、The Generalist、Newcomer |
+| 公众号 | **本地 WeWe-RSS 桥**（`127.0.0.1:4000`） | 量子位、机器之心、新智元、晚点LatePost、暗涌Waves、极客公园、歸藏的AI工具箱、数字生命卡兹克、卡尔的AI沃茨、AGENT橘、葬AI、智能涌现 |
 
 > **原则**：信源不可达时**只换通道，不换信源**。HF Papers 没有官方 RSS 就走它的 `/api/daily_papers` 接口；The Rundown AI 网站 RSS 被拦就走它的 YouTube 频道 RSS。绝不替换成"同类的别家"。
 
-X / 公众号 / 播客都已经登记在 `feeds/sources.yaml`，默认不抓（避免不稳定的桥），通过开关启用：
+### 公众号通道：本地 WeWe-RSS（替代了原计划的 wechat2rss.xlab.app）
+
+公共版 `wechat2rss.xlab.app` 只收录我们 12 个目标号中的 4 个，缺 8 个 AI 自媒体号无法等收录。改为：本地自建 [`cooderl/wewe-rss`](https://github.com/cooderl/wewe-rss)，原理是走微信读书 API（一次性扫码绑定微信读书账号），输出标准 Atom RSS。
+
+部署位置：`/Users/admin/Downloads/wewe-rss-work/wewe-rss`，详细启停与增删订阅命令见 `docs/SOURCES.md` D 节。
+
+X / 播客都已经登记在 `feeds/sources.yaml`，默认不抓（避免不稳定的桥），通过开关启用：
 
 ```bash
 python scripts/update_news.py --enable-x          # 需要 X_BEARER_TOKEN
-python scripts/update_news.py --enable-wechat     # 需要先在 sources.yaml 里填 wechat2rss URL
+python scripts/update_news.py --enable-wechat     # 需要本地 WeWe-RSS 跑着（默认 127.0.0.1:4000）
 python scripts/update_news.py --enable-podcast    # 抓 podcast 类型有 RSS 的源
 ```
 
@@ -86,11 +88,12 @@ python scripts/update_news.py --probe-only example
 
 ## 设计取舍
 
-- **第三方桥默认关**：Nitter / wechat2rss / RSSHub 公共实例都不稳定，关掉它们能保证仓库始终能跑通
-- **官方 RSS / 自托管优先**：所有默认抓取的源都是官方原生 RSS（HN / arXiv / Substack）
+- **公共第三方桥默认关**：Nitter / wechat2rss 公共版 / RSSHub 公共实例都不稳定，关掉它们能保证仓库始终能跑通
+- **官方 RSS / 自托管优先**：所有默认抓取的源都是官方原生 RSS（HN / Substack）或本地自部署（WeWe-RSS）
 - **失败不阻塞**：任何信源失败只写入 `source-status.json`，不让整个流程崩
-- **零 API Key 跑通**：fork 后无需配置任何 Secret 就能看到内容
-- **X / WeChat 是 advanced**：要抓 X，自己配 `X_BEARER_TOKEN`；要抓公众号，自己去 wechat2rss 申请并填 URL
+- **本地 RSS 桥不走代理**：`update_news.py` 启动时自动把 `127.0.0.1` / `localhost` 加到 `NO_PROXY`，避免梯子导致 502
+- **零 API Key 跑通（公共部分）**：fork 后无需配置任何 Secret 就能看到 7 个公共信源
+- **公众号要本地 WeWe-RSS**：扫一次微信读书码即可，自己一个号一辈子用（详见 docs/SOURCES.md D 节）
 
 更多细节看 `docs/ARCHITECTURE.md` 和 `docs/SOURCES.md`。
 

@@ -27,6 +27,15 @@ import requests
 import yaml
 
 
+# 本地 WeWe-RSS 桥（127.0.0.1）不走系统代理（梯子），否则 502
+_no_proxy = os.environ.get("NO_PROXY", "")
+for _host in ("127.0.0.1", "localhost"):
+    if _host not in _no_proxy:
+        _no_proxy = (_no_proxy + "," + _host).strip(",")
+os.environ["NO_PROXY"] = _no_proxy
+os.environ["no_proxy"] = _no_proxy
+
+
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SOURCES = ROOT / "feeds" / "sources.yaml"
 X_STATE_FILE = ROOT / "data" / "x-state.json"

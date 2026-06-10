@@ -24,7 +24,7 @@
 | The Generalist | `https://www.generalist.com/feed` | Substack 原生 |
 | Newcomer | `https://www.newcomer.co/feed` | Substack 原生 |
 
-⚠️ 公众号系（晚点 LatePost / 暗涌 / 智能涌现 / 潜望）默认关，靠 wechat2rss 填齐后开。
+⚠️ 公众号系（晚点 LatePost / 暗涌 Waves / 智能涌现）默认开，通过本地 WeWe-RSS 桥拉取，详见 D 节。
 
 ## C. X / Twitter（80 个，默认关）
 
@@ -40,17 +40,66 @@
 
 代码已实现 (1)，(2)(3) 留给后续。
 
-## D. 公众号（11 个，默认关）
+## D. 公众号（12 个，默认开，走本地 WeWe-RSS 桥）
 
-**wechat2rss.xlab.app** 是当前最稳定的公众号 → RSS 公共桥。流程：
+**当前方案：本地自建 WeWe-RSS（[cooderl/wewe-rss](https://github.com/cooderl/wewe-rss)）作为公众号 → RSS 桥**，部署在 `http://127.0.0.1:4000`。
 
-1. 打开 https://wechat2rss.xlab.app/
-2. 搜公众号名称（如「数字生命卡兹克」）
-3. 复制返回的 RSS URL
-4. 填回 `feeds/sources.yaml` 对应条目的 `url` 字段
-5. `python scripts/update_news.py --enable-wechat --probe-only <id>` 验证
+### 为什么不用 wechat2rss.xlab.app
 
-⚠️ wechat2rss 偶尔限流，要做好 5xx 重试。
+公共版 `wechat2rss.xlab.app` 只收录约 4/12 我们的目标号（量子位、机器之心、新智元、极客公园），剩 8 个（晚点 LatePost、暗涌 Waves、归藏的AI工具箱、数字生命卡兹克、卡尔的AI沃茨、AGENT橘、葬AI、智能涌现）需要等收录或自部署。WeWe-RSS 一次性覆盖全部。
+
+### 部署位置
+
+- 仓库：`/Users/admin/Downloads/wewe-rss-work/wewe-rss`
+- 数据库：SQLite，文件位置 `data/wewe-rss.db`
+- 启动命令：
+  ```bash
+  cd /Users/admin/Downloads/wewe-rss-work/wewe-rss
+  DATABASE_URL="file:../data/wewe-rss.db" DATABASE_TYPE="sqlite" \
+    AUTH_CODE="wewe2026" SERVER_ORIGIN_URL="http://127.0.0.1:4000" \
+    pnpm run start:server
+  ```
+- 管理界面：`http://127.0.0.1:4000/dash`（AuthCode：`wewe2026`）
+
+### 当前订阅清单（mpId 跟 sources.yaml 对齐）
+
+| 飞书分组 | id | 公众号 | WeWe-RSS mpId |
+|---|---|---|---|
+| AI 热点 | qbitai | 量子位 | `MP_WXS_3236757533` |
+| AI 热点 | jiqizhixin | 机器之心 | `MP_WXS_3073282833` |
+| AI 热点 | xinzhiyuan | 新智元 | `MP_WXS_3271041950` |
+| AI 热点 | latepost | 晚点LatePost | `MP_WXS_3572959446` |
+| AI 热点 | waves | 暗涌Waves | `MP_WXS_3940324519` |
+| AI 热点 | geekpark | 极客公园 | `MP_WXS_1304308441` |
+| AI 热点 | guicang-ai | 歸藏的AI工具箱 | `MP_WXS_3540975510` |
+| AI 热点 | khazix | 数字生命卡兹克 | `MP_WXS_3223096120` |
+| AI 热点 | aiwarts | 卡尔的AI沃茨 | `MP_WXS_3871977637` |
+| AI 热点 | agent-ju | AGENT橘 | `MP_WXS_3903697567` |
+| AI 热点 | zang-ai | 葬AI | `MP_WXS_3988614169` |
+| 商科 | zhinengyongxian | 智能涌现 | `MP_WXS_3900464567` |
+
+### 增减公众号
+
+调 WeWe-RSS 后端 API（不需要浏览器操作）：
+
+```bash
+# 1. 查链接归属
+curl -s --noproxy '*' -X POST -H "Authorization: wewe2026" -H "Content-Type: application/json" \
+  -d '{"wxsLink":"https://mp.weixin.qq.com/s/xxxx"}' \
+  http://127.0.0.1:4000/trpc/platform.getMpInfo
+
+# 2. 加订阅（用上一步返回的 id/name/cover/intro/updateTime）
+curl -s --noproxy '*' -X POST -H "Authorization: wewe2026" -H "Content-Type: application/json" \
+  -d '{"id":"MP_WXS_xxx","mpName":"...","mpCover":"...","mpIntro":"...","updateTime":...}' \
+  http://127.0.0.1:4000/trpc/feed.add
+
+# 3. 拿到 mpId 后，写回 feeds/sources.yaml
+# url 字段为：http://127.0.0.1:4000/feeds/MP_WXS_xxx.atom
+```
+
+### 本地代理踩坑
+
+WeWe-RSS 跑在 `127.0.0.1`，本机走系统代理（梯子）时会 502。`update_news.py` 已自动注入 `NO_PROXY=127.0.0.1,localhost`；命令行手动跑时需要带上 `NO_PROXY="127.0.0.1,localhost"` 前缀，或者 curl 加 `--noproxy '*'`。
 
 ## E. 优质播客 / 长视频（15 个，默认关）
 

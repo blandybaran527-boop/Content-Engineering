@@ -20,24 +20,21 @@
 - {id: generalist,  name: The Generalist,             type: rss, url: 'https://www.generalist.com/feed',             category: business_innovation, group: 商科信源, default: true}
 - {id: newcomer,    name: Newcomer,                   type: rss, url: 'https://www.newcomer.co/feed',                category: business_innovation, group: 商科信源, default: true}
 
-# ============ C. 公众号（wechat2rss 桥；URL 留空时只展示不抓取）============
-# wechat2rss 取 RSS 流程：访问 https://wechat2rss.xlab.app/ 搜公众号 → 复制 RSS 链接填回
-- {id: qbitai,             name: 量子位,            type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: jiqizhixin,         name: 机器之心,          type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: xinzhiyuan,         name: 新智元,            type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: latepost,           name: 晚点LatePost,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: waves,              name: 暗涌Waves,         type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: geekpark,           name: 极客公园,          type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: guicang-ai,         name: 归藏的AI资讯,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: khazix,             name: 数字生命卡兹克,    type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: aiwarts,            name: 卡尔的AI沃茨,      type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: agent-ju,           name: Agent橘,           type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-- {id: zang-ai,            name: 葬AI,              type: wechat, url: '', category: ai_hot, group: 公众号, default: false}
-# 商科板块的公众号（同样 wechat2rss）
-- {id: latepost-bus,       name: 晚点LatePost-商科, type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
-- {id: waves-bus,          name: 暗涌-商科,         type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
-- {id: zhinengyongxian,    name: 智能涌现,          type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
-- {id: qianwang,           name: 潜望,              type: wechat, url: '', category: business_innovation, group: 商科信源, default: false}
+# ============ C. 公众号（本地 WeWe-RSS 桥；http://127.0.0.1:4000）============
+# 启动 WeWe-RSS: cd /Users/admin/Downloads/wewe-rss-work/wewe-rss && pnpm run start:server
+- {id: qbitai,             name: 量子位,            type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3236757533.atom', category: ai_hot, group: 公众号, default: true}
+- {id: jiqizhixin,         name: 机器之心,          type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3073282833.atom', category: ai_hot, group: 公众号, default: true}
+- {id: xinzhiyuan,         name: 新智元,            type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3271041950.atom', category: ai_hot, group: 公众号, default: true}
+- {id: latepost,           name: 晚点LatePost,      type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3572959446.atom', category: ai_hot, group: 公众号, default: true}
+- {id: waves,              name: 暗涌Waves,         type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3940324519.atom', category: ai_hot, group: 公众号, default: true}
+- {id: geekpark,           name: 极客公园,          type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_1304308441.atom', category: ai_hot, group: 公众号, default: true}
+- {id: guicang-ai,         name: 归藏的AI工具箱,    type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3540975510.atom', category: ai_hot, group: 公众号, default: true}
+- {id: khazix,             name: 数字生命卡兹克,    type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3223096120.atom', category: ai_hot, group: 公众号, default: true}
+- {id: aiwarts,            name: 卡尔的AI沃茨,      type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3871977637.atom', category: ai_hot, group: 公众号, default: true}
+- {id: agent-ju,           name: AGENT橘,           type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3903697567.atom', category: ai_hot, group: 公众号, default: true}
+- {id: zang-ai,            name: 葬AI,              type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3988614169.atom', category: ai_hot, group: 公众号, default: true}
+# 商科板块的公众号
+- {id: zhinengyongxian,    name: 智能涌现,          type: wechat, url: 'http://127.0.0.1:4000/feeds/MP_WXS_3900464567.atom', category: business_innovation, group: 商科信源, default: true}
 
 # ============ D. 优质播客 / 长视频（仅展示，可选抓取）============
 - {id: lex-fridman,    name: Lex Fridman Podcast,      type: podcast, url: 'https://www.youtube.com/c/lexfridman',                        category: ai_hot, group: 优质播客, default: false}
