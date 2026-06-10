@@ -1,7 +1,6 @@
 name: update-news
 on:
-  schedule:
-    - cron: '17 */6 * * *'   # every 6 hours
+  # 自动跑已关闭，只保留手动触发（Actions 页面点 Run workflow）
   workflow_dispatch:
 permissions:
   contents: write
@@ -20,7 +19,7 @@ jobs:
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
-          python scripts/update_news.py --output-dir data --window-hours 48 \
+          python scripts/update_news.py --output-dir data --window-hours 168 \
             ${{ secrets.X_BEARER_TOKEN && '--enable-x' || '' }}
       - name: Commit refreshed data
         run: |
