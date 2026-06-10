@@ -11,10 +11,24 @@ description: HXZ News Reader 仓库内的开发指引。维护 feeds/sources.yam
 
 1. 改信源：编辑 `feeds/sources.yaml`
 2. 单源探测：`python scripts/update_news.py --probe-only <id>`
-3. 全量跑：`python scripts/update_news.py --output-dir data --window-hours 48`
+3. 全量跑：`python scripts/update_news.py --output-dir data --window-hours 168`
 4. 看状态：`cat data/source-status.json | jq '.summary'`
 5. 本地预览：`python -m http.server 8080`
 6. 提交：`git add -A && git commit -m "..." && git push`
+
+## 上线状态（2026-06-10）
+
+- **GitHub Pages**：https://blandybaran527-boop.github.io/Content-Engineering/（main 分支根目录直发，已开 HTTPS）
+- **自动跑**：`.github/workflows/update.yml` 每天 UTC 22:00 = 北京 06:00 抓一次，自动 commit `data/` 并触发 Pages 重建
+- **抓取窗口**：默认 168h（一周）；Substack/Newsletter 更新频次低，48h 经常空
+- **手动触发**：Actions 页面 → update-news → Run workflow
+
+## 全文抓取（Substack / Newsletter）
+
+- `RawItem` 有 `content_html` 字段，从 RSS `entry.content[0].value`（即 `content:encoded`）取原文 HTML
+- 失败回退：用 `entry.summary` 兜底（不至于空字段）
+- 4 个 Substack 信源（lennys / generalist / newcomer / import-ai）实测均带 `content:encoded`，无需爬正文页
+- `index.html` 渲染时：`content_html.length > 200` 才显示「展开全文 ▾」按钮，避免空内容/纯链接误展开
 
 ## 默认抓取层（v0 已跑通）
 
