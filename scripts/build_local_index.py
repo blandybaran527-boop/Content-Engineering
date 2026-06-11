@@ -22,6 +22,106 @@ FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 ORIG_SECTION_RE = re.compile(r"## 原文 / 逐字稿\n(.*)$", re.DOTALL)
 SUMMARY_SECTION_RE = re.compile(r"## AI 总结\n(.*?)(?=\n## |\Z)", re.DOTALL)
 
+# ============================================================
+# Body 渲染 — 公众号 = Markdown→HTML, B站/小宇宙 = 时间戳保持
+# ============================================================
+
+_IMG_RE   = re.compile(r"!\[([^\]]*)\]\(([^)]+)\)")
+_LINK_RE  = re.compile(r"(?<!!)\[([^\]]+)\]\(([^)]+)\)")
+_BOLD_RE  = re.compile(r"\*\*([^*]+?)\*\*")
+_ITAL_RE  = re.compile(r"(?<!\*)\*([^*\n]+?)\*(?!\*)")
+_CODE_RE  = re.compile(r"`([^`\n]+?)`")
+_HEAD_RE  = re.compile(r"^(#{1,6})\s+(.+)$", re.MULTILINE)
+_QUOTE_RE = re.compile(r"^>\s?(.+)$", re.MULTILINE)
+
+
+def _escape_html(s: str) -> str:
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def _render_inline(s: str) -> str:
+    # 不 escape 全文（公众号有些原始字符其实是 HTML 转义后给的），只对 emphasis 提取
+    out = _IMG_RE.sub(lambda m: f'<img src="{m.group(2)}" alt="{_escape_html(m.group(1))}" loading="lazy">', s)
+    out = _LINK_RE.sub(lambda m: f'<a href="{m.group(2)}" target="_blank" rel="noopener">{m.group(1)}</a>', out)
+    out = _BOLD_RE.sub(r"<strong>\1</strong>", out)
+    out = _ITAL_RE.sub(r"<em>\1</em>", out)
+    out = _CODE_RE.sub(r"<code>\1</code>", out)
+    return out
+
+
+def render_markdown(md: str) -> str:
+    """极简 Markdown→HTML 渲染。公众号文章用。"""
+    if not md:
+        return ""
+    md = md.strip()
+    # 1) heading 行
+    md = _HEAD_RE.sub(lambda m: f"<h{min(len(m.group(1))+1, 6)}>{_render_inline(m.group(2))}</h{min(len(m.group(1))+1, 6)}>", md)
+    # 2) 把空行作为段落分隔
+    paras = re.split(r"\n\s*\n", md)
+    html_parts = []
+    for para in paras:
+        para = para.strip()
+        if not para:
+            continue
+        # 已经是 heading 标签
+        if para.startswith("<h") and re.match(r"<h[1-6]>", para):
+            html_parts.append(para)
+            continue
+        # 整段引用：只要任一行以 > 开头就当 blockquote（去掉每行的 > 前缀；
+        # 空引用行 `>` 视为段落分隔）
+        lines = para.split("\n")
+        if any(ln.lstrip().startswith(">") for ln in lines):
+            cleaned_lines = []
+            for ln in lines:
+                ln = ln.strip()
+                if ln in (">", ""):
+                    # 空引用行 → 段落分隔
+                    cleaned_lines.append("")
+                else:
+                    cleaned_lines.append(re.sub(r"^>\s?", "", ln).strip())
+            # 把多行折叠为子段：以空行分段，段内用 <br>
+            sub_parts = []
+            cur: list[str] = []
+            for cl in cleaned_lines:
+                if not cl:
+                    if cur:
+                        sub_parts.append("<br>".join(cur))
+                        cur = []
+                else:
+                    cur.append(_render_inline(cl))
+            if cur:
+                sub_parts.append("<br>".join(cur))
+            inner = "</p><p>".join(sub_parts) if len(sub_parts) > 1 else (sub_parts[0] if sub_parts else "")
+            if len(sub_parts) > 1:
+                inner = f"<p>{inner}</p>"
+            html_parts.append(f"<blockquote>{inner}</blockquote>")
+            continue
+        # 图片单独成段：保持原样，inline 渲染
+        if _IMG_RE.match(para) and "\n" not in para:
+            html_parts.append(f"<p>{_render_inline(para)}</p>")
+            continue
+        # 普通段：把 inline 换行变 <br>，再包 <p>
+        inner = _render_inline(para).replace("\n", "<br>")
+        html_parts.append(f"<p>{inner}</p>")
+    return "\n".join(html_parts)
+
+
+def render_transcript(text: str) -> str:
+    """B 站 / 小宇宙的带时间戳逐字稿。<pre> 保留时间戳排版。"""
+    if not text:
+        return ""
+    safe = _escape_html(text)
+    return f"<pre class='transcript'>{safe}</pre>"
+
+
+def render_body(channel: str, body: str) -> str:
+    if not body:
+        return ""
+    if channel == "wechat":
+        return render_markdown(body)
+    # B 站 / 小宇宙 / 其它默认走 transcript
+    return render_transcript(body)
+
 
 def load_sources_map() -> dict:
     """src_id → {name, category, group}"""
@@ -47,6 +147,7 @@ def parse_md(path: Path, src_map: dict) -> dict | None:
     pub = fm.get("fetched_at", "")
     if isinstance(pub, datetime):
         pub = pub.isoformat()
+    channel = fm.get("channel", "")
     return {
         "site_id": src_id,
         "site_name": src.get("name", src_id),
@@ -56,10 +157,10 @@ def parse_md(path: Path, src_map: dict) -> dict | None:
         "url": fm.get("source_url", ""),
         "published_at": pub,
         "summary": summary[:600],  # 摘要短点
-        # 用 <p> 包装段落以兼容页面 innerHTML 渲染
-        "content_html": "<pre style='white-space:pre-wrap;font-family:inherit'>" + body + "</pre>" if body else "",
+        # 按渠道分: wechat=Markdown→HTML; bilibili/xiaoyuzhou=<pre> 时间戳
+        "content_html": render_body(channel, body),
         # 本地扩展字段（公开版没有）
-        "channel": fm.get("channel", ""),
+        "channel": channel,
         "note_id": fm.get("note_id", ""),
         "body_len": fm.get("body_len", 0),
     }
