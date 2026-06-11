@@ -49,13 +49,20 @@ def _render_inline(s: str) -> str:
     return out
 
 
+_LIST_BULLET_RE = re.compile(r"^[\-\*\+]\s+(.+)$")
+_LIST_ORDERED_RE = re.compile(r"^\d+\.\s+(.+)$")
+
+
 def render_markdown(md: str) -> str:
-    """极简 Markdown→HTML 渲染。公众号文章用。"""
+    """极简 Markdown→HTML 渲染。公众号 / AI 摘要 共用。"""
     if not md:
         return ""
     md = md.strip()
     # 1) heading 行
     md = _HEAD_RE.sub(lambda m: f"<h{min(len(m.group(1))+1, 6)}>{_render_inline(m.group(2))}</h{min(len(m.group(1))+1, 6)}>", md)
+    # 强制让 heading 标签独立成段（即使原 md heading 行后没空行）
+    md = re.sub(r"(<h[1-6]>[^\n]*?</h[1-6]>)\n(?!\n)", r"\1\n\n", md)
+    md = re.sub(r"(?<!\n\n)(<h[1-6]>)", r"\n\n\1", md)
     # 2) 把空行作为段落分隔
     paras = re.split(r"\n\s*\n", md)
     html_parts = []
@@ -67,19 +74,16 @@ def render_markdown(md: str) -> str:
         if para.startswith("<h") and re.match(r"<h[1-6]>", para):
             html_parts.append(para)
             continue
-        # 整段引用：只要任一行以 > 开头就当 blockquote（去掉每行的 > 前缀；
-        # 空引用行 `>` 视为段落分隔）
+        # 整段引用：只要任一行以 > 开头就当 blockquote
         lines = para.split("\n")
         if any(ln.lstrip().startswith(">") for ln in lines):
             cleaned_lines = []
             for ln in lines:
                 ln = ln.strip()
                 if ln in (">", ""):
-                    # 空引用行 → 段落分隔
                     cleaned_lines.append("")
                 else:
                     cleaned_lines.append(re.sub(r"^>\s?", "", ln).strip())
-            # 把多行折叠为子段：以空行分段，段内用 <br>
             sub_parts = []
             cur: list[str] = []
             for cl in cleaned_lines:
@@ -96,6 +100,19 @@ def render_markdown(md: str) -> str:
                 inner = f"<p>{inner}</p>"
             html_parts.append(f"<blockquote>{inner}</blockquote>")
             continue
+        # 列表：所有行都是 - / * / + / "n." 开头 → <ul> / <ol>
+        all_bullet = all(_LIST_BULLET_RE.match(ln.strip()) for ln in lines if ln.strip())
+        all_ordered = all(_LIST_ORDERED_RE.match(ln.strip()) for ln in lines if ln.strip())
+        if (all_bullet or all_ordered) and lines:
+            tag = "ol" if all_ordered else "ul"
+            re_ = _LIST_ORDERED_RE if all_ordered else _LIST_BULLET_RE
+            items = []
+            for ln in lines:
+                m = re_.match(ln.strip())
+                if m:
+                    items.append(f"<li>{_render_inline(m.group(1))}</li>")
+            html_parts.append(f"<{tag}>{''.join(items)}</{tag}>")
+            continue
         # 图片单独成段：保持原样，inline 渲染
         if _IMG_RE.match(para) and "\n" not in para:
             html_parts.append(f"<p>{_render_inline(para)}</p>")
@@ -104,6 +121,26 @@ def render_markdown(md: str) -> str:
         inner = _render_inline(para).replace("\n", "<br>")
         html_parts.append(f"<p>{inner}</p>")
     return "\n".join(html_parts)
+
+
+def md_to_plain(md: str, maxlen: int = 600) -> str:
+    """Markdown 去标签变纯文本（列表条目用）"""
+    if not md:
+        return ""
+    txt = md
+    txt = _IMG_RE.sub("", txt)
+    txt = _LINK_RE.sub(r"\1", txt)
+    txt = _BOLD_RE.sub(r"\1", txt)
+    txt = _ITAL_RE.sub(r"\1", txt)
+    txt = _CODE_RE.sub(r"\1", txt)
+    txt = re.sub(r"^#{1,6}\s+", "", txt, flags=re.MULTILINE)
+    txt = re.sub(r"^[\-\*\+]\s+", "• ", txt, flags=re.MULTILINE)
+    txt = re.sub(r"^>\s?", "", txt, flags=re.MULTILINE)
+    # 多空行折成单空行
+    txt = re.sub(r"\n{3,}", "\n\n", txt).strip()
+    if len(txt) > maxlen:
+        txt = txt[:maxlen].rstrip() + "…"
+    return txt
 
 
 def render_transcript(text: str) -> str:
@@ -156,7 +193,10 @@ def parse_md(path: Path, src_map: dict) -> dict | None:
         "title": fm.get("title", ""),
         "url": fm.get("source_url", ""),
         "published_at": pub,
-        "summary": summary[:600],  # 摘要短点
+        # summary 走纯文本（列表 preview 用 -webkit-line-clamp 截断）
+        "summary": md_to_plain(summary, maxlen=600),
+        # summary_html 是 markdown 渲染版（阅读视图里展示）
+        "summary_html": render_markdown(summary),
         # 按渠道分: wechat=Markdown→HTML; bilibili/xiaoyuzhou=<pre> 时间戳
         "content_html": render_body(channel, body),
         # 本地扩展字段（公开版没有）

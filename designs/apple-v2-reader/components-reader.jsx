@@ -50,10 +50,14 @@ function ReaderView({ item, onClose, serif, onToggleSerif }) {
 
         <h1 className="reader-title">{item.title || "(无标题)"}</h1>
 
-        {item.summary && item.summary.length > 50 && (
+        {(item.summary_html || item.summary) && (item.summary || "").length > 50 && (
           <div className="reader-summary">
             <div className="label">AI 摘要</div>
-            <div className="body">{stripBoilerLong(item.summary)}</div>
+            {item.summary_html ? (
+              <div className="body" dangerouslySetInnerHTML={{ __html: item.summary_html }} />
+            ) : (
+              <div className="body">{stripBoilerLong(item.summary)}</div>
+            )}
           </div>
         )}
 
