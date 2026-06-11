@@ -37,6 +37,8 @@ os.environ["no_proxy"] = _no_proxy
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SOURCES = ROOT / "feeds" / "sources.yaml"
+DEFAULT_LOCAL_OUTPUT = ROOT / "data_local"  # 国内信源原文落地（gitignored）
+DEFAULT_STATE_DIR = ROOT / "state"
 DEFAULT_X_LIST_ID = "2064609881357975740"  # HXZ-AI-Sources List
 TWSCRAPE_DB = os.environ.get("TWSCRAPE_DB", "/Users/admin/accounts.db")
 
@@ -287,6 +289,202 @@ def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: 
     return items, status
 
 
+# ============================================================
+# 国内信源（D3）: B站 + 小宇宙 — 第一层 discover + 第二层 getnote_bridge
+# ============================================================
+
+def _load_discover_state(path: Path) -> dict:
+    if path.exists():
+        try:
+            return json.loads(path.read_text())
+        except json.JSONDecodeError:
+            return {}
+    return {}
+
+
+def _save_discover_state(path: Path, state: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False, indent=2))
+
+
+_TITLE_SAFE_RE = re.compile(r"[^\w一-鿿-]+")
+
+
+def _safe_slug(s: str, maxlen: int = 40) -> str:
+    out = _TITLE_SAFE_RE.sub("_", s or "")[:maxlen].strip("_")
+    return out or "untitled"
+
+
+def _write_local_post(out_root: Path, channel: str, src_id: str, pub_date: str, item_id: str, title: str, fetched: dict) -> Path:
+    """落盘到 data_local/<channel>/<src_id>/<date>__<item_id>__<title>.md"""
+    out_dir = out_root / channel / src_id
+    out_dir.mkdir(parents=True, exist_ok=True)
+    fname = f"{pub_date}__{item_id}__{_safe_slug(title)}.md"
+    title_esc = (title or "").replace('"', '\\"')
+    md = f"""---
+title: "{title_esc}"
+channel: {channel}
+src_id: {src_id}
+item_id: {item_id}
+source_url: {fetched.get('source_url', '')}
+note_id: {fetched.get('note_id', '')}
+task_id: {fetched.get('task_id', '')}
+task_elapsed: {fetched.get('task_elapsed', 0)}
+fetched_at: {datetime.now(timezone.utc).isoformat()}
+summary_len: {len(fetched.get('summary', ''))}
+body_len: {len(fetched.get('body', ''))}
+---
+
+# {title}
+
+> 原文: {fetched.get('source_url', '')}
+
+## AI 总结
+
+{fetched.get('summary', '')}
+
+## 原文 / 逐字稿
+
+{fetched.get('body', '')}
+"""
+    (out_dir / fname).write_text(md, encoding="utf-8")
+    return out_dir / fname
+
+
+def _fetch_via_getnote(src: dict, channel: str, items_meta: list, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+    """两层管线：第二层 = getnote_bridge.url_to_content（节流 + 配额内置）。
+
+    items_meta 由各 channel 第一层 discover 准备好：[{item_id, url, title, published_at}]
+    """
+    ts = datetime.now(timezone.utc).isoformat()
+    status = SourceStatus(id=src["id"], name=src["name"], type=channel, ok=False, fetched_at=ts)
+    items: list[RawItem] = []
+
+    # 延迟导入 bridge：未配置 getnote 凭证时不影响整体流程
+    try:
+        from bridges.getnote_bridge import GetnoteBridge, BridgeError
+    except Exception as e:
+        status.error = f"getnote_bridge import fail: {e}"
+        return items, status
+
+    try:
+        bridge = GetnoteBridge()
+    except Exception as e:
+        status.error = f"getnote_bridge init: {type(e).__name__}: {e}"
+        return items, status
+
+    state = _load_discover_state(state_file)
+    src_state = state.setdefault(src["id"], {})
+    last_seen = src_state.get("last_seen_id")
+
+    # 增量：跳过已抓的 item_id
+    todo = [m for m in items_meta if m["item_id"] != last_seen]
+    max_per_run = int(src.get("max_per_run", 1))
+    todo = todo[:max_per_run]
+
+    if not todo:
+        status.ok = True
+        status.count = 0
+        status.error = f"no new items (last_seen={last_seen})"
+        return items, status
+
+    for meta in todo:
+        url = meta["url"]
+        item_id = meta["item_id"]
+        try:
+            fetched = bridge.url_to_content(url)
+        except Exception as e:
+            print(f"  [{channel}/{src['id']}] bridge exception: {type(e).__name__}: {e}", flush=True)
+            continue
+        if not fetched:
+            # 失败兜底：留空壳（用户选 A）— title 来自第一层，body 标记失败
+            title = meta.get("title") or f"[{channel}] {item_id}"
+            items.append(RawItem(
+                site_id=src["id"],
+                site_name=src["name"],
+                group=src.get("group", "国内信源"),
+                category=src.get("category", "ai_hot"),
+                title=title,
+                url=url,
+                published_at=meta.get("published_at", ts),
+                summary="[transcript fail: getnote bridge 未取到原文，详见 state/getnote_bridge.json]",
+                content_html="",
+            ))
+            # 仍推进 state，下次不重复尝试同一条
+            src_state["last_seen_id"] = item_id
+            src_state["last_seen_url"] = url
+            src_state["last_run_at"] = ts
+            _save_discover_state(state_file, state)
+            continue
+
+        title = fetched.get("title") or meta.get("title") or item_id
+        # 落盘 markdown（含原文 + 总结）
+        try:
+            md_path = _write_local_post(
+                output_local, channel, src["id"], meta.get("published_at", ts)[:10] or "0000-00-00",
+                item_id, title, fetched,
+            )
+            print(f"  [{channel}/{src['id']}] ✓ {md_path.name} body={len(fetched.get('body',''))} 字", flush=True)
+        except Exception as e:
+            print(f"  [{channel}/{src['id']}] 落盘异常: {e}", flush=True)
+
+        # 写进 items.json（只放摘要 + 元数据，不放全文，避免 GitHub Pages 流量爆 / 版权）
+        items.append(RawItem(
+            site_id=src["id"],
+            site_name=src["name"],
+            group=src.get("group", "国内信源"),
+            category=src.get("category", "ai_hot"),
+            title=title,
+            url=fetched.get("source_url") or url,
+            published_at=meta.get("published_at", ts),
+            summary=(fetched.get("summary") or "")[:600],  # items.json 公开发布，只放短摘要
+            content_html="",  # 全文在 data_local/，不入公开 data/items.json
+        ))
+        src_state["last_seen_id"] = item_id
+        src_state["last_seen_url"] = url
+        src_state["last_run_at"] = ts
+        _save_discover_state(state_file, state)
+
+    status.ok = True
+    status.count = len(items)
+    return items, status
+
+
+def fetch_bilibili(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+    ts = datetime.now(timezone.utc).isoformat()
+    status = SourceStatus(id=src["id"], name=src["name"], type="bilibili", ok=False, fetched_at=ts)
+    uid = str(src.get("uid") or "").strip()
+    if not uid:
+        status.error = "missing 'uid'"
+        return [], status
+    try:
+        from discover.bilibili import discover_uploader_videos
+        # 多抓几条作为候选（防 last_seen 后跟着新更新但 max_per_run=1 时漏 take）
+        candidates = discover_uploader_videos(uid, max_videos=max(int(src.get("max_per_run", 1)) + 2, 3))
+    except Exception as e:
+        status.error = f"discover.bilibili fail: {type(e).__name__}: {e}"
+        return [], status
+    meta = [{"item_id": v["bvid"], "url": v["url"], "title": v["title"], "published_at": v["published_at"]} for v in candidates]
+    return _fetch_via_getnote(src, "bilibili", meta, output_local, state_file)
+
+
+def fetch_xiaoyuzhou(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+    ts = datetime.now(timezone.utc).isoformat()
+    status = SourceStatus(id=src["id"], name=src["name"], type="xiaoyuzhou", ok=False, fetched_at=ts)
+    pid = str(src.get("podcast_id") or "").strip()
+    if not pid:
+        status.error = "missing 'podcast_id'"
+        return [], status
+    try:
+        from discover.xiaoyuzhou import discover_podcast_episodes
+        candidates = discover_podcast_episodes(pid, max_episodes=max(int(src.get("max_per_run", 1)) + 2, 3))
+    except Exception as e:
+        status.error = f"discover.xiaoyuzhou fail: {type(e).__name__}: {e}"
+        return [], status
+    meta = [{"item_id": e["episode_id"], "url": e["url"], "title": e["title"], "published_at": e["published_at"]} for e in candidates]
+    return _fetch_via_getnote(src, "xiaoyuzhou", meta, output_local, state_file)
+
+
 def fetch_x_list(
     list_id: str,
     x_sources: list[dict[str, Any]],
@@ -419,6 +617,10 @@ def main():
     ap.add_argument("--enable-wechat", action="store_true", help="Fetch wechat sources that have RSS URL")
     ap.add_argument("--enable-podcast", action="store_true", help="Fetch podcast sources that have RSS URL")
     ap.add_argument("--enable-youtube", action="store_true", help="Fetch YouTube channel sources (RSS + transcripts)")
+    ap.add_argument("--enable-bilibili", action="store_true", help="Fetch Bilibili UP via yt-dlp + getnote_bridge (gated)")
+    ap.add_argument("--enable-xiaoyuzhou", action="store_true", help="Fetch Xiaoyuzhou podcast via HTML+getnote_bridge (gated)")
+    ap.add_argument("--output-local-dir", default=str(DEFAULT_LOCAL_OUTPUT), help="国内信源原文落盘根（gitignored）")
+    ap.add_argument("--state-dir", default=str(DEFAULT_STATE_DIR), help="discover/state JSON 目录")
     ap.add_argument("--probe-only", help="Run a single source by id only")
     args = ap.parse_args()
 
@@ -459,6 +661,10 @@ def main():
             should_fetch = args.enable_podcast and bool((src.get("url") or "").strip())
         elif t == "youtube":
             should_fetch = args.enable_youtube and bool((src.get("url") or "").strip())
+        elif t == "bilibili":
+            should_fetch = args.enable_bilibili and bool((src.get("uid") or "").strip())
+        elif t == "xiaoyuzhou":
+            should_fetch = args.enable_xiaoyuzhou and bool((src.get("podcast_id") or "").strip())
 
         if not should_fetch:
             statuses.append(SourceStatus(id=src["id"], name=src["name"], type=t, ok=True, count=0, error="skipped (not in default layer)", fetched_at=datetime.now(timezone.utc).isoformat()))
@@ -470,6 +676,10 @@ def main():
             items, status = fetch_hf_papers(src, session, args.window_hours)
         elif t == "youtube":
             items, status = fetch_youtube(src, session, args.window_hours)
+        elif t == "bilibili":
+            items, status = fetch_bilibili(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
+        elif t == "xiaoyuzhou":
+            items, status = fetch_xiaoyuzhou(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
         else:
             status = SourceStatus(id=src["id"], name=src["name"], type=t or "?", ok=False, error=f"unknown type: {t}", fetched_at=datetime.now(timezone.utc).isoformat())
             items = []

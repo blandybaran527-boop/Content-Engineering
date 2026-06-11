@@ -45,13 +45,15 @@
 - {id: bg2,            name: BG2,                      type: podcast, url: 'https://www.bg2pod.com/',                                     category: ai_hot, group: 优质播客, default: false}
 - {id: ted-ai,         name: The TED AI Show,          type: podcast, url: 'https://www.ted.com/pages/the-ted-ai-show',                   category: ai_hot, group: 优质播客, default: false}
 - {id: a16z-ai,        name: AI + a16z,                type: podcast, url: 'https://a16z.com/podcasts/ai-a16z/',                          category: ai_hot, group: 优质播客, default: false}
-- {id: li-ziran,       name: 李自然说,                  type: podcast, url: 'https://space.bilibili.com/39089748/',                        category: ai_hot, group: 优质播客, default: false}
-- {id: web3-skytown,   name: Web3天空之城,              type: podcast, url: 'https://space.bilibili.com/351754674/',                       category: ai_hot, group: 优质播客, default: false}
-- {id: zxj-business,   name: 张小珺 商业访谈录,         type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962', category: ai_hot, group: 优质播客, default: false}
-- {id: latetalk,       name: 晚点聊 LateTalk,           type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/61933ace1b4320461e91fd55', category: ai_hot, group: 优质播客, default: false}
-- {id: onboard,        name: OnBoard!,                  type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/6164e0d77a72e91fb7e5a14d', category: ai_hot, group: 优质播客, default: false}
-- {id: guigu101,       name: 硅谷101,                   type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc', category: ai_hot, group: 优质播客, default: false}
-- {id: ai-weekly-talk, name: AI每周谈,                  type: podcast, url: 'https://www.xiaoyuzhoufm.com/podcast/688a34636f5a275f1cba40fd', category: ai_hot, group: 优质播客, default: false}
+# ↓ 国内信源（D3）：1 个 B 站 + 4 个小宇宙，与飞书「内容工程-0609」对齐
+#   抓取：discover/bilibili.py | xiaoyuzhou.py（第一层）+ bridges/getnote_bridge.py（第二层 URL→逐字稿）
+#   数据：data_local/{bilibili,xiaoyuzhou}/<id>/<date>__<title>.md  (gitignored, 不进 GitHub Pages)
+#   限速：getnote 写配额 100/日；每条 save 间隔 ≥65s；max_per_run 控制每跑取多少条
+- {id: li-ziran,       name: 李自然说,                  type: bilibili,   uid: '39089748',                              category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
+- {id: latetalk,       name: 晚点聊 LateTalk,           type: xiaoyuzhou, podcast_id: '61933ace1b4320461e91fd55',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
+- {id: onboard,        name: OnBoard!,                  type: xiaoyuzhou, podcast_id: '6164e0d77a72e91fb7e5a14d',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
+- {id: guigu101,       name: 硅谷101,                   type: xiaoyuzhou, podcast_id: '5e5c52c9418a84a04625e6cc',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
+- {id: ai-weekly-talk, name: AI每周谈,                  type: xiaoyuzhou, podcast_id: '688a34636f5a275f1cba40fd',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
 
 # ============ D2. YouTube 频道（字幕抓取，需挂住宅 IP；冒烟阶段 default 都为 false）============
 # 字段：max_videos 每次抓最新 N 条；languages 优先语言

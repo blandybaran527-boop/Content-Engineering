@@ -14,3 +14,7 @@ accounts.db
 
 # 临时日志
 /tmp/add_members*.log
+
+# 国内信源（B站/小宇宙）本地数据：含逐字稿，避免版权风险，不上 GitHub Pages
+data_local/
+state/
