@@ -24,6 +24,8 @@ def discover_uploader_videos(uid: str, max_videos: int = 1) -> List[dict]:
         "extract_flat": True,
         "playlistend": max_videos,
         "ignoreerrors": True,
+        # B 站直连国内；走系统梯子代理境外 IP 会触发 B 站反爬 SSL EOF
+        "proxy": "",
     }
     with yt_dlp.YoutubeDL(opts) as ydl:
         info = ydl.extract_info(space_url, download=False)
