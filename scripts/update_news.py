@@ -556,16 +556,22 @@ def fetch_x_list(
     # 全 list 的拉取上限 = handles 数 × per_handle_limit
     total_limit = max(100, len(x_sources) * per_handle_limit)
 
+    # 2026-06: twscrape 因 X 前端升级 client-transaction-id 算法已挂
+    # (XClIdGen creation attempt failed), 改用 scripts/x_list/fetch_timeline.py
+    # 直调 GraphQL ListLatestTweetsTimeline (镜像 add_members.py 模式)
+    fetch_script = ROOT / "scripts" / "x_list" / "fetch_timeline.py"
+    pages = max(1, total_limit // 100 + 1)
     try:
         r = subprocess.run(
-            ["twscrape", "--db", TWSCRAPE_DB, "list_timeline", list_id, "--limit", str(total_limit)],
+            [sys.executable, str(fetch_script),
+             "--list-id", list_id, "--count", "100", "--pages", str(min(pages, 5))],
             capture_output=True, text=True, timeout=timeout,
         )
         if r.returncode != 0:
-            err = f"twscrape exit {r.returncode}: {r.stderr.strip()[:300]}"
+            err = f"fetch_timeline exit {r.returncode}: {r.stderr.strip()[:300]}"
             return [], [_x_skip_status(s, err, now_iso) for s in x_sources]
     except subprocess.TimeoutExpired:
-        err = f"twscrape list_timeline timeout > {timeout}s"
+        err = f"fetch_timeline timeout > {timeout}s"
         return [], [_x_skip_status(s, err, now_iso) for s in x_sources]
     except Exception as e:
         err = f"{type(e).__name__}: {e}"
