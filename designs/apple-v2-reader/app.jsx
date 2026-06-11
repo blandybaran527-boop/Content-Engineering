@@ -1,0 +1,127 @@
+// 顶层 App: Inbox 主视图 + 分组过滤 + 主题切换 + 页内阅读
+
+const { useState, useEffect, useMemo } = React;
+
+function App() {
+  const [data, setData] = useState({ items: null, generated_at: null, source: null });
+  const [error, setError] = useState(null);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("hxzv2-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  });
+  const [groupFilter, setGroupFilter] = useState("all");
+  const [openItem, setOpenItem] = useState(null);
+  const [serif, setSerif] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("hxzv2-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    window.loadItems()
+      .then((d) => setData(d))
+      .catch((e) => setError(e));
+  }, []);
+
+  const items = useMemo(() => (data.items || []).map(window.enrichItem), [data.items]);
+  const groups = useMemo(() => window.buildGroups(items), [items]);
+  const filtered = useMemo(() => {
+    if (groupFilter === "all") return items;
+    return items.filter((it) => it.group === groupFilter);
+  }, [items, groupFilter]);
+
+  if (error) {
+    return (
+      <div style={{ padding: 48 }}>
+        <h2>加载失败</h2>
+        <p style={{ color: "var(--text-mute)" }}>找不到 <code>data_local/items.json</code> 或 <code>data/items.json</code>。请先跑：</p>
+        <pre style={{ background: "var(--surface-2)", padding: 16, borderRadius: 8 }}>{`cd hxz-news-reader
+python3 scripts/build_local_index.py`}</pre>
+      </div>
+    );
+  }
+  if (data.items === null) {
+    return <div className="state"><h2>加载中…</h2><span>正在读取 items.json</span></div>;
+  }
+
+  return (
+    <>
+      <nav className="nav">
+        <div className="brand">
+          <span className="brand-mark"></span>
+          <span className="brand-name">HXZ Reader</span>
+          <span className="brand-kicker">内容工程信源雷达</span>
+        </div>
+        <span className="nav-spacer"></span>
+        <div className="nav-actions">
+          <button
+            className="icon-btn"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            title="切换主题"
+          >
+            {theme === "dark" ? <window.SunIcon /> : <window.MoonIcon />}
+          </button>
+        </div>
+      </nav>
+
+      <div className="shell">
+        <Sidebar groups={groups} active={groupFilter} onSelect={setGroupFilter} total={items.length} />
+        <main className="reading">
+          <window.InboxList items={filtered} onOpen={setOpenItem} />
+        </main>
+      </div>
+
+      {openItem && (
+        <window.ReaderView
+          item={openItem}
+          onClose={() => setOpenItem(null)}
+          serif={serif}
+          onToggleSerif={() => setSerif((s) => !s)}
+        />
+      )}
+    </>
+  );
+}
+
+function Sidebar({ groups, active, onSelect, total }) {
+  return (
+    <aside className="sidebar">
+      <div className="nav-section">
+        <div className="nav-label">视图</div>
+        <ul className="nav-list">
+          <li>
+            <button
+              className="nav-item"
+              aria-selected={active === "all"}
+              onClick={() => onSelect("all")}
+            >
+              <span className="label">全部</span>
+              <span className="count">{total}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="nav-section">
+        <div className="nav-label">分组</div>
+        <ul className="nav-list">
+          {groups.map((g) => (
+            <li key={g.name}>
+              <button
+                className="nav-item"
+                aria-selected={active === g.name}
+                onClick={() => onSelect(g.name)}
+              >
+                <span className="label">{g.name}</span>
+                <span className="count">{g.count}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
