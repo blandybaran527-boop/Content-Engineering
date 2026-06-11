@@ -485,6 +485,55 @@ def fetch_xiaoyuzhou(src: dict, output_local: Path, state_file: Path) -> tuple[l
     return _fetch_via_getnote(src, "xiaoyuzhou", meta, output_local, state_file)
 
 
+def fetch_wechat(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+    """公众号: WeWe-RSS atom 拿"哪些号出新文章" + URL 列表 → getnote_bridge 取正文。
+
+    背景 (2026-06-11 确认): WeWe-RSS sqlite articles 表只有 7 字段
+    (id/mp_id/title/pic_url/publish_time/created_at/updated_at)，**不存正文**。
+    atom/rss 输出也不含 content 标签。正文必须由 getnote_bridge 第二层补。
+    """
+    ts = datetime.now(timezone.utc).isoformat()
+    status = SourceStatus(id=src["id"], name=src["name"], type="wechat", ok=False, fetched_at=ts)
+    rss_url = (src.get("url") or "").strip()
+    if not rss_url:
+        status.error = "missing 'url' (WeWe-RSS atom)"
+        return [], status
+    try:
+        feed = feedparser.parse(rss_url)
+    except Exception as e:
+        status.error = f"feedparser fail: {type(e).__name__}: {e}"
+        return [], status
+    if not feed.entries:
+        status.ok = True
+        status.count = 0
+        status.error = "no entries (token失效? 168h 无更新? 去 http://127.0.0.1:4000/dash 看)"
+        return [], status
+
+    max_n = max(int(src.get("max_per_run", 1)) + 2, 3)
+    meta = []
+    for e in feed.entries[:max_n]:
+        link = e.get("link") or ""
+        if not link or "mp.weixin.qq.com" not in link:
+            continue
+        # mp 文章 URL 末段（/s/XXX）作为 item_id
+        # 注意: 不用 e.get("id") — feedparser 会把 atom 相对 id 拼成绝对 URL
+        # (base = feed URL)，结果含 '/'，污染落盘路径
+        item_id = link.rsplit("/", 1)[-1].split("?")[0]
+        pub_iso = ts
+        if e.get("updated_parsed"):
+            try:
+                pub_iso = datetime(*e.updated_parsed[:6], tzinfo=timezone.utc).isoformat()
+            except Exception:
+                pass
+        meta.append({"item_id": item_id, "url": link, "title": e.get("title", ""), "published_at": pub_iso})
+    if not meta:
+        status.ok = True
+        status.count = 0
+        status.error = "no mp.weixin entries (feed shape changed?)"
+        return [], status
+    return _fetch_via_getnote(src, "wechat", meta, output_local, state_file)
+
+
 def fetch_x_list(
     list_id: str,
     x_sources: list[dict[str, Any]],
@@ -670,8 +719,10 @@ def main():
             statuses.append(SourceStatus(id=src["id"], name=src["name"], type=t, ok=True, count=0, error="skipped (not in default layer)", fetched_at=datetime.now(timezone.utc).isoformat()))
             continue
 
-        if t in ("rss", "wechat", "podcast"):
+        if t in ("rss", "podcast"):
             items, status = fetch_rss(src, session, args.window_hours)
+        elif t == "wechat":
+            items, status = fetch_wechat(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
         elif t == "hf_api":
             items, status = fetch_hf_papers(src, session, args.window_hours)
         elif t == "youtube":
