@@ -1,28 +1,26 @@
 // "今日通道健康" Dashboard — 顶部折叠面板
 //
-// 数据源:
-//   - data/source-status.json (每次跑后产出, 含 sources[])
+// 数据源 (优先 data_local 跟 loadItems 对齐):
+//   - data_local/source-status.json → data/source-status.json (兜底)
 //   - state/discover.json (国内通道增量 state)
 //   - state/getnote_bridge.json (写配额账本)
-//
-// 显示 8 个通道维度:
-//   RSS 聚合 / Substack / HF Papers / WeChat / YouTube / X / Bilibili / Xiaoyuzhou
-// 每个通道: 跑通比 + 总 items + 上次跑时间 + 颜色(绿/黄/红/灰)
-// + 凭证状态自检 (推断 + 修复入口)
+
+// 显式 source id 清单 (因 source-status.json 的 group 字段经 normalize_items 会丢)
+const ID_RSS_AGG     = ["hackernews", "import-ai", "rundown-ai"];
+const ID_SUBSTACK    = ["lennys", "generalist", "newcomer"];
 
 const CHANNEL_GROUPS = [
-  { key: "rss",        label: "RSS 聚合",  category: "海外",  match: (s) => s.type === "rss" && (s.id?.startsWith("hf-") || s.group === "聚合站") },
-  { key: "substack",   label: "Substack",  category: "海外",  match: (s) => s.type === "rss" && s.group === "商科信源" },
+  { key: "rss",        label: "RSS 聚合",  category: "海外",  match: (s) => s.type === "rss" && ID_RSS_AGG.includes(s.id) },
+  { key: "substack",   label: "Substack",  category: "海外",  match: (s) => s.type === "rss" && ID_SUBSTACK.includes(s.id) },
   { key: "papers",     label: "HF Papers", category: "海外",  match: (s) => s.type === "hf_api" },
   { key: "wechat",     label: "公众号",    category: "国内",  match: (s) => s.type === "wechat" },
   { key: "youtube",    label: "YouTube",   category: "海外",  match: (s) => s.type === "youtube" },
   { key: "x",          label: "X (推特)",  category: "海外",  match: (s) => s.type === "x_handle" },
   { key: "bilibili",   label: "B 站",      category: "国内",  match: (s) => s.type === "bilibili" },
-  { key: "xiaoyuzhou", label: "小宇宙",    category: "国内",  match: (s) => s.type === "xiaoyuzhou" },
+  { key: "xiaoyuzhou", label: "小宇宙",    category: "国内",  match: (s) => s.type === "xiaoyuzhou" || s.type === "podcast" },
 ];
 
 async function loadDashboardData() {
-  // 尽量并行 fetch
   const tryFetch = async (urls) => {
     for (const u of urls) {
       try {
@@ -32,12 +30,13 @@ async function loadDashboardData() {
     }
     return null;
   };
-  const [status, discoverState, bridgeState] = await Promise.all([
-    tryFetch(["../../data/source-status.json", "data/source-status.json"]),
+  const [status, discoverState, bridgeState, health] = await Promise.all([
+    tryFetch(["../../data_local/source-status.json", "../../data/source-status.json", "data/source-status.json"]),
     tryFetch(["../../state/discover.json"]),
     tryFetch(["../../state/getnote_bridge.json"]),
+    tryFetch(["../../data_local/health.json"]),
   ]);
-  return { status, discoverState, bridgeState };
+  return { status, discoverState, bridgeState, health };
 }
 
 function summarizeChannel(status, group) {
@@ -48,6 +47,7 @@ function summarizeChannel(status, group) {
   if (srcs.length === 0) return { state: "unknown", srcs: [] };
   const ok = srcs.filter((s) => s.ok);
   const okWithItems = ok.filter((s) => (s.count || 0) > 0);
+  const okEmpty = ok.length - okWithItems.length;
   const failed = srcs.filter((s) => !s.ok);
   const total_items = srcs.reduce((a, s) => a + (s.count || 0), 0);
   let state = "ok";
@@ -56,6 +56,8 @@ function summarizeChannel(status, group) {
   return {
     state, srcs,
     ok_count: ok.length,
+    ok_with_items: okWithItems.length,
+    ok_empty: okEmpty,
     total_count: srcs.length,
     failed,
     okWithItems,
@@ -73,15 +75,10 @@ function fmtTimeShort(iso) {
   return `${Math.floor(diff / 86400)} 天前`;
 }
 
-function diagnoseCredentials(status, bridgeState) {
-  /**
-   * 从 source-status 的错误模式 + bridge state 推断凭证状态
-   * 返回 [{key, label, state, hint, action_url}]
-   */
+function diagnoseCredentials(status, bridgeState, channelInfos) {
   const out = [];
-  const srcs = (status?.sources) || [];
 
-  // biji API key (getnote bridge): 看 bridge state 是否在
+  // biji API key (getnote bridge)
   const writes_today = bridgeState ? Object.values(bridgeState.daily || {}).reduce((a, b) => a + b, 0) : 0;
   out.push({
     key: "biji",
@@ -92,37 +89,35 @@ function diagnoseCredentials(status, bridgeState) {
     action_label: "去 biji 开放平台",
   });
 
-  // X cookie
-  const x_srcs = srcs.filter((s) => s.type === "x_handle" && !(s.error || "").includes("skipped"));
-  const x_failed = x_srcs.filter((s) => !s.ok);
-  if (x_srcs.length > 0) {
+  // X cookie: 看 X 通道的 ok_with_items
+  const xInfo = channelInfos.find((c) => c.key === "x")?.info;
+  if (xInfo && xInfo.total_count > 0) {
     let state = "ok";
-    let hint = `${x_srcs.length - x_failed.length}/${x_srcs.length} 个号正常`;
-    if (x_failed.length === x_srcs.length) {
+    let hint = `${xInfo.ok_with_items}/${xInfo.total_count} 个号有新推`;
+    if (xInfo.ok_with_items === 0) {
       state = "fail";
-      hint = "76/76 失败 — cookie 可能过期";
-    } else if (x_failed.length > x_srcs.length * 0.5) {
+      hint = `${xInfo.total_count}/${xInfo.total_count} 全空 — cookie 可能过期`;
+    } else if (xInfo.ok_with_items < xInfo.total_count * 0.2) {
       state = "warn";
-      hint = `${x_failed.length}/${x_srcs.length} 失败`;
+      hint += " (偏低, 可能 cookie 弱)";
     }
     out.push({
       key: "x_cookie",
       label: "X cookie",
       state, hint,
-      action_url: "chrome://settings/cookies/detail?site=x.com",
-      action_label: "去 chrome export cookie",
+      action_url: "https://x.com",
+      action_label: "去 chrome 重 export cookie",
     });
   }
 
-  // 微信读书 token: 看 wechat 通道有没有大批 168h 无新
-  const wc_srcs = srcs.filter((s) => s.type === "wechat" && !(s.error || "").includes("skipped"));
-  const wc_empty = wc_srcs.filter((s) => s.ok && (s.count || 0) === 0);
-  if (wc_srcs.length > 0) {
+  // 微信读书 token: 看 wechat 通道 ok_with_items
+  const wcInfo = channelInfos.find((c) => c.key === "wechat")?.info;
+  if (wcInfo && wcInfo.total_count > 0) {
     let state = "ok";
-    let hint = `${wc_srcs.length - wc_empty.length}/${wc_srcs.length} 个号有新文章`;
-    if (wc_empty.length === wc_srcs.length) {
+    let hint = `${wcInfo.ok_with_items}/${wcInfo.total_count} 个号有新文章`;
+    if (wcInfo.ok_with_items === 0 && wcInfo.total_count >= 5) {
       state = "warn";
-      hint = "12/12 都 168h 无新 — token 可能失效";
+      hint = `${wcInfo.total_count}/${wcInfo.total_count} 都 168h 无新 — token 可能失效`;
     }
     out.push({
       key: "wechat_token",
@@ -145,6 +140,7 @@ function HealthChip({ state }) {
     skipped: { color: "var(--text-mute)", label: "未跑" },
     warn:    { color: "#f59e0b",   label: "警告" },
     unknown: { color: "var(--text-mute)", label: "未知" },
+    error:   { color: "#ef4444",   label: "加载错误" },
   };
   const d = dotByState[state] || dotByState.unknown;
   return (
@@ -152,16 +148,98 @@ function HealthChip({ state }) {
   );
 }
 
-function Dashboard({ status, discoverState, bridgeState, expanded, onToggle }) {
+function OpsSection({ health }) {
+  if (!health) return (
+    <div className="dashboard-section">
+      <div className="dashboard-section-title">🔧 运维状态</div>
+      <div className="ops-row state-warn">
+        <HealthChip state="warn" />
+        <span className="cred-label">健康检查</span>
+        <span className="cred-hint">data_local/health.json 不存在 — 跑 `python3 scripts/automation/health_check.py`</span>
+      </div>
+    </div>
+  );
+  const ld = health.launchd || {};
+  const df = health.data_freshness || {};
+  const gh = health.github_actions || {};
+
+  const ld_state = ld.last_status === "ok" ? "ok"
+                 : ld.last_status === "tcc_denied" ? "fail"
+                 : ld.last_status === "never_ran" ? "warn"
+                 : "warn";
+  const ld_hint = ld.last_status === "ok" && ld.last_log_at
+    ? `上次跑 ${ld.last_log_at}`
+    : ld.error_hint || "状态未知";
+
+  // 数据时效: data_local 应该最新 (本机跑), data 应该 ~24h (云端 cron)
+  const dl_items = df.data_local_items || {};
+  const dl_age_h = dl_items.age_minutes ? (dl_items.age_minutes / 60).toFixed(1) : null;
+  const dl_state = !dl_items.exists ? "fail"
+                 : dl_items.age_minutes > 1440 ? "warn"   // > 24h
+                 : "ok";
+
+  const cloud_state = gh.hours_ago == null ? "unknown"
+                    : gh.hours_ago > 26 ? "warn"
+                    : "ok";
+
+  return (
+    <div className="dashboard-section">
+      <div className="dashboard-section-title">🔧 运维状态</div>
+      <div className="ops-grid">
+        <div className={"ops-row state-" + ld_state}>
+          <HealthChip state={ld_state} />
+          <span className="cred-label">本机 launchd 定时任务</span>
+          <span className="cred-hint">{ld_hint}</span>
+          {ld.last_status === "tcc_denied" && (
+            <a className="cred-action" href="x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles" target="_blank" rel="noopener">
+              去 Settings 加 Full Disk Access →
+            </a>
+          )}
+        </div>
+        <div className={"ops-row state-" + cloud_state}>
+          <HealthChip state={cloud_state} />
+          <span className="cred-label">GitHub Actions cron</span>
+          <span className="cred-hint">
+            {gh.hours_ago != null ? `上次跑 ${gh.hours_ago} 小时前 (云端公开层)` : "暂无 commit 记录"}
+          </span>
+        </div>
+        <div className={"ops-row state-" + dl_state}>
+          <HealthChip state={dl_state} />
+          <span className="cred-label">本机数据时效</span>
+          <span className="cred-hint">
+            {dl_items.exists
+              ? `data_local/items.json: ${dl_age_h} 小时前 (${dl_items.size_kb} KB)`
+              : "data_local/items.json 不存在"}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Dashboard({ status, discoverState, bridgeState, health, expanded, onToggle, loadError }) {
+  // 加载失败优先显示
+  if (loadError) {
+    return (
+      <div className="dashboard" data-screen-label="Dashboard">
+        <div className="dashboard-bar">
+          <HealthChip state="error" />
+          <span className="dashboard-title">通道健康</span>
+          <span className="dashboard-sub" style={{ color: "#ef4444" }}>数据未加载: {loadError}</span>
+        </div>
+      </div>
+    );
+  }
+
   const channels = CHANNEL_GROUPS.map((g) => ({ ...g, info: summarizeChannel(status, g) }));
-  const creds = diagnoseCredentials(status, bridgeState);
+  const creds = diagnoseCredentials(status, bridgeState, channels);
   const generated_at = status?.generated_at || "";
   const total_items = channels.reduce((a, c) => a + (c.info.total_items || 0), 0);
 
-  // 严重程度排序: fail > warn > partial > empty > skipped > ok
   const sev = { fail: 5, warn: 4, partial: 3, empty: 2, skipped: 1, ok: 0, unknown: 0 };
   const worst = channels.reduce((a, c) => Math.max(a, sev[c.info.state] || 0), 0);
   const overall = worst >= 5 ? "fail" : worst >= 4 ? "warn" : worst >= 3 ? "partial" : worst >= 2 ? "empty" : "ok";
+  const ok_count = channels.filter((c) => c.info.state === "ok").length;
 
   return (
     <div className={"dashboard" + (expanded ? " expanded" : "")} data-screen-label="Dashboard">
@@ -169,7 +247,7 @@ function Dashboard({ status, discoverState, bridgeState, expanded, onToggle }) {
         <HealthChip state={overall} />
         <span className="dashboard-title">通道健康</span>
         <span className="dashboard-sub">
-          {channels.filter((c) => c.info.state === "ok").length}/{channels.length} 正常
+          {ok_count}/{channels.length} 正常
           · {total_items} 条
           · 上次 {fmtTimeShort(generated_at)}
         </span>
@@ -178,6 +256,8 @@ function Dashboard({ status, discoverState, bridgeState, expanded, onToggle }) {
 
       {expanded && (
         <div className="dashboard-body">
+          <OpsSection health={health} />
+
           <div className="dashboard-section">
             <div className="dashboard-section-title">8 通道</div>
             <div className="channel-grid">
@@ -195,9 +275,15 @@ function Dashboard({ status, discoverState, bridgeState, expanded, onToggle }) {
                       <span className="muted">尚无数据</span>
                     ) : (
                       <>
-                        <span>{c.info.ok_count}/{c.info.total_count} 源</span>
+                        <span>{c.info.ok_with_items ?? c.info.ok_count}/{c.info.total_count} 有新</span>
                         <span className="dot">·</span>
                         <span>{c.info.total_items} 条</span>
+                        {c.info.ok_empty > 0 && (
+                          <>
+                            <span className="dot">·</span>
+                            <span className="muted">{c.info.ok_empty} 空</span>
+                          </>
+                        )}
                       </>
                     )}
                   </div>

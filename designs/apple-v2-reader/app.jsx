@@ -4,7 +4,8 @@ const { useState, useEffect, useMemo } = React;
 
 function App() {
   const [data, setData] = useState({ items: null, generated_at: null, source: null });
-  const [dashboardData, setDashboardData] = useState({ status: null, discoverState: null, bridgeState: null });
+  const [dashboardData, setDashboardData] = useState({ status: null, discoverState: null, bridgeState: null, health: null });
+  const [dashboardLoadError, setDashboardLoadError] = useState(null);
   const [dashboardExpanded, setDashboardExpanded] = useState(() => localStorage.getItem("hxzv2-dash") === "1");
   const [error, setError] = useState(null);
   const [theme, setTheme] = useState(() => {
@@ -29,7 +30,7 @@ function App() {
       .catch((e) => setError(e));
     window.loadDashboardData()
       .then((d) => setDashboardData(d))
-      .catch(() => {});
+      .catch((e) => setDashboardLoadError(e.message || String(e)));
   }, []);
 
   const items = useMemo(() => (data.items || []).map(window.enrichItem), [data.items]);
@@ -80,8 +81,10 @@ python3 scripts/build_local_index.py`}</pre>
             status={dashboardData.status}
             discoverState={dashboardData.discoverState}
             bridgeState={dashboardData.bridgeState}
+            health={dashboardData.health}
             expanded={dashboardExpanded}
             onToggle={() => setDashboardExpanded((v) => !v)}
+            loadError={dashboardLoadError}
           />
           <window.InboxList items={filtered} onOpen={setOpenItem} />
         </main>

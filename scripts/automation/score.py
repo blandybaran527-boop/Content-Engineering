@@ -14,7 +14,8 @@ from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
 ROOT = Path(__file__).resolve().parents[2]
-PASS = 85
+PASS = 85   # 满分 100 (旧) → 110 (新加 health 维度), 达标比例 ~77%
+PASS = 90   # 加了 health 维度后总分 110, 达标线提到 90
 
 # ============================================================
 # 各维度评分函数 - 返回 (score, max, message)
@@ -105,14 +106,26 @@ def score_e2e_channels(quick: bool = False) -> tuple[float, float, str]:
 
 
 def _find_latest_status() -> Path | None:
+    # 取 sources 数最多的 (cron 只跑公开层 → 少; 本机跑全 8 通道 → 多)
     candidates = [
+        ROOT / "data_local/source-status.json",
         ROOT / "data/source-status.json",
         Path("/tmp/hxz_score_e2e/source-status.json"),
     ]
+    best = None
+    best_count = -1
     for c in candidates:
-        if c.exists():
-            return c
-    return None
+        if not c.exists():
+            continue
+        try:
+            d = json.loads(c.read_text())
+            cnt = len([s for s in d.get("sources", []) if not (s.get("error") or "").startswith("skipped")])
+            if cnt > best_count:
+                best_count = cnt
+                best = c
+        except Exception:
+            continue
+    return best
 
 
 def _score_from_status(sf: Path) -> float:
@@ -220,6 +233,33 @@ def score_resource() -> tuple[float, float, str]:
 # 汇总
 # ============================================================
 
+def score_health_dashboard() -> tuple[float, float, str]:
+    """10 分: health.json 存在 + dashboard 数据真实反映"""
+    health_f = ROOT / "data_local/health.json"
+    if not health_f.exists():
+        return 0, 10, "缺 data_local/health.json (跑 python3 scripts/automation/health_check.py)"
+    try:
+        h = json.loads(health_f.read_text())
+    except Exception as e:
+        return 0, 10, f"health.json 解析失败: {e}"
+    pts = 3
+    notes = ["health.json ✓"]
+    ld = h.get("launchd", {})
+    if ld.get("plist_exists") and ld.get("loaded"):
+        pts += 2; notes.append("launchd 装好 ✓")
+    if ld.get("last_status") == "ok":
+        pts += 3; notes.append("launchd 跑过 ✓")
+    elif ld.get("last_status") == "tcc_denied":
+        notes.append("⚠️ launchd TCC 被拒 (Settings 加 Full Disk Access)")
+    elif ld.get("last_status") == "never_ran":
+        pts += 1; notes.append("⚠️ launchd 还没跑过")
+    df = h.get("data_freshness", {})
+    dl = df.get("data_local_items", {})
+    if dl.get("exists") and dl.get("age_minutes", 99999) < 1440:
+        pts += 2; notes.append("数据 < 24h ✓")
+    return min(pts, 10), 10, " / ".join(notes)
+
+
 DIMENSIONS = [
     ("GitHub Actions workflow",  score_github_workflow,   "workflow.yml"),
     ("本机 launchd plist",        score_launchd,           "plist"),
@@ -228,6 +268,7 @@ DIMENSIONS = [
     ("错误日志干净",              score_error_log,         "errors"),
     ("Runbook 完整",              score_runbook,           "runbook"),
     ("资源占用合理",              score_resource,          "resource"),
+    ("Health Dashboard 真实反映", score_health_dashboard,  "health"),
 ]
 
 

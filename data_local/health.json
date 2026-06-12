@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-06-12T04:07:25.099946+00:00",
+  "launchd": {
+    "plist_exists": true,
+    "loaded": true,
+    "last_status": "tcc_denied",
+    "last_log_at": null,
+    "error_hint": "macOS TCC 隐私保护拦截了 launchd 访问 ~/Downloads/。去 System Settings → Privacy & Security → Full Disk Access, 把 /usr/bin/python3 (或 /bin/bash) 加进白名单, 然后再 launchctl start 一次。"
+  },
+  "data_freshness": {
+    "data_items": {
+      "exists": true,
+      "mtime": "2026-06-12T03:44:37.901567+00:00",
+      "age_minutes": 22.8,
+      "size_kb": 151.5
+    },
+    "data_status": {
+      "exists": true,
+      "mtime": "2026-06-12T03:44:37.902698+00:00",
+      "age_minutes": 22.8,
+      "size_kb": 25.6
+    },
+    "data_local_items": {
+      "exists": true,
+      "mtime": "2026-06-12T03:38:31.651172+00:00",
+      "age_minutes": 28.9,
+      "size_kb": 1376.8
+    },
+    "data_local_status": {
+      "exists": true,
+      "mtime": "2026-06-12T03:43:40.366540+00:00",
+      "age_minutes": 23.7,
+      "size_kb": 24.2
+    }
+  },
+  "credentials_files": {
+    "getnote_env": {
+      "exists": true,
+      "mtime": "2026-06-11T03:57:20.804411+00:00"
+    }
+  },
+  "github_actions": {
+    "last_cloud_refresh": "2026-06-11T23:44:22+00:00",
+    "hours_ago": 4.4
+  }
+}

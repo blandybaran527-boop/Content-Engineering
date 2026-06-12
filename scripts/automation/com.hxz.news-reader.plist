@@ -7,8 +7,8 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/bash</string>
-        <string>/Users/admin/Downloads/hxz-news-reader/scripts/automation/run_local.sh</string>
+        <string>/usr/bin/python3</string>
+        <string>/Users/admin/Downloads/hxz-news-reader/scripts/automation/run_local.py</string>
     </array>
 
     <!-- 每天本地时间 06:30 跑 (GitHub Actions cron 6:00 完成后 30 分钟) -->

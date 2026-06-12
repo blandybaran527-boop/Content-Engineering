@@ -15,6 +15,7 @@ accounts.db
 # 临时日志
 /tmp/add_members*.log
 
-# 国内信源（B站/小宇宙）本地数据：含逐字稿，避免版权风险，不上 GitHub Pages
-data_local/
+# state 仍 gitignored (含写配额账本 / 增量锚点, 用户隐私)
 state/
+# data_local/ 解除拦截 — PM 选 GitHub Pages 方案 A, 不在乎版权 (项目小没人看)
+# 2026-06-12 commit a31060b 之后

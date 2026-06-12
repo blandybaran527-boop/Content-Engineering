@@ -389,6 +389,23 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
   border-radius: 3px;
 }
 
+/* Ops self-check */
+.ops-grid { display: flex; flex-direction: column; gap: 6px; }
+.ops-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+.ops-row.state-fail {
+  background: color-mix(in oklch, #ef4444 8%, var(--surface-2));
+  border: 1px solid #ef4444;
+}
+.ops-row.state-warn {
+  background: color-mix(in oklch, #f59e0b 8%, var(--surface-2));
+}
+
 /* Credentials self-check */
 .creds-list { display: flex; flex-direction: column; gap: 6px; }
 .cred-row {
