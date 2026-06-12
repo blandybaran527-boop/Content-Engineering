@@ -169,6 +169,69 @@ def load_sources_map() -> dict:
     return {s["id"]: s for s in data}
 
 
+# 渠道细粒度分组 + 优先级权重 (Phase 2)
+# 数字大 = 排前面
+GROUP_PRIORITY = {
+    "海外播客":  100,  # bg2-pod / dwarkesh / a16z / TED / lex-fridman (type=podcast 国外, 不在 YouTube 单类)
+    "YouTube":   95,   # yt-* (Lex / Dwarkesh / Matt Wolfe / 20VC / No Priors / BG2 / a16z)
+    "X-国外":    90,
+    "Substack":  80,   # lennys / generalist / newcomer / import-ai
+    "聚合站":    70,   # hackernews / rundown-ai
+    "HF Papers": 65,
+    "国内播客":  60,   # 小宇宙 + B 站 (latetalk / onboard / guigu101 / ai-weekly-talk / li-ziran)
+    "公众号":    50,
+    "X-国内":    30,
+}
+
+# 标准 group 名 → 显示名 (sidebar 顺序)
+GROUP_ORDER = [
+    "海外播客", "YouTube", "X-国外", "Substack", "聚合站", "HF Papers",
+    "国内播客", "公众号", "X-国内",
+]
+
+
+def normalize_group(item: dict, src_info: dict) -> str:
+    """按 type / site_id / 原 group 推断细粒度分组"""
+    site_id = item.get("site_id", "") or ""
+    src_type = src_info.get("type", "")
+    orig_group = src_info.get("group", "") or item.get("group", "") or ""
+
+    # 优先按 src type 判断 (源数据明确)
+    if src_type == "x_handle":
+        return "X-国外" if "国外" in orig_group else ("X-国内" if "国内" in orig_group else "X-国外")
+    if src_type == "youtube" or site_id.startswith("yt-"):
+        return "YouTube"
+    if src_type == "podcast":
+        # podcast 类型在 sources.yaml 里都是国外 (lex/dwarkesh/bg2/a16z/ted)
+        return "海外播客"
+    if src_type == "bilibili" or site_id == "li-ziran":
+        return "国内播客"  # B 站归到国内播客
+    if src_type == "xiaoyuzhou":
+        return "国内播客"
+    if src_type == "wechat":
+        return "公众号"
+    if src_type == "hf_api":
+        return "HF Papers"
+    if src_type == "rss":
+        # Substack vs 聚合站
+        if site_id in ("lennys", "generalist", "newcomer", "import-ai"):
+            return "Substack"
+        return "聚合站"
+
+    # 回退到原 group, 再到默认
+    if orig_group == "X-国外": return "X-国外"
+    if orig_group == "X-国内": return "X-国内"
+    if orig_group == "优质播客": return "海外播客"  # 数据层修正: 优质播客旧分类拆 YouTube / 海外播客 / 国内播客
+    if orig_group == "聚合站": return "聚合站"
+    if orig_group == "商科信源": return "Substack"
+    if orig_group == "公众号": return "公众号"
+    return orig_group or "其他"
+
+
+def group_priority(group: str) -> int:
+    return GROUP_PRIORITY.get(group, 0)
+
+
 def parse_md(path: Path, src_map: dict) -> dict | None:
     text = path.read_text(encoding="utf-8")
     m = FRONTMATTER_RE.match(text)
@@ -185,10 +248,14 @@ def parse_md(path: Path, src_map: dict) -> dict | None:
     if isinstance(pub, datetime):
         pub = pub.isoformat()
     channel = fm.get("channel", "")
+    # Phase 1: 重新分组 (拆 优质播客 → YouTube / 海外播客 / 国内播客)
+    fake_item = {"site_id": src_id, "group": src.get("group", "")}
+    new_group = normalize_group(fake_item, src)
     return {
         "site_id": src_id,
         "site_name": src.get("name", src_id),
-        "group": src.get("group", "国内信源"),
+        "group": new_group,
+        "_priority": group_priority(new_group),
         "category": src.get("category", "ai_hot"),
         "title": fm.get("title", ""),
         "url": fm.get("source_url", ""),
@@ -237,11 +304,48 @@ def main():
     for it in public_items:
         k = (it.get("site_id"), it.get("url"))
         if k not in seen:
+            # 公开版没经过 parse_md, 也补一下 group / _priority
+            site_id = it.get("site_id", "") or ""
+            src = src_map.get(site_id, {})
+            fake = {"site_id": site_id, "group": it.get("group", "")}
+            new_g = normalize_group(fake, src)
+            it["group"] = new_g
+            it["_priority"] = group_priority(new_g)
             local_items.append(it)
             seen.add(k)
 
-    # 时间倒序
-    local_items.sort(key=lambda x: x.get("published_at", ""), reverse=True)
+    # Phase 4: 保留上一版的翻译字段 (title_zh / summary_zh) — 避免重建覆盖
+    out_path = DATA_LOCAL / "items.json"
+    if out_path.exists():
+        try:
+            old = json.loads(out_path.read_text())
+            zh_map = {}
+            for it in old.get("items", []):
+                k = (it.get("site_id"), it.get("url"))
+                if it.get("title_zh") or it.get("summary_zh"):
+                    zh_map[k] = {
+                        "title_zh": it.get("title_zh"),
+                        "summary_zh": it.get("summary_zh"),
+                    }
+            restored = 0
+            for it in local_items:
+                k = (it.get("site_id"), it.get("url"))
+                if k in zh_map:
+                    if zh_map[k]["title_zh"]:
+                        it["title_zh"] = zh_map[k]["title_zh"]
+                    if zh_map[k]["summary_zh"]:
+                        it["summary_zh"] = zh_map[k]["summary_zh"]
+                    restored += 1
+            if restored:
+                print(f"  ✓ 恢复 {restored} 条旧翻译字段")
+        except Exception as e:
+            print(f"  ! 旧 items.json 解析失败: {e}", file=sys.stderr)
+
+    # Phase 2: 排序按 (priority DESC, published_at DESC)
+    local_items.sort(
+        key=lambda x: (x.get("_priority", 0), x.get("published_at", "")),
+        reverse=True,
+    )
 
     out_path = DATA_LOCAL / "items.json"
     payload = {

@@ -97,7 +97,12 @@ function fmtBodyLen(html) {
   return `${Math.round(len/1000)}k 字`;
 }
 
-// Group 分类
+// Group 分类 — 按固定顺序 (海外播客→YouTube→X-国外→Substack→聚合站→HF→国内播客→公众号→X-国内→其他)
+const GROUP_ORDER = [
+  "海外播客", "YouTube", "X-国外", "Substack",
+  "聚合站", "HF Papers",
+  "国内播客", "公众号", "X-国内",
+];
 function buildGroups(items) {
   const byGroup = new Map();
   for (const it of items) {
@@ -105,10 +110,23 @@ function buildGroups(items) {
     if (!byGroup.has(g)) byGroup.set(g, []);
     byGroup.get(g).push(it);
   }
-  return Array.from(byGroup.entries())
-    .map(([name, items]) => ({ name, count: items.length, items }))
-    .sort((a, b) => b.count - a.count);
+  const out = [];
+  for (const name of GROUP_ORDER) {
+    if (byGroup.has(name)) {
+      out.push({ name, count: byGroup.get(name).length, items: byGroup.get(name) });
+      byGroup.delete(name);
+    }
+  }
+  // 兜底: 不在 ORDER 里的按 count 排
+  for (const [name, items] of byGroup) {
+    out.push({ name, count: items.length, items });
+  }
+  return out;
 }
+
+// 翻译辅助 — 优先 _zh, fallback 原文
+function pickTitle(it) { return it.title_zh || it.title || ""; }
+function pickSummary(it) { return it.summary_zh || it.summary || ""; }
 
 function buildChannels(items) {
   const by = new Map();
@@ -132,4 +150,5 @@ Object.assign(window, {
   loadItems, enrichItem, fmtTime, fmtBodyLen,
   buildGroups, buildChannels,
   CHANNEL_LABEL, inferChannel, inferModality,
+  pickTitle, pickSummary,
 });

@@ -48,7 +48,12 @@ function ReaderView({ item, onClose, serif, onToggleSerif }) {
           )}
         </div>
 
-        <h1 className="reader-title">{item.title || "(无标题)"}</h1>
+        <h1 className="reader-title">{window.pickTitle(item) || "(无标题)"}</h1>
+        {item.title_zh && item.title_zh !== item.title && (
+          <div style={{ color: "var(--text-mute)", fontSize: 14, marginTop: -16, marginBottom: 24, fontStyle: "italic" }}>
+            {item.title}
+          </div>
+        )}
 
         {(item.summary_html || item.summary) && (item.summary || "").length > 50 && (
           <div className="reader-summary">
@@ -66,6 +71,21 @@ function ReaderView({ item, onClose, serif, onToggleSerif }) {
             className={"reader-content" + (serif ? " serif" : "")}
             dangerouslySetInnerHTML={{ __html: item.content_html }}
           />
+        ) : (item.summary && item.summary.length > 30) ? (
+          // X / RSS 短条目: 没 content_html 时把 summary 当正文 (优先 zh)
+          <div className={"reader-content" + (serif ? " serif" : "")}>
+            {item.summary_zh ? (
+              <>
+                <p style={{ whiteSpace: "pre-wrap" }}>{item.summary_zh}</p>
+                <details style={{ marginTop: 24, color: "var(--text-mute)", fontSize: 14 }}>
+                  <summary style={{ cursor: "pointer" }}>查看原文 ({item.summary.length} 字符)</summary>
+                  <p style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>{item.summary}</p>
+                </details>
+              </>
+            ) : (
+              <p style={{ whiteSpace: "pre-wrap" }}>{item.summary}</p>
+            )}
+          </div>
         ) : (
           <div className="state" style={{ minHeight: 200 }}>
             <h2>本条无内置全文</h2>

@@ -32,8 +32,17 @@ function InboxList({ items, onOpen }) {
                 <span className="body-len">{window.fmtBodyLen(it.content_html)} · 全文</span>
               )}
             </div>
-            <h2 className="entry-title">{it.title || "(无标题)"}</h2>
-            {it.summary && <p className="entry-summary">{stripBoiler(it.summary)}</p>}
+            <h2 className="entry-title">{window.pickTitle(it) || "(无标题)"}</h2>
+            {window.pickSummary(it) && <p className="entry-summary">{stripBoiler(window.pickSummary(it))}</p>}
+            {it.title_zh && it.title_zh !== it.title && (
+              <div style={{ fontSize: 11, color: "var(--text-mute)", fontFamily: "var(--font-mono)" }}>原: {it.title.slice(0, 80)}</div>
+            )}
+            {/* YouTube 短字幕警示 (反爬导致前 N 句就被打断的不完整字幕) */}
+            {it.group === "YouTube" && (it.content_html || "").length > 0 && (it.content_html || "").length < 10000 && !(it.url || "").includes("/shorts/") && (
+              <div style={{ fontSize: 11, color: "#f59e0b", fontFamily: "var(--font-mono)", marginTop: 4 }}>
+                ⚠️ 字幕不完整 ({(it.content_html.length/1000).toFixed(1)}K 字, YT 反爬截断), 点跳原文看完整
+              </div>
+            )}
           </article>
         ))}
       </div>
