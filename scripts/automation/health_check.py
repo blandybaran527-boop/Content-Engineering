@@ -36,37 +36,42 @@ def check_launchd():
         out["error_hint"] = f"launchctl 查询失败: {e}"
         return out
 
-    # 看 stderr log 最近 50 行
-    if STDERR_LOG.exists():
-        try:
-            lines = STDERR_LOG.read_text().splitlines()[-50:]
-            for ln in lines:
-                if "Operation not permitted" in ln:
-                    out["last_status"] = "tcc_denied"
-                    out["error_hint"] = (
-                        "macOS TCC 隐私保护拦截了 launchd 访问 ~/Downloads/。"
-                        "去 System Settings → Privacy & Security → Full Disk Access, "
-                        "把 /usr/bin/python3 (或 /bin/bash) 加进白名单, 然后再 launchctl start 一次。"
-                    )
-                    break
-        except Exception:
-            pass
-
-    # 看应用日志看最近一次 launchd job 是否真跑过
+    # 看应用日志的最新 launchd job 时间戳
+    last_log_at = None
     if LOG.exists():
         try:
-            lines = LOG.read_text().splitlines()[-50:]
-            for ln in reversed(lines):
+            for ln in reversed(LOG.read_text().splitlines()[-200:]):
                 if "launchd job start" in ln:
-                    # 提取时间戳
-                    out["last_log_at"] = ln.split("]")[0].lstrip("[")
-                    if out["last_status"] == "unknown":
-                        out["last_status"] = "ok"
+                    last_log_at = ln.split("]")[0].lstrip("[")
+                    out["last_log_at"] = last_log_at
                     break
         except Exception:
             pass
 
-    if out["last_status"] == "unknown" and out["plist_exists"] and out["loaded"]:
+    # 看 stderr 最近 30 行 (不再扫全文件) — 只看"新错误"
+    recent_stderr_err = None
+    if STDERR_LOG.exists():
+        try:
+            recent = STDERR_LOG.read_text().splitlines()[-30:]
+            for ln in recent:
+                if "Operation not permitted" in ln:
+                    recent_stderr_err = ln
+                    break
+        except Exception:
+            pass
+
+    # 综合判断: 优先看 last_log_at (说明 python3 真启动了)
+    if last_log_at:
+        # 比对时间: log_at 是否晚于 stderr 错误? 简化判断: 有 log_at 就算 ok
+        out["last_status"] = "ok"
+    elif recent_stderr_err:
+        out["last_status"] = "tcc_denied"
+        out["error_hint"] = (
+            "macOS TCC 隐私保护拦截 launchd 访问 ~/Downloads/。"
+            "去 System Settings → Privacy & Security → Full Disk Access, "
+            "把 /usr/bin/python3 加进白名单, 再 launchctl start 一次。"
+        )
+    elif out["plist_exists"] and out["loaded"]:
         out["last_status"] = "never_ran"
         out["error_hint"] = (
             "launchd 已加载但还没跑过。明早 06:30 会首次跑, 或现在 launchctl start com.hxz.news-reader 触发一次。"
