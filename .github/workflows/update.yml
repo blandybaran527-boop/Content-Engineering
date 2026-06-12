@@ -1,7 +1,19 @@
 name: update-news
+# GitHub Actions cron 只跑"无本机依赖"的 3 类公开通道:
+#   - RSS 聚合 (Hacker News / Import AI / Rundown)
+#   - Substack (Lenny's / Generalist / Newcomer)
+#   - HF Daily Papers (公开 API)
+#
+# 不在云端跑 (依赖本机/认证, 由 launchd 跑):
+#   - X (需要 chrome cookie + 你的梯子)
+#   - YouTube (需要住宅 IP 反爬)
+#   - WeChat (本机 WeWe-RSS :4000)
+#   - Bilibili / Xiaoyuzhou (需要 getnote .env + 国内直连)
+#
+# 详见 docs/RUNBOOK.md
 on:
   schedule:
-    - cron: '0 22 * * *'   # 每天 UTC 22:00 = 北京时间 06:00 跑一次
+    - cron: '0 22 * * *'   # 每天 UTC 22:00 = 北京时间 06:00
   workflow_dispatch:
 permissions:
   contents: write
@@ -16,16 +28,13 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
-      - name: Run updater
-        env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      - name: Run updater (云端 3 类公开通道)
         run: |
-          python scripts/update_news.py --output-dir data --window-hours 168 \
-            ${{ secrets.X_BEARER_TOKEN && '--enable-x' || '' }}
+          python scripts/update_news.py --output-dir data --window-hours 168
       - name: Commit refreshed data
         run: |
           git config user.name "hxz-news-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/
-          git diff --cached --quiet || git commit -m "chore(data): refresh $(date -u +%FT%TZ)"
+          git diff --cached --quiet || git commit -m "chore(data): cloud refresh $(date -u +%FT%TZ)"
           git push

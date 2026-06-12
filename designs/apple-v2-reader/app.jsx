@@ -4,6 +4,8 @@ const { useState, useEffect, useMemo } = React;
 
 function App() {
   const [data, setData] = useState({ items: null, generated_at: null, source: null });
+  const [dashboardData, setDashboardData] = useState({ status: null, discoverState: null, bridgeState: null });
+  const [dashboardExpanded, setDashboardExpanded] = useState(() => localStorage.getItem("hxzv2-dash") === "1");
   const [error, setError] = useState(null);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("hxzv2-theme") ||
@@ -17,11 +19,17 @@ function App() {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("hxzv2-theme", theme);
   }, [theme]);
+  useEffect(() => {
+    localStorage.setItem("hxzv2-dash", dashboardExpanded ? "1" : "0");
+  }, [dashboardExpanded]);
 
   useEffect(() => {
     window.loadItems()
       .then((d) => setData(d))
       .catch((e) => setError(e));
+    window.loadDashboardData()
+      .then((d) => setDashboardData(d))
+      .catch(() => {});
   }, []);
 
   const items = useMemo(() => (data.items || []).map(window.enrichItem), [data.items]);
@@ -68,6 +76,13 @@ python3 scripts/build_local_index.py`}</pre>
       <div className="shell">
         <Sidebar groups={groups} active={groupFilter} onSelect={setGroupFilter} total={items.length} />
         <main className="reading">
+          <window.Dashboard
+            status={dashboardData.status}
+            discoverState={dashboardData.discoverState}
+            bridgeState={dashboardData.bridgeState}
+            expanded={dashboardExpanded}
+            onToggle={() => setDashboardExpanded((v) => !v)}
+          />
           <window.InboxList items={filtered} onOpen={setOpenItem} />
         </main>
       </div>

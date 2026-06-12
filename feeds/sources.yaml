@@ -51,7 +51,7 @@
 #   限速：getnote 写配额 100/日；每条 save 间隔 ≥65s；max_per_run 控制每跑取多少条
 - {id: li-ziran,       name: 李自然说,                  type: bilibili,   uid: '39089748',                              category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
 - {id: latetalk,       name: 晚点聊 LateTalk,           type: xiaoyuzhou, podcast_id: '61933ace1b4320461e91fd55',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
-- {id: onboard,        name: OnBoard!,                  type: xiaoyuzhou, podcast_id: '6164e0d77a72e91fb7e5a14d',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
+- {id: onboard,        name: OnBoard!,                  type: xiaoyuzhou, podcast_id: '61cbaac48bb4cd867fcabe22',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
 - {id: guigu101,       name: 硅谷101,                   type: xiaoyuzhou, podcast_id: '5e5c52c9418a84a04625e6cc',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
 - {id: ai-weekly-talk, name: AI每周谈,                  type: xiaoyuzhou, podcast_id: '688a34636f5a275f1cba40fd',        category: ai_hot, group: 优质播客, default: true, max_per_run: 1}
 
