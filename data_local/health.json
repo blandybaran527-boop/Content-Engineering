@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-06-12T05:33:29.995254+00:00",
+  "generated_at": "2026-06-12T07:41:33.511719+00:00",
   "launchd": {
     "plist_exists": true,
     "loaded": true,
     "last_status": "ok",
-    "last_log_at": "2026-06-12 13:10:24",
+    "last_log_at": "2026-06-12 15:15:36",
     "error_hint": null
   },
   "data_freshness": {
     "data_items": {
       "exists": true,
-      "mtime": "2026-06-12T05:32:40.719579+00:00",
-      "age_minutes": 0.8,
-      "size_kb": 517.1
+      "mtime": "2026-06-12T07:40:59.498531+00:00",
+      "age_minutes": 0.6,
+      "size_kb": 510.0
     },
     "data_status": {
       "exists": true,
-      "mtime": "2026-06-12T05:32:40.726452+00:00",
-      "age_minutes": 0.8,
-      "size_kb": 24.2
+      "mtime": "2026-06-12T07:40:59.535676+00:00",
+      "age_minutes": 0.6,
+      "size_kb": 24.3
     },
     "data_local_items": {
       "exists": true,
-      "mtime": "2026-06-12T05:33:29.704048+00:00",
+      "mtime": "2026-06-12T07:41:33.338144+00:00",
       "age_minutes": 0.0,
-      "size_kb": 2559.8
+      "size_kb": 2956.4
     },
     "data_local_status": {
       "exists": true,
       "mtime": "2026-06-12T04:10:37.707076+00:00",
-      "age_minutes": 82.9,
+      "age_minutes": 210.9,
       "size_kb": 24.2
     }
   },
@@ -41,6 +41,6 @@
   },
   "github_actions": {
     "last_cloud_refresh": "2026-06-12T12:39:54+08:00",
-    "hours_ago": 0.9
+    "hours_ago": 3.0
   }
 }
