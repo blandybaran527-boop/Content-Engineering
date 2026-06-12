@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T04:33:14.772436+00:00",
+  "generated_at": "2026-06-12T04:39:54.315378+00:00",
   "launchd": {
     "plist_exists": true,
     "loaded": true,
@@ -11,25 +11,25 @@
     "data_items": {
       "exists": true,
       "mtime": "2026-06-12T04:10:37.637535+00:00",
-      "age_minutes": 22.6,
+      "age_minutes": 29.3,
       "size_kb": 154.2
     },
     "data_status": {
       "exists": true,
       "mtime": "2026-06-12T04:10:37.638442+00:00",
-      "age_minutes": 22.6,
+      "age_minutes": 29.3,
       "size_kb": 25.6
     },
     "data_local_items": {
       "exists": true,
-      "mtime": "2026-06-12T04:10:37.705403+00:00",
-      "age_minutes": 22.6,
-      "size_kb": 1376.8
+      "mtime": "2026-06-12T04:39:54.044448+00:00",
+      "age_minutes": 0.0,
+      "size_kb": 1095.8
     },
     "data_local_status": {
       "exists": true,
       "mtime": "2026-06-12T04:10:37.707076+00:00",
-      "age_minutes": 22.6,
+      "age_minutes": 29.3,
       "size_kb": 24.2
     }
   },
@@ -41,6 +41,6 @@
   },
   "github_actions": {
     "last_cloud_refresh": "2026-06-12T12:10:19+08:00",
-    "hours_ago": 0.4
+    "hours_ago": 0.5
   }
 }
