@@ -35,6 +35,13 @@
         <string>PLACEHOLDER_REPLACE_AT_INSTALL</string>
         <key>NO_PROXY</key>
         <string>127.0.0.1,localhost</string>
+        <!-- 梯子代理 (Clash Verge 默认 7890), YouTube/HF/HN 走境外需走梯子 -->
+        <key>ALL_PROXY</key>
+        <string>http://127.0.0.1:7890</string>
+        <key>HTTP_PROXY</key>
+        <string>http://127.0.0.1:7890</string>
+        <key>HTTPS_PROXY</key>
+        <string>http://127.0.0.1:7890</string>
         <key>PATH</key>
         <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
     </dict>
