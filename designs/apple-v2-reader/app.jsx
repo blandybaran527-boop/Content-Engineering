@@ -13,6 +13,7 @@ function App() {
       (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   });
   const [groupFilter, setGroupFilter] = useState("all");
+  const [siteFilter, setSiteFilter] = useState(null);
   const [openItem, setOpenItem] = useState(null);
   const [serif, setSerif] = useState(false);
 
@@ -36,9 +37,11 @@ function App() {
   const items = useMemo(() => (data.items || []).map(window.enrichItem), [data.items]);
   const groups = useMemo(() => window.buildGroups(items), [items]);
   const filtered = useMemo(() => {
-    if (groupFilter === "all") return items;
-    return items.filter((it) => it.group === groupFilter);
-  }, [items, groupFilter]);
+    let arr = items;
+    if (groupFilter !== "all") arr = arr.filter((it) => it.group === groupFilter);
+    if (siteFilter) arr = arr.filter((it) => it.site_id === siteFilter);
+    return arr;
+  }, [items, groupFilter, siteFilter]);
 
   if (error) {
     return (
@@ -75,7 +78,14 @@ python3 scripts/build_local_index.py`}</pre>
       </nav>
 
       <div className="shell">
-        <Sidebar groups={groups} active={groupFilter} onSelect={setGroupFilter} total={items.length} />
+        <Sidebar
+          groups={groups}
+          activeGroup={groupFilter}
+          activeSite={siteFilter}
+          onSelectGroup={(g) => { setGroupFilter(g); setSiteFilter(null); }}
+          onSelectSite={setSiteFilter}
+          total={items.length}
+        />
         <main className="reading">
           <window.Dashboard
             status={dashboardData.status}
@@ -102,7 +112,7 @@ python3 scripts/build_local_index.py`}</pre>
   );
 }
 
-function Sidebar({ groups, active, onSelect, total }) {
+function Sidebar({ groups, activeGroup, activeSite, onSelectGroup, onSelectSite, total }) {
   return (
     <aside className="sidebar">
       <div className="nav-section">
@@ -111,8 +121,8 @@ function Sidebar({ groups, active, onSelect, total }) {
           <li>
             <button
               className="nav-item"
-              aria-selected={active === "all"}
-              onClick={() => onSelect("all")}
+              aria-selected={activeGroup === "all"}
+              onClick={() => onSelectGroup("all")}
             >
               <span className="label">全部</span>
               <span className="count">{total}</span>
@@ -121,20 +131,38 @@ function Sidebar({ groups, active, onSelect, total }) {
         </ul>
       </div>
       <div className="nav-section">
-        <div className="nav-label">分组</div>
+        <div className="nav-label">分组 → 渠道</div>
         <ul className="nav-list">
-          {groups.map((g) => (
-            <li key={g.name}>
-              <button
-                className="nav-item"
-                aria-selected={active === g.name}
-                onClick={() => onSelect(g.name)}
-              >
-                <span className="label">{g.name}</span>
-                <span className="count">{g.count}</span>
-              </button>
-            </li>
-          ))}
+          {groups.map((g) => {
+            const isOpen = activeGroup === g.name;
+            return (
+              <React.Fragment key={g.name}>
+                <li>
+                  <button
+                    className="nav-item"
+                    aria-selected={isOpen && !activeSite}
+                    onClick={() => onSelectGroup(g.name)}
+                  >
+                    <span className="label">{g.name}</span>
+                    <span className="count">{g.count}</span>
+                  </button>
+                </li>
+                {isOpen && g.subs && g.subs.map((sub) => (
+                  <li key={g.name + "::" + sub.site_id}>
+                    <button
+                      className="nav-item sub"
+                      aria-selected={activeSite === sub.site_id}
+                      onClick={() => onSelectSite(activeSite === sub.site_id ? null : sub.site_id)}
+                      title={sub.site_id}
+                    >
+                      <span className="label">{sub.site_name}</span>
+                      <span className="count">{sub.count}</span>
+                    </button>
+                  </li>
+                ))}
+              </React.Fragment>
+            );
+          })}
         </ul>
       </div>
     </aside>

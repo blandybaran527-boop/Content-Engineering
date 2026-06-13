@@ -110,16 +110,27 @@ function buildGroups(items) {
     if (!byGroup.has(g)) byGroup.set(g, []);
     byGroup.get(g).push(it);
   }
+  // 每组按 site_id 再分子组
+  const buildSubs = (groupItems) => {
+    const bySite = new Map();
+    for (const it of groupItems) {
+      const sid = it.site_id || "?";
+      if (!bySite.has(sid)) bySite.set(sid, { site_id: sid, site_name: it.site_name || sid, count: 0 });
+      bySite.get(sid).count++;
+    }
+    return Array.from(bySite.values()).sort((a, b) => b.count - a.count);
+  };
   const out = [];
   for (const name of GROUP_ORDER) {
     if (byGroup.has(name)) {
-      out.push({ name, count: byGroup.get(name).length, items: byGroup.get(name) });
+      const its = byGroup.get(name);
+      out.push({ name, count: its.length, items: its, subs: buildSubs(its) });
       byGroup.delete(name);
     }
   }
   // 兜底: 不在 ORDER 里的按 count 排
-  for (const [name, items] of byGroup) {
-    out.push({ name, count: items.length, items });
+  for (const [name, its] of byGroup) {
+    out.push({ name, count: its.length, items: its, subs: buildSubs(its) });
   }
   return out;
 }

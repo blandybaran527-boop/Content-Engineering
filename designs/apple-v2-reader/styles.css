@@ -242,6 +242,22 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
 }
 .nav-item[aria-selected="true"] .count { color: var(--accent); }
 
+/* 二级 (具体源 / 频道) */
+.nav-item.sub {
+  padding-left: 24px;
+  font-size: 13px;
+  color: var(--text-mute);
+}
+.nav-item.sub .label {
+  font-weight: 400;
+}
+.nav-item.sub:hover { color: var(--text); }
+.nav-item.sub[aria-selected="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
 /* ============================================================
  * Reading column (variant container)
  * ============================================================ */
