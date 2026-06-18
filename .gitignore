@@ -28,3 +28,10 @@ designs/funnel-review/
 designs/funnel-tuning/
 docs/hotspot-filtering-feasibility.md
 docs/hotspot-filtering-proposal.html
+
+# 跑批中间产物 / 备份 scratch（不入库，可随时删）
+data_run_free/
+data_run_main/
+data_run_wechat/
+*.bak_*
+index.legacy.html

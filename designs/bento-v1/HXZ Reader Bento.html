@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HXZ Reader · 内容工程信源雷达</title>
+<style>
+  :root {
+    --radius: 14px;
+    --radius-sm: 8px;
+    --gap: 16px;
+    --gap-sm: 10px;
+    --gap-lg: 24px;
+    --shadow: 0 1px 0 color-mix(in oklch, var(--border) 60%, transparent);
+    --font-sans: -apple-system, "SF Pro Text", "PingFang SC", "Noto Sans SC", "Helvetica Neue", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "PingFang SC", monospace;
+    --lh-cjk: 1.7;
+    --lh-latin: 1.5;
+  }
+
+  :root[data-theme="dark"] {
+    --bg:        oklch(0.18 0.012 270);
+    --bg-2:      oklch(0.21 0.013 270);
+    --surface:   oklch(0.235 0.014 270);
+    --surface-2: oklch(0.275 0.015 270);
+    --border:    oklch(0.34 0.016 270);
+    --border-strong: oklch(0.42 0.02 270);
+    --text:      oklch(0.96 0.005 270);
+    --text-dim:  oklch(0.72 0.012 270);
+    --text-mute: oklch(0.54 0.014 270);
+    --accent:    oklch(0.78 0.13 230);
+    --accent-soft: color-mix(in oklch, var(--accent) 14%, transparent);
+    --ok:        oklch(0.78 0.13 160);
+    --warn:      oklch(0.82 0.13 80);
+  }
+
+  :root[data-theme="light"] {
+    --bg:        oklch(0.985 0.003 270);
+    --bg-2:      oklch(0.97 0.005 270);
+    --surface:   oklch(1 0 0);
+    --surface-2: oklch(0.965 0.006 270);
+    --border:    oklch(0.9 0.008 270);
+    --border-strong: oklch(0.82 0.01 270);
+    --text:      oklch(0.2 0.012 270);
+    --text-dim:  oklch(0.42 0.014 270);
+    --text-mute: oklch(0.58 0.013 270);
+    --accent:    oklch(0.5 0.18 245);
+    --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
+    --ok:        oklch(0.55 0.16 160);
+    --warn:      oklch(0.65 0.16 70);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: var(--lh-latin);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body[lang^="zh"] { line-height: var(--lh-cjk); }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+
+  /* ---------- Topbar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: var(--gap-lg);
+    padding: 14px 28px;
+    background: color-mix(in oklch, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+  .brand-mark {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+    box-shadow: 0 0 14px color-mix(in oklch, var(--accent) 50%, transparent);
+    align-self: center;
+  }
+  .brand h1 {
+    font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+    margin: 0; white-space: nowrap;
+  }
+  .brand .kicker {
+    font-size: 12px; color: var(--text-mute); letter-spacing: 0.04em;
+    border-left: 1px solid var(--border-strong); padding-left: 12px;
+    white-space: nowrap;
+  }
+  .topbar-spacer { flex: 1; }
+  .stats { display: flex; gap: 8px; align-items: center; }
+  .stat {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .stat .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
+  .stat strong { color: var(--text); font-weight: 600; }
+  .icon-btn {
+    width: 32px; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .icon-btn:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-strong); }
+
+  /* ---------- Main ---------- */
+  main {
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 40px;
+    max-width: 1680px; margin: 0 auto;
+  }
+
+  .empty, .error {
+    padding: 80px 40px;
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 14px;
+  }
+  .error code {
+    color: var(--text-dim); background: var(--surface);
+    padding: 2px 6px; border-radius: 4px;
+    font-family: var(--font-mono); font-size: 12.5px;
+  }
+
+  /* ---------- Group section ---------- */
+  .group {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .group-head {
+    display: flex; align-items: center; gap: 16px;
+    padding-bottom: 4px;
+  }
+  .group-name {
+    margin: 0;
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .group-count {
+    display: inline-flex; align-items: center;
+    height: 22px; padding: 0 9px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .group-bar {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+  .group-more {
+    color: var(--text-mute);
+    font-size: 12.5px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .group-more:hover { color: var(--text); border-color: var(--border-strong); background: var(--surface); }
+
+  /* ---------- Bento grid ---------- */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--gap);
+  }
+
+  /* ---------- Item card ---------- */
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 16px 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color .15s, transform .15s, box-shadow .15s;
+    min-width: 0;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 6px 24px -12px color-mix(in oklch, var(--accent) 25%, transparent);
+  }
+  .card.expanded { grid-column: 1 / -1; }
+
+  .card-meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px;
+    color: var(--text-mute);
+    min-width: 0;
+  }
+  .avatar {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--surface-2);
+    object-fit: cover; flex-shrink: 0;
+  }
+  .site {
+    color: var(--text-dim); font-weight: 500;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    max-width: 60%;
+  }
+  .meta-dot { color: var(--text-mute); opacity: .6; }
+  .time {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-mute);
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .time:hover { color: var(--text-dim); }
+  .category {
+    display: inline-flex; align-items: center;
+    height: 18px; padding: 0 7px;
+    background: var(--surface-2);
+    color: var(--text-mute);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+    transition: color .15s;
+  }
+  .card-title:hover { color: var(--accent); }
+  .card-title::after {
+    content: " ↗";
+    color: var(--text-mute);
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  .card:hover .card-title::after { opacity: 1; }
+
+  .summary {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.6;
+    text-wrap: pretty;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card.expanded .summary { -webkit-line-clamp: unset; overflow: visible; }
+
+  .expand-btn {
+    align-self: flex-start;
+    margin-top: 2px;
+    font-size: 11.5px;
+    color: var(--text-mute);
+    padding: 4px 8px;
+    margin-left: -8px;
+    border-radius: 4px;
+    transition: color .15s, background .15s;
+  }
+  .expand-btn:hover { color: var(--accent); background: var(--accent-soft); }
+
+  .fulltext {
+    margin-top: 4px;
+    padding: 14px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-size: 13.5px;
+    line-height: 1.7;
+    max-height: 480px;
+    overflow: auto;
+  }
+  .fulltext img { max-width: 100%; height: auto; border-radius: 4px; margin: 8px 0; }
+  .fulltext a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .fulltext h1, .fulltext h2, .fulltext h3 { color: var(--text); margin: 12px 0 6px; line-height: 1.4; }
+  .fulltext pre, .fulltext code { background: var(--surface); padding: 2px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 12.5px; }
+  .fulltext pre { padding: 10px 12px; overflow-x: auto; }
+  .fulltext blockquote { border-left: 2px solid var(--border-strong); margin: 8px 0; padding-left: 12px; color: var(--text-mute); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 24px 28px 40px;
+    color: var(--text-mute);
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  footer code { font-family: var(--font-mono); color: var(--text-dim); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .topbar { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
+    .brand .kicker { display: none; }
+    main { padding: 20px 16px; gap: 32px; }
+    .bento { grid-template-columns: 1fr; gap: 12px; }
+    .group-name { font-size: 19px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body lang="zh-Hans">
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <h1>HXZ Reader</h1>
+    <span class="kicker">内容工程信源雷达</span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <div class="stats">
+    <span class="stat" id="stat-window"><span class="dot"></span>窗口 <strong>—</strong></span>
+    <span class="stat" id="stat-count"><strong>—</strong> 条</span>
+    <span class="stat" id="stat-time" title="generated_at">—</span>
+  </div>
+  <button class="icon-btn" id="theme-toggle" aria-label="切换主题" title="切换主题">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<main id="root">
+  <div class="empty" id="loading">加载中…</div>
+</main>
+
+<footer>
+  data · <code>data/items.json</code> · 跑 <code>python scripts/update_news.py</code> 刷新
+</footer>
+
+<script>
+  // ---------- Theme ----------
+  const THEME_KEY = "hxz-theme";
+  const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+  document.documentElement.dataset.theme = savedTheme;
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(THEME_KEY, next);
+  });
+
+  // ---------- Helpers ----------
+  const DEFAULT_PER_GROUP = 18;
+
+  const escapeHTML = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  })[c]);
+
+  function relativeTime(iso) {
+    if (!iso) return "";
+    const t = new Date(iso).getTime();
+    if (!Number.isFinite(t)) return "";
+    const diff = (Date.now() - t) / 1000;
+    if (diff < 60)        return "刚刚";
+    if (diff < 3600)      return Math.floor(diff / 60) + "m";
+    if (diff < 86400)     return Math.floor(diff / 3600) + "h";
+    if (diff < 86400 * 7) return Math.floor(diff / 86400) + "d";
+    if (diff < 86400 * 30) return Math.floor(diff / (86400 * 7)) + "w";
+    return new Date(iso).toISOString().slice(5, 10).replace("-", "/");
+  }
+  function absoluteTime(iso) {
+    if (!iso) return "";
+    return iso.slice(0, 16).replace("T", " ");
+  }
+
+  async function loadData() {
+    // Works whether the file is served from /designs/bento-v1/ or from the project root.
+    const candidates = ["../../data/items.json", "data/items.json"];
+    let lastErr = null;
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url + "?_=" + Date.now());
+        if (r.ok) return await r.json();
+        lastErr = new Error(`HTTP ${r.status} for ${url}`);
+      } catch (e) { lastErr = e; }
+    }
+    throw lastErr ?? new Error("items.json not found");
+  }
+
+  // ---------- Render ----------
+  const expandedCards = new WeakSet();
+  const groupExpanded = new Set();
+
+  function renderError(msg) {
+    document.getElementById("root").innerHTML =
+      `<div class="error">无法加载 <code>data/items.json</code><br><br>` +
+      `<code>${escapeHTML(msg)}</code><br><br>` +
+      `先跑 <code>python scripts/update_news.py</code> 生成数据。</div>`;
+  }
+
+  function buildCard(it) {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const meta = document.createElement("div");
+    meta.className = "card-meta";
+
+    const avatarUrl = it.author && it.author.profileImageUrl;
+    if (avatarUrl) {
+      const img = document.createElement("img");
+      img.className = "avatar";
+      img.src = avatarUrl;
+      img.alt = "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.onerror = () => img.remove();
+      meta.appendChild(img);
+    }
+
+    const site = document.createElement("span");
+    site.className = "site";
+    site.textContent = it.site_name || it.site_id || "";
+    site.title = it.site_id || it.site_name || "";
+    meta.appendChild(site);
+
+    if (it.category) {
+      const dot = document.createElement("span"); dot.className = "meta-dot"; dot.textContent = "·";
+      meta.appendChild(dot);
+      const cat = document.createElement("span");
+      cat.className = "category";
+      cat.textContent = it.category;
+      meta.appendChild(cat);
+    }
+
+    const time = document.createElement("time");
+    time.className = "time";
+    time.textContent = relativeTime(it.published_at);
+    time.title = absoluteTime(it.published_at);
+    time.dateTime = it.published_at || "";
+    meta.appendChild(time);
+
+    card.appendChild(meta);
+
+    const titleA = document.createElement("a");
+    titleA.className = "card-title";
+    titleA.href = it.url || "#";
+    titleA.target = "_blank";
+    titleA.rel = "noopener noreferrer";
+    titleA.textContent = it.title || "(无标题)";
+    card.appendChild(titleA);
+
+    if (it.summary && it.summary !== it.title) {
+      const summary = document.createElement("p");
+      summary.className = "summary";
+      summary.textContent = it.summary;
+      card.appendChild(summary);
+    }
+
+    const hasFull = it.content_html && it.content_html.length > 200;
+    if (hasFull) {
+      const btn = document.createElement("button");
+      btn.className = "expand-btn";
+      btn.type = "button";
+      btn.textContent = "展开全文 ▾";
+      card.appendChild(btn);
+
+      const full = document.createElement("div");
+      full.className = "fulltext";
+      full.hidden = true;
+      full.innerHTML = it.content_html;
+      card.appendChild(full);
+
+      btn.addEventListener("click", () => {
+        const open = card.classList.toggle("expanded");
+        full.hidden = !open;
+        btn.textContent = open ? "收起 ▴" : "展开全文 ▾";
+      });
+    }
+
+    return card;
+  }
+
+  function buildGroup(name, items) {
+    const section = document.createElement("section");
+    section.className = "group";
+    section.dataset.screenLabel = name;
+
+    const head = document.createElement("header");
+    head.className = "group-head";
+    head.innerHTML =
+      `<h2 class="group-name">${escapeHTML(name)}</h2>` +
+      `<span class="group-count">${items.length}</span>` +
+      `<span class="group-bar"></span>`;
+
+    const bento = document.createElement("div");
+    bento.className = "bento";
+
+    const isExpanded = groupExpanded.has(name);
+    const visible = isExpanded ? items : items.slice(0, DEFAULT_PER_GROUP);
+    for (const it of visible) bento.appendChild(buildCard(it));
+
+    if (items.length > DEFAULT_PER_GROUP) {
+      const moreBtn = document.createElement("button");
+      moreBtn.className = "group-more";
+      moreBtn.type = "button";
+      moreBtn.textContent = isExpanded
+        ? `收起，仅看前 ${DEFAULT_PER_GROUP} 条`
+        : `查看全部 ${items.length} 条 →`;
+      head.appendChild(moreBtn);
+      moreBtn.addEventListener("click", () => {
+        if (groupExpanded.has(name)) groupExpanded.delete(name);
+        else groupExpanded.add(name);
+        render(LAST_DATA);
+      });
+    }
+
+    section.appendChild(head);
+    section.appendChild(bento);
+    return section;
+  }
+
+  let LAST_DATA = null;
+
+  function render(data) {
+    LAST_DATA = data;
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+
+    document.getElementById("stat-window").innerHTML =
+      `<span class="dot"></span>窗口 <strong>${data.window_hours}h</strong>`;
+    document.getElementById("stat-count").innerHTML =
+      `<strong>${data.items.length}</strong> 条`;
+    document.getElementById("stat-time").textContent =
+      relativeTime(data.generated_at) + " 抓取";
+    document.getElementById("stat-time").title = absoluteTime(data.generated_at);
+
+    if (!data.items.length) {
+      root.innerHTML = `<div class="empty">本窗口期暂无条目。调整 <code>--window-hours</code> 再跑 <code>scripts/update_news.py</code>。</div>`;
+      return;
+    }
+
+    // Group items, sort items within each group by published_at desc,
+    // then sort groups by item count desc.
+    const groups = {};
+    for (const it of data.items) {
+      (groups[it.group || "misc"] ||= []).push(it);
+    }
+    for (const name of Object.keys(groups)) {
+      groups[name].sort((a, b) => (b.published_at || "").localeCompare(a.published_at || ""));
+    }
+    const sorted = Object.entries(groups).sort((a, b) => b[1].length - a[1].length);
+    for (const [name, items] of sorted) {
+      root.appendChild(buildGroup(name, items));
+    }
+  }
+
+  // ---------- Boot ----------
+  loadData().then(render).catch((e) => renderError(e.message || String(e)));
+</script>
+</body>
+</html>

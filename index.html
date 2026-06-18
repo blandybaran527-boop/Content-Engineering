@@ -1,78 +1,749 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-Hans" data-theme="light">
 <head>
 <meta charset="utf-8" />
-<title>HXZ News Reader - 内容工程信源雷达</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HXZ Reader · 内容工程信源雷达</title>
 <style>
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#0f1115;color:#e4e6eb;margin:0;padding:24px;line-height:1.5}
-  h1{font-size:22px;margin:0 0 4px}
-  .meta{color:#8b949e;font-size:13px;margin-bottom:24px}
-  .group{margin:28px 0 12px;font-size:14px;color:#7ee787;text-transform:uppercase;letter-spacing:0.06em}
-  .item{padding:10px 0;border-bottom:1px solid #1f2329}
-  .item a{color:#79c0ff;text-decoration:none}
-  .item a:hover{text-decoration:underline}
-  .src{color:#8b949e;font-size:12px;margin-right:8px}
-  .ts{color:#6e7681;font-size:12px;float:right}
-  .summary{color:#a0a6ad;font-size:13px;margin-top:4px}
-  .toggle{display:inline-block;margin-top:6px;color:#7ee787;font-size:12px;cursor:pointer;user-select:none}
-  .toggle:hover{text-decoration:underline}
-  .fulltext{display:none;margin-top:12px;padding:14px 16px;background:#161a22;border:1px solid #1f2329;border-radius:6px;color:#cdd0d6;font-size:14px;line-height:1.65;max-height:520px;overflow:auto}
-  .fulltext.open{display:block}
-  .fulltext img{max-width:100%;height:auto;border-radius:4px;margin:8px 0}
-  .fulltext a{color:#79c0ff}
-  .fulltext h1,.fulltext h2,.fulltext h3{color:#e4e6eb;margin:14px 0 6px}
-  .fulltext pre,.fulltext code{background:#0f1115;padding:2px 6px;border-radius:3px;font-size:13px}
-  .fulltext blockquote{border-left:3px solid #30363d;margin:8px 0;padding-left:12px;color:#a0a6ad}
-  .empty{color:#8b949e;font-style:italic;padding:20px;text-align:center}
+  /* ============================================================
+   * HXZ Reader — Apple visual × Substack inbox layout
+   * ============================================================ */
+
+  :root {
+    /* Type — Apple SF stack + PingFang for CJK */
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                    "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --font-text:    -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                    "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --font-mono:    ui-monospace, "SF Mono", "JetBrains Mono",
+                    "PingFang SC", monospace;
+
+    /* Rhythm */
+    --radius-card: 18px;
+    --radius-sm: 10px;
+    --radius-pill: 999px;
+
+    /* Layout */
+    --sidebar-w: 248px;
+    --reading-w: 720px;
+    --nav-h: 56px;
+  }
+
+  :root[data-theme="light"] {
+    --bg:          #fbfbfd;
+    --surface:     #ffffff;
+    --surface-2:   #f5f5f7;
+    --surface-3:   #ececef;
+    --border:      #d2d2d7;
+    --border-soft: #e8e8ed;
+    --text:        #1d1d1f;
+    --text-dim:    #6e6e73;
+    --text-mute:   #86868b;
+    --accent:      #0071e3;
+    --accent-soft: rgba(0,113,227,0.08);
+    --ok:          #1d8348;
+  }
+
+  :root[data-theme="dark"] {
+    --bg:          #000000;
+    --surface:     #1d1d1f;
+    --surface-2:   #2a2a2c;
+    --surface-3:   #38383a;
+    --border:      #38383a;
+    --border-soft: #2a2a2c;
+    --text:        #f5f5f7;
+    --text-dim:    #a1a1a6;
+    --text-mute:   #86868b;
+    --accent:      #2997ff;
+    --accent-soft: rgba(41,151,255,0.14);
+    --ok:          #30d158;
+  }
+
+  /* Respect system preference on first paint */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-text);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "ss02";
+  }
+  body:lang(zh) { line-height: 1.65; }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  /* ============================================================
+   * Top nav — thin, Apple-style
+   * ============================================================ */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    height: var(--nav-h);
+    display: flex; align-items: center;
+    padding: 0 24px;
+    background: color-mix(in oklch, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand-mark {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .brand-kicker {
+    color: var(--text-mute);
+    font-size: 13px;
+    letter-spacing: 0;
+    padding-left: 12px;
+    margin-left: 4px;
+    border-left: 1px solid var(--border);
+  }
+  .nav-spacer { flex: 1; }
+  .nav-actions { display: flex; align-items: center; gap: 4px; }
+
+  .icon-btn {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    color: var(--text-dim);
+    transition: background .18s ease, color .18s ease;
+  }
+  .icon-btn:hover { background: var(--surface-2); color: var(--text); }
+
+  /* ============================================================
+   * Shell — sidebar + reading column
+   * ============================================================ */
+  .shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: calc(100vh - var(--nav-h));
+  }
+
+  /* ------ Sidebar ------ */
+  .sidebar {
+    position: sticky;
+    top: var(--nav-h);
+    align-self: start;
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    padding: 24px 16px 32px;
+    border-right: 1px solid var(--border-soft);
+    background: var(--bg);
+  }
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+
+  .nav-section { margin-bottom: 24px; }
+  .nav-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    padding: 0 10px;
+    margin: 0 0 6px;
+  }
+  .nav-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+    width: 100%;
+    text-align: left;
+  }
+  .nav-item:hover { background: var(--surface-2); color: var(--text); }
+  .nav-item[aria-selected="true"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .nav-item .label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-item .count {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .nav-item[aria-selected="true"] .count { color: var(--accent); }
+
+  /* ------ Reading column ------ */
+  .reading {
+    padding: 40px 48px 96px;
+    min-width: 0;
+  }
+  .reading-inner {
+    max-width: var(--reading-w);
+    margin: 0 auto;
+  }
+
+  /* Page header */
+  .page-head { margin-bottom: 32px; }
+  .page-eyebrow {
+    font-size: 13px; font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0;
+    margin-bottom: 6px;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin: 0 0 12px;
+    color: var(--text);
+  }
+  .page-meta {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--text-mute);
+    font-size: 13px;
+  }
+  .page-meta .meta-dot { opacity: .5; }
+  .page-meta time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .page-rule {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 28px 0 8px;
+  }
+
+  /* ============================================================
+   * Card — Substack-style entry in feed
+   * ============================================================ */
+  .feed { display: flex; flex-direction: column; }
+  .feed > .entry + .entry { border-top: 1px solid var(--border-soft); }
+
+  .entry {
+    padding: 28px 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .entry-meta {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-mute);
+    font-size: 13px;
+    min-width: 0;
+  }
+  .avatar {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    object-fit: cover; flex-shrink: 0;
+  }
+  .publication {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 13px;
+    max-width: 180px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .meta-dot { opacity: .55; }
+  .entry time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-mute);
+  }
+  .category-chip {
+    margin-left: auto;
+    display: inline-flex; align-items: center;
+    height: 22px; padding: 0 9px;
+    background: var(--surface-2);
+    color: var(--text-mute);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+  }
+
+  .entry-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.22;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    text-wrap: pretty;
+    transition: color .15s ease;
+  }
+  .entry-title:hover { color: var(--accent); }
+
+  .entry-summary {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.55;
+    text-wrap: pretty;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  body:lang(zh) .entry-summary { line-height: 1.7; }
+  .entry.expanded .entry-summary { -webkit-line-clamp: unset; overflow: visible; }
+
+  .entry-actions {
+    display: flex; align-items: center; gap: 16px;
+    margin-top: 2px;
+  }
+  .expand-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--text-mute);
+    font-size: 13px;
+    padding: 6px 12px;
+    margin-left: -12px;
+    border-radius: var(--radius-pill);
+    transition: color .15s ease, background .15s ease;
+  }
+  .expand-btn:hover { color: var(--accent); background: var(--accent-soft); }
+  .open-link {
+    color: var(--text-mute);
+    font-size: 13px;
+    padding: 6px 0;
+    transition: color .15s;
+  }
+  .open-link:hover { color: var(--accent); }
+
+  .fulltext {
+    margin-top: 14px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-card);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    max-height: 560px;
+    overflow: auto;
+  }
+  body:lang(zh) .fulltext { line-height: 1.8; font-size: 15.5px; }
+  .fulltext img { max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0; }
+  .fulltext a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .fulltext h1, .fulltext h2, .fulltext h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; margin: 16px 0 8px; line-height: 1.3; }
+  .fulltext p { margin: 10px 0; }
+  .fulltext pre, .fulltext code { background: var(--surface-2); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono); font-size: 13px; }
+  .fulltext pre { padding: 12px 14px; overflow-x: auto; }
+  .fulltext blockquote { border-left: 2px solid var(--border); margin: 10px 0; padding: 2px 0 2px 14px; color: var(--text-dim); }
+
+  /* ============================================================
+   * Empty / loading / error states
+   * ============================================================ */
+  .state {
+    padding: 96px 24px;
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 14px;
+  }
+  .state code {
+    color: var(--text-dim); background: var(--surface-2);
+    padding: 2px 7px; border-radius: 5px;
+    font-family: var(--font-mono); font-size: 12.5px;
+  }
+  .state h2 {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin: 0 0 8px;
+  }
+
+  /* ============================================================
+   * Responsive
+   * ============================================================ */
+  @media (max-width: 900px) {
+    :root { --sidebar-w: 0; }
+    .sidebar { display: none; }
+    .reading { padding: 28px 20px 80px; }
+    .page-title { font-size: 30px; }
+    .entry-title { font-size: 19px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
 </style>
 </head>
-<body>
-<h1>HXZ News Reader · 内容工程信源雷达</h1>
-<div class="meta" id="meta">Loading…</div>
-<div id="list"></div>
+<body lang="zh-Hans">
+
+<nav class="nav">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">HXZ Reader</span>
+    <span class="brand-kicker">内容工程信源雷达</span>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="nav-actions">
+    <button class="icon-btn" id="refresh-btn" aria-label="刷新" title="刷新">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    </button>
+    <button class="icon-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <!-- Filled by JS -->
+  </aside>
+
+  <main class="reading">
+    <div class="reading-inner" id="reading">
+      <div class="state" id="loading"><h2>加载中</h2><span>正在读取 data/items.json</span></div>
+    </div>
+  </main>
+</div>
+
 <script>
-fetch('data/items.json?_=' + Date.now())
-  .then(r => r.json())
-  .then(d => {
-    document.getElementById('meta').textContent =
-      `generated_at: ${d.generated_at} · window: ${d.window_hours}h · items: ${d.items.length}`;
-    const list = document.getElementById('list');
-    if (!d.items.length) {
-      list.innerHTML = '<div class="empty">本窗口期暂无条目，可调整 --window-hours 后重新跑 scripts/update_news.py</div>';
+  /* =====================================================
+   * Theme
+   * ===================================================== */
+  const THEME_KEY = "hxz-theme";
+  const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const savedTheme = localStorage.getItem(THEME_KEY) || (sysDark ? "dark" : "light");
+  document.documentElement.dataset.theme = savedTheme;
+  document.getElementById("theme-btn").addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(THEME_KEY, next);
+  });
+
+  /* =====================================================
+   * Helpers
+   * ===================================================== */
+  const escapeHTML = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  })[c]);
+
+  function relativeTime(iso) {
+    if (!iso) return "";
+    const t = new Date(iso).getTime();
+    if (!Number.isFinite(t)) return "";
+    const diff = (Date.now() - t) / 1000;
+    if (diff < 60)         return "刚刚";
+    if (diff < 3600)       return Math.floor(diff / 60) + " 分钟前";
+    if (diff < 86400)      return Math.floor(diff / 3600) + " 小时前";
+    if (diff < 86400 * 7)  return Math.floor(diff / 86400) + " 天前";
+    if (diff < 86400 * 30) return Math.floor(diff / (86400 * 7)) + " 周前";
+    return new Date(iso).toISOString().slice(5, 10).replace("-", "/");
+  }
+  function absoluteTime(iso) {
+    if (!iso) return "";
+    return iso.slice(0, 16).replace("T", " ");
+  }
+
+  async function loadData() {
+    const candidates = ["../../data/items.json", "data/items.json"];
+    let lastErr = null;
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url + "?_=" + Date.now());
+        if (r.ok) return await r.json();
+        lastErr = new Error(`HTTP ${r.status} for ${url}`);
+      } catch (e) { lastErr = e; }
+    }
+    throw lastErr ?? new Error("items.json not found");
+  }
+
+  /* =====================================================
+   * State
+   * ===================================================== */
+  const state = {
+    data: null,
+    filter: { kind: "all", value: null },   // { kind: "all" | "group" | "category", value: string }
+  };
+
+  /* =====================================================
+   * Sidebar
+   * ===================================================== */
+  function renderSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = "";
+
+    const items = state.data.items;
+    const total = items.length;
+
+    const groupCounts = new Map();
+    const catCounts = new Map();
+    for (const it of items) {
+      const g = it.group || "misc";
+      groupCounts.set(g, (groupCounts.get(g) || 0) + 1);
+      if (it.category) catCounts.set(it.category, (catCounts.get(it.category) || 0) + 1);
+    }
+
+    // --- Inbox section ---
+    sidebar.appendChild(buildNavSection("Inbox", [
+      { kind: "all", value: null, label: "全部条目", count: total },
+    ]));
+
+    // --- Groups ---
+    const groups = Array.from(groupCounts.entries()).sort((a, b) => b[1] - a[1]);
+    if (groups.length) {
+      sidebar.appendChild(buildNavSection("信源组", groups.map(([g, n]) => ({
+        kind: "group", value: g, label: g, count: n
+      }))));
+    }
+
+    // --- Categories ---
+    const cats = Array.from(catCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 12);
+    if (cats.length) {
+      sidebar.appendChild(buildNavSection("分类", cats.map(([c, n]) => ({
+        kind: "category", value: c, label: c, count: n
+      }))));
+    }
+  }
+
+  function buildNavSection(label, entries) {
+    const sec = document.createElement("div");
+    sec.className = "nav-section";
+
+    const h = document.createElement("h3");
+    h.className = "nav-label";
+    h.textContent = label;
+    sec.appendChild(h);
+
+    const ul = document.createElement("ul");
+    ul.className = "nav-list";
+    for (const e of entries) {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "nav-item";
+      const selected = state.filter.kind === e.kind && state.filter.value === e.value;
+      btn.setAttribute("aria-selected", selected ? "true" : "false");
+      btn.dataset.kind = e.kind;
+      btn.dataset.value = e.value ?? "";
+      btn.innerHTML =
+        `<span class="label">${escapeHTML(e.label)}</span>` +
+        `<span class="count">${e.count}</span>`;
+      btn.addEventListener("click", () => {
+        state.filter = { kind: e.kind, value: e.value };
+        renderSidebar();
+        renderFeed();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      li.appendChild(btn);
+      ul.appendChild(li);
+    }
+    sec.appendChild(ul);
+    return sec;
+  }
+
+  /* =====================================================
+   * Feed
+   * ===================================================== */
+  function currentTitle() {
+    if (state.filter.kind === "all") return "Inbox";
+    return state.filter.value;
+  }
+  function currentEyebrow() {
+    if (state.filter.kind === "all") return "全部信源";
+    if (state.filter.kind === "group") return "信源组";
+    if (state.filter.kind === "category") return "分类";
+    return "";
+  }
+
+  function filteredItems() {
+    const all = state.data.items;
+    if (state.filter.kind === "all") return all.slice();
+    if (state.filter.kind === "group")
+      return all.filter((it) => (it.group || "misc") === state.filter.value);
+    if (state.filter.kind === "category")
+      return all.filter((it) => it.category === state.filter.value);
+    return all.slice();
+  }
+
+  function renderFeed() {
+    const root = document.getElementById("reading");
+    root.innerHTML = "";
+
+    // Header
+    const head = document.createElement("header");
+    head.className = "page-head";
+    head.innerHTML =
+      `<div class="page-eyebrow">${escapeHTML(currentEyebrow())}</div>` +
+      `<h1 class="page-title">${escapeHTML(currentTitle())}</h1>` +
+      `<div class="page-meta">` +
+        `<span><strong style="color:var(--text);font-variant-numeric:tabular-nums;">${filteredItems().length}</strong> 条</span>` +
+        `<span class="meta-dot">·</span>` +
+        `<span>窗口 ${state.data.window_hours} 小时</span>` +
+        `<span class="meta-dot">·</span>` +
+        `<time title="${escapeHTML(absoluteTime(state.data.generated_at))}">${escapeHTML(relativeTime(state.data.generated_at))}更新</time>` +
+      `</div>` +
+      `<div class="page-rule"></div>`;
+    root.appendChild(head);
+
+    const items = filteredItems().sort(
+      (a, b) => (b.published_at || "").localeCompare(a.published_at || "")
+    );
+
+    if (!items.length) {
+      const empty = document.createElement("div");
+      empty.className = "state";
+      empty.innerHTML = `<h2>暂无条目</h2><span>试试其它分组或时间窗口</span>`;
+      root.appendChild(empty);
       return;
     }
-    const groups = {};
-    for (const it of d.items) {
-      (groups[it.group || 'misc'] ||= []).push(it);
+
+    const feed = document.createElement("div");
+    feed.className = "feed";
+    for (const it of items) feed.appendChild(buildEntry(it));
+    root.appendChild(feed);
+  }
+
+  function buildEntry(it) {
+    const entry = document.createElement("article");
+    entry.className = "entry";
+
+    // Meta row
+    const meta = document.createElement("div");
+    meta.className = "entry-meta";
+
+    const avatarUrl = it.author && it.author.profileImageUrl;
+    if (avatarUrl) {
+      const img = document.createElement("img");
+      img.className = "avatar";
+      img.src = avatarUrl;
+      img.alt = "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.onerror = () => img.remove();
+      meta.appendChild(img);
     }
-    for (const g of Object.keys(groups)) {
-      const gh = document.createElement('div'); gh.className = 'group'; gh.textContent = g;
-      list.appendChild(gh);
-      for (const it of groups[g]) {
-        const row = document.createElement('div'); row.className = 'item';
-        const hasFull = it.content_html && it.content_html.length > 200;
-        row.innerHTML =
-          `<span class="src">${it.site_name}</span>` +
-          `<a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>` +
-          `<span class="ts">${it.published_at.slice(0,16).replace('T',' ')}</span>` +
-          (it.summary ? `<div class="summary">${it.summary}</div>` : '') +
-          (hasFull ? `<span class="toggle">展开全文 ▾</span><div class="fulltext">${it.content_html}</div>` : '');
-        if (hasFull) {
-          const tog = row.querySelector('.toggle');
-          const ft = row.querySelector('.fulltext');
-          tog.addEventListener('click', () => {
-            const open = ft.classList.toggle('open');
-            tog.textContent = open ? '收起 ▴' : '展开全文 ▾';
-          });
-        }
-        list.appendChild(row);
-      }
+
+    const pub = document.createElement("span");
+    pub.className = "publication";
+    pub.textContent = it.site_name || it.site_id || "";
+    pub.title = it.site_id || it.site_name || "";
+    meta.appendChild(pub);
+
+    const dot = document.createElement("span"); dot.className = "meta-dot"; dot.textContent = "·";
+    meta.appendChild(dot);
+
+    const time = document.createElement("time");
+    time.dateTime = it.published_at || "";
+    time.textContent = relativeTime(it.published_at);
+    time.title = absoluteTime(it.published_at);
+    meta.appendChild(time);
+
+    if (it.category) {
+      const chip = document.createElement("span");
+      chip.className = "category-chip";
+      chip.textContent = it.category;
+      meta.appendChild(chip);
     }
-  })
-  .catch(e => {
-    document.getElementById('meta').textContent = 'data/items.json not found. Run `python scripts/update_news.py` first.';
-  });
+
+    entry.appendChild(meta);
+
+    // Title
+    const titleA = document.createElement("a");
+    titleA.className = "entry-title";
+    titleA.href = it.url || "#";
+    titleA.target = "_blank";
+    titleA.rel = "noopener noreferrer";
+    titleA.textContent = it.title || "(无标题)";
+    entry.appendChild(titleA);
+
+    // Summary
+    if (it.summary && it.summary.trim() && it.summary.trim() !== (it.title || "").trim()) {
+      const summary = document.createElement("p");
+      summary.className = "entry-summary";
+      summary.textContent = it.summary;
+      entry.appendChild(summary);
+    }
+
+    // Actions
+    const actions = document.createElement("div");
+    actions.className = "entry-actions";
+
+    const hasFull = it.content_html && it.content_html.length > 200;
+    let full = null;
+    if (hasFull) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "expand-btn";
+      btn.textContent = "阅读全文";
+      actions.appendChild(btn);
+
+      full = document.createElement("div");
+      full.className = "fulltext";
+      full.hidden = true;
+      full.innerHTML = it.content_html;
+
+      btn.addEventListener("click", () => {
+        const open = entry.classList.toggle("expanded");
+        full.hidden = !open;
+        btn.textContent = open ? "收起全文" : "阅读全文";
+      });
+    }
+
+    if (it.url) {
+      const open = document.createElement("a");
+      open.className = "open-link";
+      open.href = it.url;
+      open.target = "_blank";
+      open.rel = "noopener noreferrer";
+      open.textContent = "打开原文 ↗";
+      actions.appendChild(open);
+    }
+
+    if (actions.childElementCount > 0) entry.appendChild(actions);
+    if (full) entry.appendChild(full);
+
+    return entry;
+  }
+
+  /* =====================================================
+   * Errors
+   * ===================================================== */
+  function renderError(msg) {
+    document.getElementById("reading").innerHTML =
+      `<div class="state">` +
+        `<h2>读取数据失败</h2>` +
+        `<span>找不到 <code>data/items.json</code></span><br><br>` +
+        `<span><code>${escapeHTML(msg)}</code></span><br><br>` +
+        `<span>跑 <code>python scripts/update_news.py</code> 生成最新数据。</span>` +
+      `</div>`;
+  }
+
+  /* =====================================================
+   * Boot
+   * ===================================================== */
+  document.getElementById("refresh-btn").addEventListener("click", boot);
+
+  function boot() {
+    loadData().then((data) => {
+      state.data = data;
+      renderSidebar();
+      renderFeed();
+    }).catch((e) => renderError(e.message || String(e)));
+  }
+  boot();
 </script>
 </body>
 </html>
