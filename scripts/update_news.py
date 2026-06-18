@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import re
 import subprocess
 import sys
@@ -203,11 +204,12 @@ def fetch_hf_papers(src: dict[str, Any], session: requests.Session, window_hours
         return [], status
 
 
-def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: int) -> tuple[list[RawItem], SourceStatus]:
+def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: int, discover_only: bool = False) -> tuple[list[RawItem], SourceStatus]:
     """YouTube 频道：RSS 拉新视频 + youtube-transcript-api 抓字幕。
 
     依赖住宅 IP 节点（梯子）才能稳定拿到 transcript；
     与 ai-news-radar 风格一致：单源失败不阻塞整体流程。
+    discover_only=True 时只取 RSS 标题+描述、跳过字幕（字幕=全文，留给第二段）。
     """
     status = SourceStatus(id=src["id"], name=src["name"], type=src["type"], ok=False, fetched_at=datetime.now(timezone.utc).isoformat())
     url = (src.get("url") or "").strip()
@@ -216,20 +218,23 @@ def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: 
         return [], status
 
     # 延迟导入：让没装 youtube-transcript-api 的环境也能跑别的源
-    try:
-        from youtube_transcript_api import YouTubeTranscriptApi
-    except Exception as e:
-        status.error = f"youtube_transcript_api not installed: {e}"
-        return [], status
+    api = None
+    if not discover_only:
+        try:
+            from youtube_transcript_api import YouTubeTranscriptApi
+            api = YouTubeTranscriptApi()
+        except Exception as e:
+            status.error = f"youtube_transcript_api not installed: {e}"
+            return [], status
 
     cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
-    max_videos = int(src.get("max_videos") or 3)  # 默认每频道最多 3 条，防止历史回灌
+    # discover-only 拉深做 30 天回填；常规模式默认 3 条防历史回灌
+    max_videos = 15 if discover_only else int(src.get("max_videos") or 3)
     languages = src.get("languages") or ["en"]
     items: list[RawItem] = []
     try:
         resp = _get_with_retry(session, url)
         feed = feedparser.parse(resp.content)
-        api = YouTubeTranscriptApi()
         for entry in feed.entries[:max_videos]:
             published = parse_dt(entry.get("published_parsed") or entry.get("updated_parsed") or entry.get("published") or entry.get("updated"))
             if published is None:
@@ -247,9 +252,10 @@ def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: 
                 continue
             summary = re.sub(r"<[^>]+>", "", entry.get("summary") or "")[:280]
 
-            # 抓字幕（核心）
+            # 抓字幕（核心）；discover-only 跳过——字幕=全文，留给第二段
             transcript_text = ""
-            try:
+            if not discover_only:
+              try:
                 tr = api.fetch(vid, languages=languages)
                 snippets = list(tr)
                 # 拼成 HTML：每段一行，方便 index.html "展开全文" 渲染
@@ -265,7 +271,7 @@ def fetch_youtube(src: dict[str, Any], session: requests.Session, window_hours: 
                 if buf:
                     paragraphs.append(" ".join(buf))
                 transcript_text = "\n\n".join(f"<p>{p}</p>" for p in paragraphs)
-            except Exception as e:
+              except Exception as e:
                 # 字幕抓不到不阻塞整源；仍然记录这条视频元数据
                 transcript_text = ""
                 # 在 summary 末尾标记
@@ -450,7 +456,98 @@ def _fetch_via_getnote(src: dict, channel: str, items_meta: list, output_local: 
     return items, status
 
 
-def fetch_bilibili(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+def _fetch_discover_summary(
+    src: dict, channel: str, items_meta: list, window_hours: int,
+    discover_workers: int = 6,
+) -> tuple[list[RawItem], SourceStatus]:
+    """发现层：title + 便宜摘要，不烧 biji、不取全文/逐字稿、不走增量 state。
+
+    选题漏斗发现层用——闸门①聚类只吃 title+summary。全文/逐字稿留给闸门②打分时
+    再抓（见 选题漏斗/闸门2-抓全文.py，只抓热点池长文成员）。摘要来源见 discover/cheap_summary.py。
+
+    wechat 通道每条都要独立 GET og:description，串行最慢；用 ThreadPoolExecutor
+    并发抓取（discover_workers>1 时），每请求前加随机 jitter 降反爬。结果按
+    items_meta 原顺序组装，字段/顺序与串行一致。小宇宙/B站逻辑不变（仍串行）。
+    """
+    ts = datetime.now(timezone.utc).isoformat()
+    status = SourceStatus(id=src["id"], name=src["name"], type=channel, ok=False, fetched_at=ts)
+    try:
+        from discover.cheap_summary import wechat_summary, xiaoyuzhou_detail, bilibili_detail
+    except Exception as e:
+        status.error = f"cheap_summary import fail: {e}"
+        return [], status
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
+    items: list[RawItem] = []
+    antibot = 0
+
+    # wechat: 每条独立 HTTP，线程池并发（workers>1）。先把每条 meta 的 summary
+    # 算出来（按原 index 回填，保持顺序），再统一做窗口过滤 + 组装。
+    summaries: list[str] = [""] * len(items_meta)
+    if channel == "wechat":
+        def _one(url: str) -> str:
+            # 每请求前随机 jitter，错开并发对 mp.weixin 的瞬时压力，降反爬
+            time.sleep(random.uniform(0, 0.3))
+            try:
+                return wechat_summary(url)
+            except Exception:
+                return ""
+
+        workers = max(1, int(discover_workers))
+        if workers == 1:
+            for i, meta in enumerate(items_meta):
+                summaries[i] = _one(meta["url"])
+        else:
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(max_workers=min(workers, len(items_meta) or 1)) as ex:
+                # map 保序：返回顺序与 items_meta 一致
+                for i, s in enumerate(ex.map(_one, [m["url"] for m in items_meta])):
+                    summaries[i] = s
+
+    for idx, meta in enumerate(items_meta):
+        url = meta["url"]
+        title = meta.get("title") or ""
+        pub = meta.get("published_at") or ts
+        summary = ""
+        try:
+            if channel == "wechat":
+                summary = summaries[idx]
+                if not summary:
+                    antibot += 1
+            elif channel == "xiaoyuzhou":
+                d = xiaoyuzhou_detail(url)
+                title = d["title"] or title
+                pub = d["published_at"] or pub
+                summary = d["summary"]
+            elif channel == "bilibili":
+                d = bilibili_detail(url)
+                title = d["title"] or title
+                pub = d["published_at"] or pub
+                summary = d["summary"]
+        except Exception as e:
+            print(f"  [{channel}/{src['id']}] cheap_summary 异常: {type(e).__name__}: {e}", flush=True)
+        pdt = parse_dt(pub)
+        if pdt is not None and pdt < cutoff:
+            continue
+        if not title:
+            continue
+        items.append(RawItem(
+            site_id=src["id"], site_name=src["name"],
+            group=src.get("group", "国内信源"), category=src.get("category", "ai_hot"),
+            title=title, url=url,
+            published_at=(pdt.astimezone(timezone.utc).isoformat() if pdt else pub),
+            summary=summary, content_html="",
+        ))
+    status.ok = True
+    status.count = len(items)
+    if not items:
+        status.error = "discover-only: 0 items in window"
+    elif antibot:
+        status.error = f"discover-only ok, {antibot} 条 og:description 空(反爬/无摘要)"
+    return items, status
+
+
+def fetch_bilibili(src: dict, output_local: Path, state_file: Path, discover_only: bool = False, window_hours: int = 720) -> tuple[list[RawItem], SourceStatus]:
     ts = datetime.now(timezone.utc).isoformat()
     status = SourceStatus(id=src["id"], name=src["name"], type="bilibili", ok=False, fetched_at=ts)
     uid = str(src.get("uid") or "").strip()
@@ -459,16 +556,19 @@ def fetch_bilibili(src: dict, output_local: Path, state_file: Path) -> tuple[lis
         return [], status
     try:
         from discover.bilibili import discover_uploader_videos
-        # 多抓几条作为候选（防 last_seen 后跟着新更新但 max_per_run=1 时漏 take）
-        candidates = discover_uploader_videos(uid, max_videos=max(int(src.get("max_per_run", 1)) + 2, 3))
+        # discover-only 拉深一些做 30 天回填；getnote 模式多抓几条防 max_per_run=1 漏 take
+        max_v = 30 if discover_only else max(int(src.get("max_per_run", 1)) + 2, 3)
+        candidates = discover_uploader_videos(uid, max_videos=max_v)
     except Exception as e:
         status.error = f"discover.bilibili fail: {type(e).__name__}: {e}"
         return [], status
     meta = [{"item_id": v["bvid"], "url": v["url"], "title": v["title"], "published_at": v["published_at"]} for v in candidates]
+    if discover_only:
+        return _fetch_discover_summary(src, "bilibili", meta, window_hours)
     return _fetch_via_getnote(src, "bilibili", meta, output_local, state_file)
 
 
-def fetch_xiaoyuzhou(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+def fetch_xiaoyuzhou(src: dict, output_local: Path, state_file: Path, discover_only: bool = False, window_hours: int = 720) -> tuple[list[RawItem], SourceStatus]:
     ts = datetime.now(timezone.utc).isoformat()
     status = SourceStatus(id=src["id"], name=src["name"], type="xiaoyuzhou", ok=False, fetched_at=ts)
     pid = str(src.get("podcast_id") or "").strip()
@@ -477,15 +577,18 @@ def fetch_xiaoyuzhou(src: dict, output_local: Path, state_file: Path) -> tuple[l
         return [], status
     try:
         from discover.xiaoyuzhou import discover_podcast_episodes
-        candidates = discover_podcast_episodes(pid, max_episodes=max(int(src.get("max_per_run", 1)) + 2, 3))
+        max_e = 30 if discover_only else max(int(src.get("max_per_run", 1)) + 2, 3)
+        candidates = discover_podcast_episodes(pid, max_episodes=max_e)
     except Exception as e:
         status.error = f"discover.xiaoyuzhou fail: {type(e).__name__}: {e}"
         return [], status
     meta = [{"item_id": e["episode_id"], "url": e["url"], "title": e["title"], "published_at": e["published_at"]} for e in candidates]
+    if discover_only:
+        return _fetch_discover_summary(src, "xiaoyuzhou", meta, window_hours)
     return _fetch_via_getnote(src, "xiaoyuzhou", meta, output_local, state_file)
 
 
-def fetch_wechat(src: dict, output_local: Path, state_file: Path) -> tuple[list[RawItem], SourceStatus]:
+def fetch_wechat(src: dict, output_local: Path, state_file: Path, discover_only: bool = False, window_hours: int = 720, discover_workers: int = 6) -> tuple[list[RawItem], SourceStatus]:
     """公众号: WeWe-RSS atom 拿"哪些号出新文章" + URL 列表 → getnote_bridge 取正文。
 
     背景 (2026-06-11 确认): WeWe-RSS sqlite articles 表只有 7 字段
@@ -498,6 +601,11 @@ def fetch_wechat(src: dict, output_local: Path, state_file: Path) -> tuple[list[
     if not rss_url:
         status.error = "missing 'url' (WeWe-RSS atom)"
         return [], status
+    # discover-only 深翻: atom 默认只回 10 条/号，加 ?limit=N 拿满 ~15 天历史。
+    # WeWe-RSS 支持 limit query param（实测 limit=50→50 条）。
+    if discover_only and "limit=" not in rss_url:
+        sep = "&" if "?" in rss_url else "?"
+        rss_url = f"{rss_url}{sep}limit=80"
     try:
         feed = feedparser.parse(rss_url)
     except Exception as e:
@@ -509,7 +617,7 @@ def fetch_wechat(src: dict, output_local: Path, state_file: Path) -> tuple[list[
         status.error = "no entries (token失效? 168h 无更新? 去 http://127.0.0.1:4000/dash 看)"
         return [], status
 
-    max_n = max(int(src.get("max_per_run", 1)) + 2, 3)
+    max_n = 80 if discover_only else max(int(src.get("max_per_run", 1)) + 2, 3)
     meta = []
     for e in feed.entries[:max_n]:
         link = e.get("link") or ""
@@ -531,6 +639,8 @@ def fetch_wechat(src: dict, output_local: Path, state_file: Path) -> tuple[list[
         status.count = 0
         status.error = "no mp.weixin entries (feed shape changed?)"
         return [], status
+    if discover_only:
+        return _fetch_discover_summary(src, "wechat", meta, window_hours, discover_workers)
     return _fetch_via_getnote(src, "wechat", meta, output_local, state_file)
 
 
@@ -540,6 +650,7 @@ def fetch_x_list(
     window_hours: int,
     per_handle_limit: int = 50,
     timeout: int = 180,
+    pages_override: int = 0,
 ) -> tuple[list[RawItem], list[SourceStatus]]:
     """一次调用 twscrape list_timeline 抓 List 里所有成员的最新推文。
     按 user.username 反向匹配 sources 得到 site_id。
@@ -560,12 +671,14 @@ def fetch_x_list(
     # (XClIdGen creation attempt failed), 改用 scripts/x_list/fetch_timeline.py
     # 直调 GraphQL ListLatestTweetsTimeline (镜像 add_members.py 模式)
     fetch_script = ROOT / "scripts" / "x_list" / "fetch_timeline.py"
-    pages = max(1, total_limit // 100 + 1)
+    # 默认仍封顶 5 页（~3-5 天）；pages_override>0 时解锁深翻拉更长历史
+    pages = pages_override if pages_override > 0 else min(max(1, total_limit // 100 + 1), 5)
+    eff_timeout = max(timeout, pages * 25)  # 深翻要更长超时，每页约 25s 预算
     try:
         r = subprocess.run(
             [sys.executable, str(fetch_script),
-             "--list-id", list_id, "--count", "100", "--pages", str(min(pages, 5))],
-            capture_output=True, text=True, timeout=timeout,
+             "--list-id", list_id, "--count", "100", "--pages", str(pages)],
+            capture_output=True, text=True, timeout=eff_timeout,
         )
         if r.returncode != 0:
             err = f"fetch_timeline exit {r.returncode}: {r.stderr.strip()[:300]}"
@@ -669,6 +782,9 @@ def main():
     ap.add_argument("--enable-x", action="store_true", help="Fetch X via List timeline (one call for all handles)")
     ap.add_argument("--x-list-id", default=DEFAULT_X_LIST_ID, help="X List ID (须把所有 x_handle 加进此 List)")
     ap.add_argument("--x-per-handle", type=int, default=50, help="X 平均每号最多拉多少条（用于 list_timeline 总上限）")
+    ap.add_argument("--x-pages", type=int, default=0, help="X list_timeline 翻页数；>0 时解开默认 5 页上限以拉更深历史（每页约 100 条）")
+    ap.add_argument("--discover-only", action="store_true", help="国内/YouTube 通道只取标题+便宜摘要（og:description/__NEXT_DATA__/yt-dlp desc），跳过 getnote 全文 + transcript，不烧 biji，不走增量 state")
+    ap.add_argument("--discover-workers", type=int, default=6, help="discover-only 下 wechat 逐篇 og:description 抓取的线程池并发度（默认 6；=1 退回串行）。仅影响 wechat，小宇宙/B站不受影响")
     ap.add_argument("--enable-wechat", action="store_true", help="Fetch wechat sources that have RSS URL")
     ap.add_argument("--enable-podcast", action="store_true", help="Fetch podcast sources that have RSS URL")
     ap.add_argument("--enable-youtube", action="store_true", help="Fetch YouTube channel sources (RSS + transcripts)")
@@ -728,15 +844,15 @@ def main():
         if t in ("rss", "podcast"):
             items, status = fetch_rss(src, session, args.window_hours)
         elif t == "wechat":
-            items, status = fetch_wechat(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
+            items, status = fetch_wechat(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json", args.discover_only, args.window_hours, args.discover_workers)
         elif t == "hf_api":
             items, status = fetch_hf_papers(src, session, args.window_hours)
         elif t == "youtube":
-            items, status = fetch_youtube(src, session, args.window_hours)
+            items, status = fetch_youtube(src, session, args.window_hours, args.discover_only)
         elif t == "bilibili":
-            items, status = fetch_bilibili(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
+            items, status = fetch_bilibili(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json", args.discover_only, args.window_hours)
         elif t == "xiaoyuzhou":
-            items, status = fetch_xiaoyuzhou(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json")
+            items, status = fetch_xiaoyuzhou(src, Path(args.output_local_dir), Path(args.state_dir) / "discover.json", args.discover_only, args.window_hours)
         else:
             status = SourceStatus(id=src["id"], name=src["name"], type=t or "?", ok=False, error=f"unknown type: {t}", fetched_at=datetime.now(timezone.utc).isoformat())
             items = []
@@ -747,7 +863,7 @@ def main():
     if args.enable_x and x_sources and not args.probe_only:
         print(f"[hxz-news-reader] X list_timeline list_id={args.x_list_id} handles={len(x_sources)}", flush=True)
         t0 = time.time()
-        x_items, x_statuses = fetch_x_list(args.x_list_id, x_sources, args.window_hours, args.x_per_handle)
+        x_items, x_statuses = fetch_x_list(args.x_list_id, x_sources, args.window_hours, args.x_per_handle, pages_override=args.x_pages)
         elapsed = time.time() - t0
         print(f"[hxz-news-reader] X 完成: items={len(x_items)} 耗时 {elapsed:.1f}s", flush=True)
         all_items.extend(x_items)
