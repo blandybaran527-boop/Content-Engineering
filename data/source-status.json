@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T23:45:11.184449+00:00",
+  "generated_at": "2026-06-18T23:52:28.952109+00:00",
   "sources": [
     {
       "id": "hackernews",
@@ -8,7 +8,7 @@
       "ok": true,
       "count": 30,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:00.582433+00:00"
+      "fetched_at": "2026-06-18T23:52:18.089474+00:00"
     },
     {
       "id": "import-ai",
@@ -17,16 +17,16 @@
       "ok": false,
       "count": 0,
       "error": "HTTPError: 403 Client Error: Forbidden for url: https://importai.substack.com/feed",
-      "fetched_at": "2026-06-17T23:45:00.843376+00:00"
+      "fetched_at": "2026-06-18T23:52:18.480805+00:00"
     },
     {
       "id": "hf-papers",
       "name": "HuggingFace Daily Papers",
       "type": "hf_api",
       "ok": true,
-      "count": 72,
+      "count": 83,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:10.060869+00:00"
+      "fetched_at": "2026-06-18T23:52:27.654962+00:00"
     },
     {
       "id": "rundown-ai",
@@ -35,7 +35,7 @@
       "ok": true,
       "count": 0,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:10.268958+00:00"
+      "fetched_at": "2026-06-18T23:52:27.842268+00:00"
     },
     {
       "id": "lennys",
@@ -44,7 +44,7 @@
       "ok": true,
       "count": 5,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:10.453877+00:00"
+      "fetched_at": "2026-06-18T23:52:27.991327+00:00"
     },
     {
       "id": "generalist",
@@ -53,7 +53,7 @@
       "ok": true,
       "count": 1,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:10.741860+00:00"
+      "fetched_at": "2026-06-18T23:52:28.330641+00:00"
     },
     {
       "id": "newcomer",
@@ -62,7 +62,7 @@
       "ok": true,
       "count": 4,
       "error": "",
-      "fetched_at": "2026-06-17T23:45:10.958988+00:00"
+      "fetched_at": "2026-06-18T23:52:28.613285+00:00"
     },
     {
       "id": "qbitai",
@@ -71,7 +71,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180482+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947739+00:00"
     },
     {
       "id": "jiqizhixin",
@@ -80,7 +80,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180490+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947750+00:00"
     },
     {
       "id": "xinzhiyuan",
@@ -89,7 +89,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180494+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947754+00:00"
     },
     {
       "id": "latepost",
@@ -98,7 +98,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180497+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947757+00:00"
     },
     {
       "id": "waves",
@@ -107,7 +107,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180500+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947760+00:00"
     },
     {
       "id": "geekpark",
@@ -116,7 +116,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180503+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947762+00:00"
     },
     {
       "id": "guicang-ai",
@@ -125,7 +125,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180505+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947765+00:00"
     },
     {
       "id": "khazix",
@@ -134,7 +134,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180508+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947768+00:00"
     },
     {
       "id": "aiwarts",
@@ -143,7 +143,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180510+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947770+00:00"
     },
     {
       "id": "agent-ju",
@@ -152,7 +152,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180513+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947773+00:00"
     },
     {
       "id": "zang-ai",
@@ -161,7 +161,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180515+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947776+00:00"
     },
     {
       "id": "zhinengyongxian",
@@ -170,7 +170,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180518+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947778+00:00"
     },
     {
       "id": "lex-fridman",
@@ -179,7 +179,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180521+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947781+00:00"
     },
     {
       "id": "dwarkesh",
@@ -188,7 +188,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180524+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947784+00:00"
     },
     {
       "id": "matt-wolfe",
@@ -197,7 +197,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180526+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947787+00:00"
     },
     {
       "id": "20vc",
@@ -206,7 +206,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180529+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947789+00:00"
     },
     {
       "id": "no-priors",
@@ -215,7 +215,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180531+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947792+00:00"
     },
     {
       "id": "bg2",
@@ -224,7 +224,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180533+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947794+00:00"
     },
     {
       "id": "ted-ai",
@@ -233,7 +233,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180536+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947797+00:00"
     },
     {
       "id": "a16z-ai",
@@ -242,7 +242,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180538+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947799+00:00"
     },
     {
       "id": "li-ziran",
@@ -251,7 +251,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180541+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947802+00:00"
     },
     {
       "id": "latetalk",
@@ -260,7 +260,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180543+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947805+00:00"
     },
     {
       "id": "onboard",
@@ -269,7 +269,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180546+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947807+00:00"
     },
     {
       "id": "guigu101",
@@ -278,7 +278,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180548+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947809+00:00"
     },
     {
       "id": "ai-weekly-talk",
@@ -287,7 +287,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180550+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947812+00:00"
     },
     {
       "id": "yt-lex-podcast",
@@ -296,7 +296,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180553+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947815+00:00"
     },
     {
       "id": "yt-dwarkesh",
@@ -305,7 +305,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180556+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947817+00:00"
     },
     {
       "id": "yt-matt-wolfe",
@@ -314,7 +314,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180558+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947820+00:00"
     },
     {
       "id": "yt-20vc",
@@ -323,7 +323,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180561+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947822+00:00"
     },
     {
       "id": "yt-no-priors",
@@ -332,7 +332,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180563+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947825+00:00"
     },
     {
       "id": "yt-bg2",
@@ -341,7 +341,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180565+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947828+00:00"
     },
     {
       "id": "yt-a16z",
@@ -350,7 +350,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (not in default layer)",
-      "fetched_at": "2026-06-17T23:45:11.180567+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947830+00:00"
     },
     {
       "id": "x-OpenAI",
@@ -359,7 +359,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-AnthropicAI",
@@ -368,7 +368,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-GoogleDeepMind",
@@ -377,7 +377,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-MetaAI",
@@ -386,7 +386,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-huggingface",
@@ -395,7 +395,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-midjourney",
@@ -404,7 +404,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-runwayml",
@@ -413,7 +413,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-StabilityAI",
@@ -422,7 +422,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-perplexity_ai",
@@ -431,7 +431,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-elevenlabsio",
@@ -440,7 +440,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-sama",
@@ -449,7 +449,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-DarioAmodei",
@@ -458,7 +458,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-elonmusk",
@@ -467,7 +467,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-satyanadella",
@@ -476,7 +476,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-nvidia",
@@ -485,7 +485,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-kaifulee",
@@ -494,7 +494,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-AravSrinivas",
@@ -503,7 +503,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-DavidSHolz",
@@ -512,7 +512,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-karpathy",
@@ -521,7 +521,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-ylecun",
@@ -530,7 +530,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-AndrewYNg",
@@ -539,7 +539,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-drfeifei",
@@ -548,7 +548,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-DrJimFan",
@@ -557,7 +557,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-lilianweng",
@@ -566,7 +566,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-jeremyphoward",
@@ -575,7 +575,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-GaryMarcus",
@@ -584,7 +584,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-steipete",
@@ -593,7 +593,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-OfficialLoganK",
@@ -602,7 +602,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-simonw",
@@ -611,7 +611,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-swyx",
@@ -620,7 +620,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-mattshumer_",
@@ -629,7 +629,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-Thom_Wolf",
@@ -638,7 +638,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-hwchase17",
@@ -647,7 +647,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-soumithchintala",
@@ -656,7 +656,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-addyosmani",
@@ -665,7 +665,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-lexfridman",
@@ -674,7 +674,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-rowancheung",
@@ -683,7 +683,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-alliekmiller",
@@ -692,7 +692,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-BernardMarr",
@@ -701,7 +701,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-emollick",
@@ -710,7 +710,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-Scobleizer",
@@ -719,7 +719,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-bilawalsidhu",
@@ -728,7 +728,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-c_valenzuela",
@@ -737,7 +737,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-LinusEkenstam",
@@ -746,7 +746,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-nickfloats",
@@ -755,7 +755,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-heatherbcooper",
@@ -764,7 +764,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-jaredpalmer",
@@ -773,7 +773,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-divgarg9",
@@ -782,7 +782,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-ID_AA_Carmack",
@@ -791,7 +791,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-demishassabis",
@@ -800,7 +800,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-dotey",
@@ -809,7 +809,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-op7418",
@@ -818,7 +818,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-Gorden_Sun",
@@ -827,7 +827,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-xiaohu",
@@ -836,7 +836,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-WaytoAGI",
@@ -845,7 +845,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-lijigang",
@@ -854,7 +854,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-vista8",
@@ -863,7 +863,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-thinkingjimmy",
@@ -872,7 +872,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-shao__meng",
@@ -881,7 +881,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-goocarlos",
@@ -890,7 +890,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-AxtonLiu",
@@ -899,7 +899,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-lxfater",
@@ -908,7 +908,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-indie_maker",
@@ -917,7 +917,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-venturetwins",
@@ -926,7 +926,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-gefei55",
@@ -935,7 +935,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-Fenng",
@@ -944,7 +944,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-nateleex",
@@ -953,7 +953,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-tualatrix",
@@ -962,7 +962,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-haibun",
@@ -971,7 +971,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-nishuang",
@@ -980,7 +980,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-aigclink",
@@ -989,7 +989,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-Tumeng05",
@@ -998,7 +998,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-cyberchanxin",
@@ -1007,7 +1007,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-ruanyf",
@@ -1016,7 +1016,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-GitHub_Daily",
@@ -1025,7 +1025,7 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     },
     {
       "id": "x-easychen",
@@ -1034,13 +1034,13 @@
       "ok": true,
       "count": 0,
       "error": "skipped (X disabled)",
-      "fetched_at": "2026-06-17T23:45:11.180597+00:00"
+      "fetched_at": "2026-06-18T23:52:28.947858+00:00"
     }
   ],
   "summary": {
     "total_sources": 115,
     "ok": 114,
     "failed": 1,
-    "items": 112
+    "items": 123
   }
 }
